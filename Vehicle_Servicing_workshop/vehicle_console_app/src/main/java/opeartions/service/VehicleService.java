@@ -11,6 +11,7 @@ import operations.models.Vehicle;
 public class VehicleService {
 	static Scanner scan = new Scanner(System.in);
 	static VehicleDao vehicleDao;
+	
 	public static void getAllVehicles() {
 		List<Vehicle> vehicleList = new ArrayList<>();
 		try {
