@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MainMenu {
 	private static CMenu cmain;
 //	private static PMenu pmain;
-//	private static VMenu vmain;
+	private static VMenu vmain;
 	public static int menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Customer");
@@ -38,7 +38,7 @@ public static void TheMainMenu() {
 			break;
 
 		case 3:
-				//m.vmain.VehicleMain();
+				m.vmain.VehicleMain();
 				System.out.println("");
 			break;
 			
