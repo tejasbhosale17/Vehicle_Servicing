@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 import opeartions.service.PartService;
 
+enum EPartMenu{
+	EXIT,ALL_PARTS,SEPCIFIC_PART,
+	DELETE_PART,UPDATE_PART,ADD_PART,DEFAULT
+}
+
 public class PartsMenu {
-	public static int menu() {
+	public static EPartMenu menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Parts");
 		System.out.println("2.Fetch Specific Part");
@@ -14,42 +19,43 @@ public class PartsMenu {
 		System.out.println("5.Add part");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
-		return new Scanner(System.in).nextInt();
+		int choice = new Scanner(System.in).nextInt();
+		return (choice<0 ||choice>5 ? EPartMenu.values()[6] :EPartMenu.values()[choice]);
 	}
 	
 public static void ChoosePartMain() {
 	System.out.println("Choose Part Operations");
-	int choice;
+	EPartMenu choice;
 	Scanner scan = new Scanner(System.in);
-	while((choice = menu())!=0) {
+	while((choice = menu())!=EPartMenu.EXIT) {
 		switch (choice) {
-		case 1:
+		case ALL_PARTS:
 				PartService.getAllParts();
 				System.out.println("");
 			break;
 
-		case 2:
+		case SEPCIFIC_PART:
 			PartService.getSpecificPart();
 			System.out.println("");
 			break;
 
-		case 3:
+		case DELETE_PART:
 			PartService.removePart();
 			System.out.println("");
 			break;
 
-		case 4:
+		case UPDATE_PART:
 			PartService.updatePart();
 			System.out.println("");
 			break;
 
-		case 5:
+		case ADD_PART:
 			PartService.addPart();
 			System.out.println("");
 			break;
 
 			
-		default:
+		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
 			break;
 		}
