@@ -2,12 +2,22 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+
+
+
+
+enum EMainMenu{
+	EXIT,CUSTOMER,VEHICLE,PART,CUSTOMER_VEHICLE
+}
+
+
 public class MainMenu {
 	private static CustomerMenu cmenu;
 	private static PartsMenu pmenu;
 	private static VehicleMenu vmenu;
 	private static CustomerVehicleMenu cvmenu;
-	public static int menu() {
+	
+	public static EMainMenu menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Customer");
 		System.out.println("2.Part");
@@ -15,32 +25,33 @@ public class MainMenu {
 		System.out.println("4.Customer Vehicle");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
-		return new Scanner(System.in).nextInt();
+		int choice = new Scanner(System.in).nextInt();
+		return EMainMenu.values()[choice];
 	}
 	
 public static void TheMainMenu() {
 	System.out.println("Choose The Department");
 	MainMenu m =new MainMenu();
-	int choice;
+	EMainMenu choice;
 	Scanner scan = new Scanner(System.in);
-	while((choice = menu())!=0) {
+	while((choice = menu())!=EMainMenu.EXIT) {
 		switch (choice) {
-		case 1:
+		case CUSTOMER:
 				m.cmenu.ChooseCustomerMain();
 				System.out.println("");
 			break;
 
-		case 2:
+		case PART:
 				m.pmenu.ChoosePartMain();
 				System.out.println("");
 			break;
 
-		case 3:
+		case VEHICLE:
 				m.vmenu.ChooseVehicleMain();
 				System.out.println("");
 			break;
 			
-		case 4:
+		case CUSTOMER_VEHICLE:
 			m.cvmenu.ChooseCustomerVehicleMain();
 			System.out.println("");
 		break;
