@@ -4,11 +4,15 @@ import java.util.Scanner;
 
 import opeartions.service.CustomerVehicleService;
 
+enum ECVMenu{
+	EXIT,ALL_CUSTOMER_VEHICLES,SPECIFIC_CUSTOMER_VEHICLE,
+	DELETE_CUSTOMER_VEHICLE,UPDATE_CUSTOMER_VEHICLE,ADD_CUSTOMER_VEHICLE,DEFAULT
+}
 
 public class CustomerVehicleMenu {
 	static CustomerVehicleService cvService =new CustomerVehicleService();
 	
-	public static int menu() {
+	public static ECVMenu menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Customer Vehicles");
 		System.out.println("2.Fetch Specific Customer Vehicle");
@@ -17,42 +21,43 @@ public class CustomerVehicleMenu {
 		System.out.println("5.Add Customer Vehicle");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
-		return new Scanner(System.in).nextInt();
+		int choice = new Scanner(System.in).nextInt();
+		return (choice<0 ||choice>5 ? ECVMenu.values()[6] :ECVMenu.values()[choice]);
 	}
 		
 	public static void ChooseCustomerVehicleMain() {
 		System.out.println("Choose Customer Vehicle Operations");
-		int choice;
+		ECVMenu choice;
 		Scanner scan = new Scanner(System.in);
-		while((choice = menu())!=0) {
+		while((choice = menu())!=ECVMenu.EXIT) {
 			switch (choice) {
-			case 1:
+			case ALL_CUSTOMER_VEHICLES:
 				cvService.getAllCustVehicles();
 				System.out.println("");
 				break;
 
-			case 2:
+			case SPECIFIC_CUSTOMER_VEHICLE:
 				cvService.getSpecificCustVehicle();
 				System.out.println("");
 				break;
 
-			case 3:
+			case DELETE_CUSTOMER_VEHICLE:
 				cvService.removeCustVehicle();
 				System.out.println("");
 				break;
 
-			case 4:
+			case UPDATE_CUSTOMER_VEHICLE:
 				cvService.updateCustVehicle();
 				System.out.println("");
 				break;
 
-			case 5:
+			case ADD_CUSTOMER_VEHICLE:
 				cvService.addCustVehicle();
 				System.out.println("");
 				break;
 
 				
-			default:
+			case DEFAULT:
 				System.out.println("Wrong choice entered..:(");
 				break;
 			}
