@@ -6,7 +6,7 @@ import opeartions.service.CustomerVehicleService;
 
 
 public class CVMenu {
-	static CustomerVehicleService cvService;
+	static CustomerVehicleService cvService =new CustomerVehicleService();
 	
 	public static int menu() {
 		System.out.println("0.Exit");

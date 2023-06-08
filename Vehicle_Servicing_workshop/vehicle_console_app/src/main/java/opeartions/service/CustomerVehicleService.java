@@ -8,14 +8,14 @@ import operations.dao.CustomerVehicleDao;
 import operations.models.Customer_vehicles;
 
 public class CustomerVehicleService {
-	static CustomerVehicleDao CustVehicleDao;
-	public void getAllCustVehicles() {
+	//static CustomerVehicleDao CustVehicleDao;
+	public static void getAllCustVehicles() {
 		List<Customer_vehicles> CVList = new ArrayList<>();
 		try {
-			CustVehicleDao = new CustomerVehicleDao();
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
 			CustVehicleDao.getAllVehicles(CVList);
-			for(Customer_vehicles v: CVList) {
-				System.out.println(v);
+			for(Customer_vehicles cv: CVList) {
+				System.out.println(cv);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
