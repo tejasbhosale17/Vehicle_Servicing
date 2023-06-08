@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 import opeartions.service.CustomerService;
 
+enum ECustomerMenu{
+	EXIT,ALL_CUSTOMERS,SPECIFIC_CUSTOMER,
+	DELETE_CUSTOMER,UPDATE_CUSTOMER,ADD_CUSTOMER,DEFAULT
+}
+
 public class CustomerMenu {
-	public static int menu() {
+	public static ECustomerMenu menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Customers");
 		System.out.println("2.Fetch Specific Customer");
@@ -14,42 +19,43 @@ public class CustomerMenu {
 		System.out.println("5.Add Customer");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
-		return new Scanner(System.in).nextInt();
+		int choice = new Scanner(System.in).nextInt();
+		return (choice<0 ||choice>5 ? ECustomerMenu.values()[6] :ECustomerMenu.values()[choice]);
 	}
 	
 public static void ChooseCustomerMain() {
 	System.out.println("Choose Customer Operations");
-	int choice;
+	ECustomerMenu choice;
 	Scanner scan = new Scanner(System.in);
-	while((choice = menu())!=0) {
+	while((choice = menu())!=ECustomerMenu.EXIT) {
 		switch (choice) {
-		case 1:
+		case ALL_CUSTOMERS:
 				CustomerService.getAllCustomers();
 				System.out.println("");
 			break;
 
-		case 2:
+		case SPECIFIC_CUSTOMER:
 				CustomerService.getSpecificCustomer();
 				System.out.println("");
 			break;
 
-		case 3:
+		case DELETE_CUSTOMER:
 				CustomerService.removeCustomer();
 				System.out.println("");
 			break;
 
-		case 4:
+		case UPDATE_CUSTOMER:
 				CustomerService.updateCustomer();
 				System.out.println("");
 			break;
 
-		case 5:
+		case ADD_CUSTOMER:
 				CustomerService.addCustomer();
 				System.out.println("");
 			break;
 
 			
-		default:
+		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
 			break;
 		}
