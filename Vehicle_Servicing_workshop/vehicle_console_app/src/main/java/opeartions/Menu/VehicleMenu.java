@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import opeartions.service.VehicleService;
 
-public class VMenu {
+public class VehicleMenu {
 
 	public static int menu() {
 		System.out.println("0.Exit");
@@ -18,7 +18,7 @@ public class VMenu {
 		return new Scanner(System.in).nextInt();
 	}
 		
-	public static void VehicleMain() {
+	public static void ChooseVehicleMain() {
 		System.out.println("Choose Vehicle Operations");
 		int choice;
 		Scanner scan = new Scanner(System.in);

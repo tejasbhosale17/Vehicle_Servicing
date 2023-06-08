@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import opeartions.service.PartService;
 
-public class PMenu {
+public class PartsMenu {
 	public static int menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Parts");
@@ -17,7 +17,7 @@ public class PMenu {
 		return new Scanner(System.in).nextInt();
 	}
 	
-public static void PartMain() {
+public static void ChoosePartMain() {
 	System.out.println("Choose Part Operations");
 	int choice;
 	Scanner scan = new Scanner(System.in);

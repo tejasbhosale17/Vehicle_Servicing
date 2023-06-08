@@ -5,7 +5,7 @@ import java.util.Scanner;
 import opeartions.service.CustomerVehicleService;
 
 
-public class CVMenu {
+public class CustomerVehicleMenu {
 	static CustomerVehicleService cvService =new CustomerVehicleService();
 	
 	public static int menu() {
@@ -20,7 +20,7 @@ public class CVMenu {
 		return new Scanner(System.in).nextInt();
 	}
 		
-	public static void CustVehicleMain() {
+	public static void ChooseCustomerVehicleMain() {
 		System.out.println("Choose Customer Vehicle Operations");
 		int choice;
 		Scanner scan = new Scanner(System.in);

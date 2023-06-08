@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import opeartions.service.CustomerService;
 
-public class CMenu {
+public class CustomerMenu {
 	public static int menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Customers");
@@ -17,7 +17,7 @@ public class CMenu {
 		return new Scanner(System.in).nextInt();
 	}
 	
-public static void CustomerMain() {
+public static void ChooseCustomerMain() {
 	System.out.println("Choose Customer Operations");
 	int choice;
 	Scanner scan = new Scanner(System.in);

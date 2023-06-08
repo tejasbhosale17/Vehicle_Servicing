@@ -3,10 +3,10 @@ package opeartions.Menu;
 import java.util.Scanner;
 
 public class MainMenu {
-	private static CMenu cmenu;
-	private static PMenu pmenu;
-	private static VMenu vmenu;
-	private static CVMenu cvmenu;
+	private static CustomerMenu cmenu;
+	private static PartsMenu pmenu;
+	private static VehicleMenu vmenu;
+	private static CustomerVehicleMenu cvmenu;
 	public static int menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Customer");
@@ -26,22 +26,22 @@ public static void TheMainMenu() {
 	while((choice = menu())!=0) {
 		switch (choice) {
 		case 1:
-				m.cmenu.CustomerMain();
+				m.cmenu.ChooseCustomerMain();
 				System.out.println("");
 			break;
 
 		case 2:
-				m.pmenu.PartMain();
+				m.pmenu.ChoosePartMain();
 				System.out.println("");
 			break;
 
 		case 3:
-				m.vmenu.VehicleMain();
+				m.vmenu.ChooseVehicleMain();
 				System.out.println("");
 			break;
 			
 		case 4:
-			m.cvmenu.CustVehicleMain();
+			m.cvmenu.ChooseCustomerVehicleMain();
 			System.out.println("");
 		break;
 			
