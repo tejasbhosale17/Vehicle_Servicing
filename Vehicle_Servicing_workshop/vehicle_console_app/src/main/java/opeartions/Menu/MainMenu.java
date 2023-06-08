@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 
 enum EMainMenu{
-	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,DEFAULT
+	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,
+	SERVICE,SERVICE_REQUEST,DEFAULT
 }
 
 
@@ -16,6 +17,8 @@ public class MainMenu {
 	private static PartsMenu pmenu;
 	private static VehicleMenu vmenu;
 	private static CustomerVehicleMenu cvmenu;
+	private static ServiceMenu serviceMenu;
+	private static ServiceRequestMenu serviceRequestMenu; 
 	
 	public static EMainMenu menu() {
 		System.out.println("0.Exit");
@@ -23,10 +26,12 @@ public class MainMenu {
 		System.out.println("2.Part");
 		System.out.println("3.Vehicle");
 		System.out.println("4.Customer Vehicle");
+		System.out.println("5.Service");
+		System.out.println("6.Service Request");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
-		return (choice<0 ||choice>4 ? EMainMenu.values()[5] :EMainMenu.values()[choice]);
+		return (choice<0 ||choice>6 ? EMainMenu.values()[7] :EMainMenu.values()[choice]);
 //		return EMainMenu.values()[choice];
 	}
 	
@@ -57,7 +62,17 @@ public static void TheMainMenu() {
 			System.out.println("");
 		break;
 			
-		default:
+		case SERVICE:
+			m.serviceMenu.ChooseServiceMenu();
+			System.out.println("");
+		break;
+			
+		case SERVICE_REQUEST:
+			m.serviceRequestMenu.ChooseServiceReqMenu();
+			System.out.println("");
+		break;
+			
+		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
 			break;
 		}

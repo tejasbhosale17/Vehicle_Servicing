@@ -24,7 +24,7 @@ public class ServiceMenu {
 	}
 	
 public static void ChooseServiceMenu() {
-	System.out.println("Choose Customer Operations");
+	System.out.println("Choose SERVICE Operations");
 	EServiceMenu choice;
 	Scanner scan = new Scanner(System.in);
 	while((choice = menu())!=EServiceMenu.EXIT) {

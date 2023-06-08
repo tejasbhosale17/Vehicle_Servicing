@@ -25,7 +25,7 @@ public class ServiceRequestMenu {
 	}
 	
 public static void ChooseServiceReqMenu() {
-	System.out.println("Choose Customer Operations");
+	System.out.println("Choose ==SERVICE REQUEST== Operations");
 	EServiceRequestMenu choice;
 	Scanner scan = new Scanner(System.in);
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
