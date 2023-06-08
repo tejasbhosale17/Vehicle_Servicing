@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 enum EMainMenu{
-	EXIT,CUSTOMER,VEHICLE,PART,CUSTOMER_VEHICLE
+	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,DEFAULT
 }
 
 
@@ -26,7 +26,8 @@ public class MainMenu {
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
-		return EMainMenu.values()[choice];
+		return (choice<0 ||choice>4 ? EMainMenu.values()[5] :EMainMenu.values()[choice]);
+//		return EMainMenu.values()[choice];
 	}
 	
 public static void TheMainMenu() {
