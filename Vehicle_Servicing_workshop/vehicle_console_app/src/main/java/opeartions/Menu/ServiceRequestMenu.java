@@ -2,8 +2,16 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+enum EServiceRequestMenu{
+	EXIT,ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
+	DELETE_SERVICES_REQUEST,UPDATE_SERVICES_REQUEST,ADD_SERVICES_REQUEST,DEFAULT
+}
+
+
+
+
 public class ServiceRequestMenu {
-	public static int menu() {
+	public static EServiceRequestMenu menu() {
 		System.out.println("0.Exit");
 		System.out.println("1.Fetch All Service Requests");
 		System.out.println("2.Fetch Specific Service Request");
@@ -12,40 +20,41 @@ public class ServiceRequestMenu {
 		System.out.println("5.Add Service Request");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
-		return new Scanner(System.in).nextInt();
+		int choice = new Scanner(System.in).nextInt();
+		return (choice<0 ||choice>5 ? EServiceRequestMenu.values()[6] :EServiceRequestMenu.values()[choice]);
 	}
 	
 public static void ChooseServiceReqMenu() {
 	System.out.println("Choose Customer Operations");
-	int choice;
+	EServiceRequestMenu choice;
 	Scanner scan = new Scanner(System.in);
-	while((choice = menu())!=0) {
+	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
-		case 1:
+		case ALL_SERVICES_REQUESTS:
 				System.out.println("Show all Service Requests");
 			break;
 
-		case 2:
+		case SPECIFIC_SERVICES_REQUEST:
 				System.out.println("Show this service Requests");
 			break;
 
-		case 3:
+		case DELETE_SERVICES_REQUEST:
 				
 				System.out.println("Delete This Service Requests");
 			break;
 
-		case 4:
+		case UPDATE_SERVICES_REQUEST:
 	
 				System.out.println("Update this service Requests");
 			break;
 
-		case 5:
+		case ADD_SERVICES_REQUEST:
 
 				System.out.println("Add Service Requests");
 			break;
 
 			
-		default:
+		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
 			break;
 		}
