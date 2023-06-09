@@ -38,7 +38,7 @@ public class CustomerVehicleMenu {
 				break;
 
 			case SPECIFIC_CUSTOMER_VEHICLE:
-				cvService.getSpecificCustVehicle();
+				cvService.findThisVehicle();
 				System.out.println("");
 				break;
 
