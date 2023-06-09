@@ -2,6 +2,8 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+import opeartions.service.OfferedServicesService;
+
 enum EServiceMenu{
 	EXIT,ALL_SERVICES,SPECIFIC_SERVICES,
 	DELETE_SERVICES,UPDATE_SERVICES,ADD_SERVICES,DEFAULT
@@ -30,7 +32,7 @@ public static void ChooseServiceMenu() {
 	while((choice = menu())!=EServiceMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES:
-				System.out.println("Show all Services");
+				OfferedServicesService.getAllServices();
 			break;
 
 		case SPECIFIC_SERVICES:
