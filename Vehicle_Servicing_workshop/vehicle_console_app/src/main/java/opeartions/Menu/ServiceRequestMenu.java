@@ -2,6 +2,8 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+import opeartions.service.ServiceRequestService;
+
 enum EServiceRequestMenu{
 	EXIT,ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
 	DELETE_SERVICES_REQUEST,UPDATE_SERVICES_REQUEST,ADD_SERVICES_REQUEST,DEFAULT
@@ -31,7 +33,7 @@ public static void ChooseServiceReqMenu() {
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES_REQUESTS:
-				System.out.println("Show all Service Requests");
+				ServiceRequestService.getAllServiceRequests();
 			break;
 
 		case SPECIFIC_SERVICES_REQUEST:
