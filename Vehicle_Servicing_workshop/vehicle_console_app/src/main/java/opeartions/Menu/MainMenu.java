@@ -2,10 +2,6 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
-
-
-
-
 enum EMainMenu{
 	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,
 	SERVICE,SERVICE_REQUEST,DEFAULT
