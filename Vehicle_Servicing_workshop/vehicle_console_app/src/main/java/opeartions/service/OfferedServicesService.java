@@ -46,8 +46,46 @@ public class OfferedServicesService {
 		}	
 	}
 //------------------------------------------------------------------------------------------
+	public static void RemoveThisService() {
+		int sid=scan.nextInt();
+		int isRemoved=0;
+		try {
+			ServiceDao serviceDao  =new ServiceDao();
+			isRemoved=serviceDao.deleteThisService(sid);
+			if(isRemoved > 0) {
+				System.out.println("Service Removed!!");
+			}else {
+				System.out.println("Service Does not exists!!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+//-------------------------------------------------------------------------------------
 	
-	
+	public static void updateThisService() {
+		System.out.println("enter service_id of the service want to update:");
+		int sid=scan.nextInt();
+		System.out.println("enter labour_charges and total_charges want to change:");
+		double lc=scan.nextInt();
+		double tc=scan.nextInt();
+		int isUpdated=0;
+		try {
+			ServiceDao serviceDao  =new ServiceDao();
+			isUpdated=serviceDao.updateThisService(sid,lc,tc);
+			if(isUpdated > 0) {
+				System.out.println("Service Exists and Updated!!");
+			}else {
+				System.out.println("Service Does Not Exists!!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 }

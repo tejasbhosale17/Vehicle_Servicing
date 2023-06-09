@@ -41,12 +41,12 @@ public static void ChooseServiceMenu() {
 
 		case DELETE_SERVICES:
 				
-				System.out.println("Delete This Service");
+			OfferedServicesService.RemoveThisService();
 			break;
 
 		case UPDATE_SERVICES:
 	
-				System.out.println("Update this service");
+			OfferedServicesService.updateThisService();
 			break;
 
 		case ADD_SERVICES:

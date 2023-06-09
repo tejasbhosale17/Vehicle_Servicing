@@ -57,8 +57,43 @@ public class ServiceDao {
 		}
 		return null;
 	}
+//------------------------------------------------------------------------------------------------
+	
+	public int deleteThisService(int sid) {
+		String q3="delete from services where service_id=?";
+		PreparedStatement pmt;
+		int num=0;
+		try {
+			pmt = con.prepareStatement(q3);
+			pmt.setInt(1, sid);
+			num=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return num;
+	}
+
+
 	
 //-------------------------------------------------------------------------------------------------------
 	
-
+	public int updateThisService(int sid,double lc,double tc) {
+		String q4="update services set labour_charges=? ,totla_cost=? where service_id=?";
+		int num=0;
+		try {
+			PreparedStatement pmt = con.prepareStatement(q4);
+			pmt.setDouble(1, lc);
+			pmt.setDouble(2, tc);
+			pmt.setInt(3, sid);
+			num=pmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return num;
+		
+	}
 }
