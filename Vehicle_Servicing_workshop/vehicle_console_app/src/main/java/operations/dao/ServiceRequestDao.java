@@ -40,4 +40,24 @@ public class ServiceRequestDao {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	public Service_requests findThisServiceRequest(int srid) {
+		String q2="select * from service_requests where service_request_id=?";
+		try {
+			PreparedStatement pmt =con.prepareStatement(q2);
+			pmt.setInt(1, srid);
+			ResultSet rs= pmt.executeQuery();
+			if(rs.next()) {
+				Service_requests sr= new Service_requests(srid,rs.getString("vehicle_number"),rs.getDate("request_date"),rs.getDouble("bill_amount"));
+				return sr;
+			}
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }

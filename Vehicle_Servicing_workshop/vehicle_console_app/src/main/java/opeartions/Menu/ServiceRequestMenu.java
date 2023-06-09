@@ -37,7 +37,7 @@ public static void ChooseServiceReqMenu() {
 			break;
 
 		case SPECIFIC_SERVICES_REQUEST:
-				System.out.println("Show this service Requests");
+			ServiceRequestService.getThisServiceRequest();
 			break;
 
 		case DELETE_SERVICES_REQUEST:
