@@ -26,17 +26,17 @@ public class CustomerVehicleService {
 		
 	}
 
-	public void addCustVehicle() {
+	public static void addCustVehicle() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void updateCustVehicle() {
+	public static void updateCustVehicle() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void removeCustVehicle() {
+	public static void removeCustVehicle() {
 		// TODO Auto-generated method stub
 		
 	}
