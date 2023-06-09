@@ -51,7 +51,7 @@ public static void ChooseServiceMenu() {
 
 		case ADD_SERVICES:
 
-				System.out.println("Add Service");
+			OfferedServicesService.addTheService();
 			break;
 
 			

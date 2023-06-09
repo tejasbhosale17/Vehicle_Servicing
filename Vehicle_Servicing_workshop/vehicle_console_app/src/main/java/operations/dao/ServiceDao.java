@@ -94,6 +94,32 @@ public class ServiceDao {
 			e.printStackTrace();
 		}
 		return num;
-		
 	}
+
+
+	
+//---------------------------------------------------------------------------
+	
+	public int addThisService(int sid, String type, double oil_cost, double labour_charges, double total_cost, String remark, int srid) {
+		int num=0;
+		String q5="insert into services values(?,?,?,?,?,?,?)";
+		try {
+			PreparedStatement pmt =con.prepareStatement(q5);
+			pmt.setInt(1, sid);
+			pmt.setString(2,type);
+			pmt.setDouble(3, oil_cost);
+			pmt.setDouble(4, labour_charges);
+			pmt.setDouble(5, total_cost);
+			pmt.setString(6, remark);
+			pmt.setInt(7, srid);
+			num=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return num;
+	}
+	
+	
 }

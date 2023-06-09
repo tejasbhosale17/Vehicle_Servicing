@@ -86,6 +86,21 @@ public class OfferedServicesService {
 		}
 		
 	}
+	public static void addTheService() {
+		int isAdded=0;
+		try {
+			ServiceDao serviceDao  =new ServiceDao();
+			isAdded=serviceDao.addThisService(scan.nextInt(),scan.next(),scan.nextDouble(),scan.nextDouble(),scan.nextDouble(),scan.next(),scan.nextInt());
+			if(isAdded>0) {
+				System.out.println("Service Added!!");
+			}else {
+				System.out.println("Failed to add service!!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
