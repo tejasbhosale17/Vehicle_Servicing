@@ -12,7 +12,7 @@ import operations.models.Service;
 public class ServiceDao {
 
 
-	Connection con;
+	static Connection con;
 	
 	public ServiceDao() throws SQLException{
 		try {
@@ -23,7 +23,7 @@ public class ServiceDao {
 		}
 	}
 	
-	
+//-------------------------------------------------------------------------	
 	public void getAllservices(List<Service> serviceList) {
 		String q1="select * from services";
 		try {
@@ -32,13 +32,33 @@ public class ServiceDao {
 			while(rs.next()) {
 				Service s= new Service(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
 				serviceList.add(s);
-			}
-						
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
+
+//------------------------------------------------------------------------------------------------
+	
+	public static Service findThisService(int sid) {
+		
+		String q2="select * from services where service_id=?";
+		try {
+			PreparedStatement pmt = con.prepareStatement(q2);
+			pmt.setInt(1, sid);
+			ResultSet rs =pmt.executeQuery();
+			if(rs.next()) {
+				Service s = new Service(sid,rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+				return s;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+//-------------------------------------------------------------------------------------------------------
+	
 
 }

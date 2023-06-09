@@ -36,7 +36,7 @@ public static void ChooseServiceMenu() {
 			break;
 
 		case SPECIFIC_SERVICES:
-				System.out.println("Show this service");
+			OfferedServicesService.thisServiceThere();
 			break;
 
 		case DELETE_SERVICES:
