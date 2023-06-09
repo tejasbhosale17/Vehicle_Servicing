@@ -70,13 +70,13 @@ public class CustomerDao {
 	}
 	//-------------------------------------------------------------------------------
 
-	public int updateThisCustomer(int id, String email, String addr) {
-		String q4="update customer set email=?, address=? where customer_id=?";
+	public int updateThisCustomer(int id, int mobileno, String addr) {
+		String q4="update customer set mobile=?, address=? where customer_id=?";
 		int ncu=0;
 		try {
 			PreparedStatement pmt =con.prepareStatement(q4);
 			pmt.setInt(3, id);
-			pmt.setString(1, email);
+			pmt.setInt(1, mobileno);
 			pmt.setString(2, addr);
 			ncu=pmt.executeUpdate();
 		} catch (SQLException e) {

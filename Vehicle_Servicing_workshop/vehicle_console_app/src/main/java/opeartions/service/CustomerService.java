@@ -69,13 +69,14 @@ public class CustomerService {
 	public static void updateCustomer() {
 		System.out.println("Enter id of the customer u want to update:");
 		int id=scan.nextInt();
-		System.out.println("Enter email & address of the customer");
-		String email=scan.next();
+		System.out.println("Enter mobile no & address of the customer");
+		int mobileno=scan.nextInt();
+//		String email=scan.next();
 		scan.nextLine();
 		String addr=scan.nextLine();
 		try {
 			CustomerDao customerDao = new CustomerDao();
-			int isUpdated=customerDao.updateThisCustomer(id,email,addr);
+			int isUpdated=customerDao.updateThisCustomer(id,mobileno,addr);
 			if(isUpdated>0) {
 				System.out.println("Customer Updated Sucessfully!");
 			}else {
