@@ -13,4 +13,9 @@ class OfferedServicesServiceTest {
 		OfferedServicesService.getAllServices();
 	}
 
+	@Test
+	void testFindThatService() {
+		OfferedServicesService.thisServiceThere();;
+	}
+
 }
