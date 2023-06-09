@@ -13,5 +13,10 @@ class CustomerVehicleServiceTest {
 	void testGetAllCustomers() {
 		CustomerVehicleService.getAllCustVehicles();
 	}
+	
+	@Test
+	void testFindThatCustomerVehicle(){
+		CustomerVehicleService.findThisVehicle();
+	}
 
 }
