@@ -11,6 +11,8 @@ import operations.models.Customer_vehicles;
 public class CustomerVehicleService {
 	//static CustomerVehicleDao CustVehicleDao;
 	static Scanner scan = new Scanner(System.in);
+	
+	
 	public static void getAllCustVehicles() {
 		List<Customer_vehicles> CVList = new ArrayList<>();
 		try {
@@ -22,22 +24,34 @@ public class CustomerVehicleService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		
+		}		
 	}
 
+	//------------------------------------------------------------------------------------------
 	public static void addCustVehicle() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Enter vehicle numer,customerid,vehicle id:");
+		int isAdded=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			isAdded=CustVehicleDao.addCustomerVehicle(scan.next(),scan.nextInt(),scan.nextInt());
+			if(isAdded>0) {
+				System.out.println("Customer Vehicle added Succesfully!!");
+			}else {
+				System.out.println("Failed to add customer_vehicle...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void updateCustVehicle() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public static void removeCustVehicle() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -62,5 +76,26 @@ public class CustomerVehicleService {
 		
 	}
 
+	
+//----------------------------------------------------------------------------------------
+	public static void AllVehiclesOfPerticularCustomer(int customer_id) {
+		int isExists=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			
+			isExists=CustVehicleDao.ListVehicleOfCustomer(customer_id);
+			if(isExists>0) {
+				
+				System.out.println("List of All vehicles!");
+			}else {
+				System.out.println("Vehicle Does not Exists!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+
+	}	
+	
 
 }

@@ -27,15 +27,18 @@ public class CustomerService {
 		}		
 	}
 //-------------------------------------------------------------------------------------
-	public static void getSpecificCustomer() {
+	public static int getSpecificCustomer() {
 		System.out.println("Enter mobile no to search the customer:");
 		long mobile=scan.nextLong();
+		int isHere=0;
 		try {
 			CustomerDao customerDao = new CustomerDao();
 			Customer customer =new Customer();
 			customer=customerDao.getThatCustomer(mobile);
 			if(customer!=null) {
 				System.out.println(customer);
+				isHere=1;
+				return isHere;
 			}else {
 				System.out.println("Customer Does not exists!");
 			}
@@ -44,6 +47,7 @@ public class CustomerService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return isHere;
 		
 	}
 //------------------------------------------------------------------------
@@ -108,5 +112,22 @@ public class CustomerService {
 
 //---------------------------------------------------------------------------
 
-
+	public static int customerFromMobile(){
+		System.out.println("Enter mobile no to search the customer:");
+		long mobile=scan.nextLong();
+		int cid=0;
+		try {
+			CustomerDao customerDao = new CustomerDao();
+			cid=customerDao.getThisCustomerId(mobile);
+			if(cid>0) {
+				System.out.println("Customer Exists!!");
+			}else {
+				System.out.println("Customer Does not exists!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cid;
+	}
 }

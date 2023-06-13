@@ -42,7 +42,7 @@ public class ServiceRequestDao {
 	}
 
 
-
+//---------------------------------------------------------------------------------------------
 	public Service_requests findThisServiceRequest(int srid) {
 		String q2="select * from service_requests where service_request_id=?";
 		try {
@@ -58,6 +58,5 @@ public class ServiceRequestDao {
 			e.printStackTrace();
 		}
 		return null;
-		
 	}
 }

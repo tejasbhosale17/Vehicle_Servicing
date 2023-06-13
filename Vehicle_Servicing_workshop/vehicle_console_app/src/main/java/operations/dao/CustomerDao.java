@@ -111,7 +111,24 @@ public class CustomerDao {
 		this.con.close();
 	}
 
-
+//-----------------------------------------------------------------------------------
+	public static int getThisCustomerId(Long mobile) {
+		String q2="select * from customer where mobile=?";
+		int cid=0;
+		try {
+			PreparedStatement pmt =con.prepareStatement(q2);
+			pmt.setLong(1, mobile);
+			ResultSet rs = pmt.executeQuery();
+			if(rs.next()) {
+				Customer c= new Customer(cid=rs.getInt("customer_id"),rs.getString("customer_name"),mobile,rs.getString("email"),rs.getString("address"));
+				return cid;
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cid;
+	}
 
 
 	
