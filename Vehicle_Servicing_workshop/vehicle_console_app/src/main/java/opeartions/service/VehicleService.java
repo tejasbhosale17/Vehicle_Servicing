@@ -47,11 +47,11 @@ public class VehicleService {
 //------------------------------------------------------------------------------------
 
 	public static void removeVehicle() {
-		System.out.println("Enter vid to remove vehicle:");
-		int id=scan.nextInt();
+		System.out.println("Enter vehicle number to remove vehicle:");
+		String vehicle_number=scan.next();
 		try {
 			vehicleDao = new VehicleDao();
-			int isRemoved=vehicleDao.removeThatVehicle(id);
+			int isRemoved=vehicleDao.removeThatVehicle(vehicle_number);
 			if(isRemoved !=0) {
 				System.out.println("Vehicle Deleted Succesfully!");
 			}else {
