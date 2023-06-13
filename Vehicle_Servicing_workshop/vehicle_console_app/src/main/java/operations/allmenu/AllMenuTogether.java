@@ -126,7 +126,7 @@ public static void ChooseVehicleMain() {
 			break;
 
 		case DELETE_VEHICLE:
-			VehicleService.removeVehicle();
+			VehicleService.removeVehiclebyId();
 			System.out.println("");
 			break;
 

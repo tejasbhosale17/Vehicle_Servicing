@@ -45,16 +45,33 @@ public class CustomerVehicleService {
 		}
 	}
 
+//------------------------------------------------------------------------------------
 	public static void updateCustVehicle() {
 		
 		
 	}
-
+//----------------------------------------------------------------------------------------
 	public static void removeCustVehicle() {
-		
-		
+		System.out.println("Enter Vehicle_number to delete the vehicle!!");
+		String vehicle_number=scan.next();
+		int isDeleted=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			isDeleted=CustVehicleDao.removeThisVehicle(vehicle_number);
+			if(isDeleted>0) {
+				System.out.println("Vehicle Deleted Succesfully...");
+			}else {
+				System.out.println("Vehicle Deleted Unsuccesfully...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	
+	
+//----------------------------------------------------------------------------------------
+	
 	public static void findThisVehicle() {
 		System.out.println("Enter Vehicle Number to check if we have it here:");
 		String vnumber=scan.next();

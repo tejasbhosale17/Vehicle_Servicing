@@ -43,7 +43,7 @@ public class VehicleMenu {
 				break;
 
 			case DELETE_VEHICLE:
-				VehicleService.removeVehicle();
+				VehicleService.removeVehiclebyId();
 				System.out.println("");
 				break;
 

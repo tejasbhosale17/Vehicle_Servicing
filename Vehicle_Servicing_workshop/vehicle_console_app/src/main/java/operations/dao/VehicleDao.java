@@ -55,12 +55,26 @@ public class VehicleDao {
 //------------------------------------------------------------------------------------------------
 	
 
-	public int removeThatVehicle(String Vehicle_number) {
+	public int removeThatVehicleUsingId(int vid) {
+		String q3="delete from vehicle where vehicle_id=?";
+		int nvr=0;
+		try {
+			PreparedStatement pmt =con.prepareStatement(q3);
+			pmt.setInt(1, vid);
+			nvr=pmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nvr;
+	}
+	
+//----------------------------------------------------------------------------------------------------
+	public int removeThatVehicleUsingNumber(String vehicle_number) {
 		String q3="delete from vehicle where vehicle_number=?";
 		int nvr=0;
 		try {
 			PreparedStatement pmt =con.prepareStatement(q3);
-			pmt.setString(1, Vehicle_number);
+			pmt.setString(1, vehicle_number);
 			nvr=pmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -72,10 +72,10 @@ static Connection con;
 	}
 //----------------------------------------------------------------------------------
 	public static int ListVehicleOfCustomer(int customer_id) {
-		String q6="select * from customer_vehicles where  customer_id = ?";
+		String q8="select * from customer_vehicles where  customer_id = ?";
 		int isHere=0;
 		try {
-			PreparedStatement pmt= con.prepareStatement(q6);
+			PreparedStatement pmt= con.prepareStatement(q8);
 			pmt.setInt(1, customer_id);
 			ResultSet rs=pmt.executeQuery();
 			while(rs.next()) {
@@ -89,6 +89,21 @@ static Connection con;
 			e.printStackTrace();
 		}
 		return isHere;
+	}
+
+	//------------------------------------------------------------------------------------
+	public int removeThisVehicle(String vehicle_number) {
+		String q9="delete from customer_vehicles where vehicle_number=?";
+		int idDeleted=0;
+		try {
+			PreparedStatement pmt=con.prepareStatement(q9);
+			pmt.setString(1,vehicle_number);
+			idDeleted=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idDeleted;
 	}
 
 }
