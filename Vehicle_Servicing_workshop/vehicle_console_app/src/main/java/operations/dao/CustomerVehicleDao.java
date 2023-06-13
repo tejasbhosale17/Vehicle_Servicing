@@ -73,13 +73,13 @@ static Connection con;
 //----------------------------------------------------------------------------------
 	public static int ListVehicleOfCustomer(int customer_id) {
 		String q8="select * from customer_vehicles where  customer_id = ?";
+//		String q9="select * from customer_vehicles cv inner join vehicle v on cv.vehicle_id=v.vehicle_id where customer_id=?";
 		int isHere=0;
 		try {
 			PreparedStatement pmt= con.prepareStatement(q8);
 			pmt.setInt(1, customer_id);
 			ResultSet rs=pmt.executeQuery();
 			while(rs.next()) {
-				System.out.println("List of Vehicles of This Customer");
 				Customer_vehicles cv =new Customer_vehicles(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"));
 				System.out.println(cv);
 				isHere=1;
@@ -105,5 +105,26 @@ static Connection con;
 		}
 		return idDeleted;
 	}
+
+	//-----------------------------------------------------------------------------------
+	public static void thisMyVehicle(int customer_id,int vid) {
+		String q6="select * from customer_vehicles where customer_id=? and vehicle_id = ?";
+		try {
+			PreparedStatement pmt= con.prepareStatement(q6);
+			pmt.setInt(1, customer_id);
+			pmt.setInt(2, vid);
+			ResultSet rs=pmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("Customer's Vehicle Exists");
+				Customer_vehicles cv =new Customer_vehicles(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"));
+				System.out.println(cv);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 
 }

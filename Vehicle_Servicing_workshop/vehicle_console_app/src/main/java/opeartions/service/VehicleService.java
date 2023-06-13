@@ -120,25 +120,46 @@ public class VehicleService {
 	public static void addVehicleUsingMobile() {
 		CustomerService.getAllCustomers();
 		int customer_id=CustomerService.customerFromMobile();
-		getAllVehicles();
+		CustomerVehicleService.AllVehiclesOfPerticularCustomer(customer_id);
+		//getAllVehicles();
 		System.out.println("Enter vehicle id from above list if it exitst else enter 0");
 		int vid=scan.nextInt();
-		int isCVThere=0;
+//		int isCVThere=0;
 		if(vid>0) {
-			CustomerVehicleService.AllVehiclesOfPerticularCustomer(customer_id);
-			System.out.println("Is your vehicle there?");
-			boolean isThere=scan.nextBoolean();
-			if(isThere==true) {
-				CustomerVehicleService.findThisVehicle();
-			}else {
-				CustomerVehicleService.addCustVehicle();
-			}
+			ifVidExists(customer_id,vid);
+//			System.out.println("Is your vehicle there?");
+//			boolean isThere=scan.nextBoolean();
+//			if(isThere==true) {
+//				CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
+//			}else {
+//				getAllVehicles();
+//				CustomerVehicleService.addCustVehicle();
+//			}
 		}else {
-			addVehicle();
-			getAllVehicles();
-			CustomerVehicleService.addCustersVehicle(customer_id);
-			addVehicleUsingMobile();
+			ifVidDoesntExists(customer_id,vid);
+//			addVehicle();
+//			getAllVehicles();
+//			CustomerVehicleService.addCustersVehicle(customer_id);
+//			addVehicleUsingMobile();
 		}
+	}
+	
+	public static void ifVidExists(int customer_id,int vid) {
+		System.out.println("Is your vehicle there? true/false");
+		boolean isThere=scan.nextBoolean();
+		if(isThere==true) {
+			CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
+		}else {
+			getAllVehicles();
+			CustomerVehicleService.addCustVehicle();
+		}
+	}
+	
+	public static void ifVidDoesntExists(int customer_id,int vid) {
+		addVehicle();
+		getAllVehicles();
+		CustomerVehicleService.addCustersVehicle(customer_id);
+		ifVidExists(customer_id,vid);
 	}
 	
 	

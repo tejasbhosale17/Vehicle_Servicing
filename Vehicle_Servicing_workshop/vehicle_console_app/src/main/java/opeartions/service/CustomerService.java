@@ -26,6 +26,7 @@ public class CustomerService {
 			e.printStackTrace();
 		}		
 	}
+	
 //-------------------------------------------------------------------------------------
 	public static int getSpecificCustomer() {
 		System.out.println("Enter mobile no to search the customer:");
@@ -95,6 +96,7 @@ public class CustomerService {
 	//------------------------------------------------------------------------
 
 	public static void addCustomer() {
+		System.out.println("Enter customer_id,name,mobile,email,address:");
 		try {
 			CustomerDao customerDao = new CustomerDao();
 			int isInserted=customerDao.addThisCustomer(scan.nextInt(),scan.next(),scan.nextLong(),scan.next(),scan.next());
@@ -110,6 +112,29 @@ public class CustomerService {
 		
 	}
 
+//---------------------------------------------------------------------------------
+	public static int addThisCustomer() {
+		System.out.println("Enter customer_id,name,mobile,email,address:");
+		int cid=0;
+		try {
+			CustomerDao customerDao = new CustomerDao();
+			cid=scan.nextInt();
+			int isInserted=customerDao.addThisCustomer(cid,scan.next(),scan.nextLong(),scan.next(),scan.next());
+			if(isInserted>0){
+				System.out.println("Customer Added Succesfully!");
+			}else {
+				System.out.println("Can not add Customer... :(");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cid;
+	}
+	
+	
+	
+	
 //---------------------------------------------------------------------------
 
 	public static int customerFromMobile(){
@@ -121,8 +146,11 @@ public class CustomerService {
 			cid=customerDao.getThisCustomerId(mobile);
 			if(cid>0) {
 				System.out.println("Customer Exists!!");
+				
 			}else {
 				System.out.println("Customer Does not exists!");
+				//cid=addThisCustomer();
+				//return cid;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

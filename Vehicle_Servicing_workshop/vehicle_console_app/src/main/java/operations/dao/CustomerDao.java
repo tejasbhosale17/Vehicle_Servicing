@@ -28,7 +28,6 @@ public class CustomerDao {
 				customerList.add(c);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -120,7 +119,8 @@ public class CustomerDao {
 			pmt.setLong(1, mobile);
 			ResultSet rs = pmt.executeQuery();
 			if(rs.next()) {
-				Customer c= new Customer(cid=rs.getInt("customer_id"),rs.getString("customer_name"),mobile,rs.getString("email"),rs.getString("address"));
+				cid=rs.getInt("customer_id");
+				Customer c= new Customer(cid,rs.getString("customer_name"),mobile,rs.getString("email"),rs.getString("address"));
 				return cid;
 			}			
 		} catch (SQLException e) {

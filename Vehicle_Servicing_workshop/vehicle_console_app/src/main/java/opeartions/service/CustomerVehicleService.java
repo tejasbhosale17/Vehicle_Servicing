@@ -89,8 +89,6 @@ public class CustomerVehicleService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
-		
 	}
 
 	
@@ -109,7 +107,20 @@ public class CustomerVehicleService {
 			e.printStackTrace();
 		}	
 	}	
+//----------------------------------------------------------------------------------
 	
+	public static void hereIsYourVehicle(int customer_id,int vid) {
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			CustVehicleDao.thisMyVehicle(customer_id,vid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	
+//--------------------------------------------------------------------------------	
 	public static void addCustersVehicle(int customer_id) {
 		System.out.println("Enter vid & vehicle numer");
 		int isAdded=0;
