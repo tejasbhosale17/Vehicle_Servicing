@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import opeartions.service.CustomerVehicleService;
-import operations.models.Customer_Vehicle_Details;
 
 class CustomerVehicleServiceTest {
 
