@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import operations.dao.CustomerVehicleDao;
+import operations.models.Customer_Vehicle_Details;
 import operations.models.Customer_vehicles;
 
 public class CustomerVehicleService {
@@ -107,6 +108,21 @@ public class CustomerVehicleService {
 			e.printStackTrace();
 		}	
 	}	
+	
+//-------------------------------------------------------------------------------------
+	public static void DetailsofAllCustomerVehicles(int customer_id) {
+		List<Customer_Vehicle_Details> CVDList = new ArrayList<>();
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			CustVehicleDao.ListVehicleDetails(CVDList,customer_id);
+			for(Customer_Vehicle_Details cv: CVDList) {
+				System.out.println(cv);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
 //----------------------------------------------------------------------------------
 	
 	public static void hereIsYourVehicle(int customer_id,int vid) {

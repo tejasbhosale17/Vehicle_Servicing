@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import dbUtil.DBUtil;
+import operations.models.Customer_Vehicle_Details;
 import operations.models.Customer_vehicles;
 
 public class CustomerVehicleDao {
@@ -89,6 +90,25 @@ static Connection con;
 			e.printStackTrace();
 		}
 		return isHere;
+	}
+//----------------------------------------------------------------------------------
+	
+	public static void ListVehicleDetails(List<Customer_Vehicle_Details> CVDList,int customer_id) {
+		String q9="select * from customer_vehicles cv inner join vehicle v on cv.vehicle_id=v.vehicle_id where customer_id=?";
+		int isHere=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(q9);
+			pmt.setInt(1, customer_id);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()) {
+				Customer_Vehicle_Details cvd =new Customer_Vehicle_Details(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"),rs.getString("company"),rs.getString("model"));
+				System.out.println(cvd);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	//------------------------------------------------------------------------------------
