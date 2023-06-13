@@ -85,6 +85,7 @@ public class VehicleService {
 //
 	public static void addVehicle() {
 		try {
+			System.out.println("Enter Vehicle id, company, model");
 			vehicleDao = new VehicleDao();
 			int isAdded=vehicleDao.addThisVehicle(scan.nextInt(),scan.next(),scan.next());
 			if(isAdded !=0) {
@@ -99,13 +100,13 @@ public class VehicleService {
 	}
 //-------------------------------------------------------------------------------------------------
 	public static void addVehicleUsingMobile() {
+		CustomerService.getAllCustomers();
 		int customer_id=CustomerService.customerFromMobile();
 		getAllVehicles();
 		System.out.println("Enter vehicle id from above list if it exitst else enter 0");
 		int vid=scan.nextInt();
 		int isCVThere=0;
 		if(vid>0) {
-			String vehicle_number=scan.next();
 			CustomerVehicleService.AllVehiclesOfPerticularCustomer(customer_id);
 			System.out.println("Is your vehicle there?");
 			boolean isThere=scan.nextBoolean();
@@ -116,6 +117,8 @@ public class VehicleService {
 			}
 		}else {
 			addVehicle();
+			getAllVehicles();
+			CustomerVehicleService.addCustersVehicle(customer_id);
 			addVehicleUsingMobile();
 		}
 	}

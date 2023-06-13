@@ -53,7 +53,7 @@ public class VehicleMenu {
 				break;
 
 			case ADD_VEHICLE:
-				VehicleService.addVehicle();
+				VehicleService.addVehicleUsingMobile();
 				System.out.println("");
 				break;
 

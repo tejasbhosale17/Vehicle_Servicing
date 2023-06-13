@@ -84,18 +84,32 @@ public class CustomerVehicleService {
 			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
 			
 			isExists=CustVehicleDao.ListVehicleOfCustomer(customer_id);
-			if(isExists>0) {
-				
-				System.out.println("List of All vehicles!");
-			}else {
+			if(isExists<0) {
 				System.out.println("Vehicle Does not Exists!");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-
 	}	
 	
-
+	public static void addCustersVehicle(int customer_id) {
+		System.out.println("Enter vid & vehicle numer");
+		int isAdded=0;
+		int vid=scan.nextInt();
+		String vehicle_number=scan.next();
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			
+			isAdded=CustVehicleDao.addCustomerVehicle(vehicle_number,customer_id,vid);
+			if(isAdded>0) {
+				System.out.println("Customer Vehicle added Succesfully!!");
+			}else {
+				System.out.println("Failed to add customer_vehicle...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

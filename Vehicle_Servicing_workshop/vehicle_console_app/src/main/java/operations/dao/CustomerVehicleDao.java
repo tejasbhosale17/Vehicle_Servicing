@@ -78,7 +78,7 @@ static Connection con;
 			PreparedStatement pmt= con.prepareStatement(q6);
 			pmt.setInt(1, customer_id);
 			ResultSet rs=pmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				System.out.println("List of Vehicles of This Customer");
 				Customer_vehicles cv =new Customer_vehicles(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"));
 				System.out.println(cv);
