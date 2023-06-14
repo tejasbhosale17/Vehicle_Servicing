@@ -145,6 +145,22 @@ static Connection con;
 		}
 	}
 
+	public int updateThisCustomerVehicle(String old_vehicle_number, String new_vehicle_number) {
+		String q7="update customer_vehicles set vehicle_number=? where vehicle_number=?";
+		int updated=0;
+		try {
+			PreparedStatement pmt = con.prepareStatement(q7);
+			pmt.setString(1, new_vehicle_number);
+			pmt.setString(2, old_vehicle_number);
+			updated=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return updated;
+	}
+
 
 
 

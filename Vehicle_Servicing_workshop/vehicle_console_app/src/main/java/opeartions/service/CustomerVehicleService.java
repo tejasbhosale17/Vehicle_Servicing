@@ -48,7 +48,18 @@ public class CustomerVehicleService {
 
 //------------------------------------------------------------------------------------
 	public static void updateCustVehicle() {
-		
+		System.out.println("Enter old vehicle number to update");
+		String old_vehicle_number=scan.next();
+		System.out.println("Enter new vehicle number to update");
+		String new_vehicle_number=scan.next();
+		int isUpdated=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			isUpdated=CustVehicleDao.updateThisCustomerVehicle(old_vehicle_number,new_vehicle_number);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 //----------------------------------------------------------------------------------------
