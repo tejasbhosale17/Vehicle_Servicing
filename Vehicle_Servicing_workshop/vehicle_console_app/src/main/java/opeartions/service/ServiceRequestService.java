@@ -127,7 +127,21 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 //}
 }
 
+//=========================================================================================================================================
+
+public static void getServiceRequest() {
+	int customer_id=CustomerService.customerFromMobile();
 	
+	CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
+	System.out.println("Enter vehicle_id if exists:");
+	int vid=scan.nextInt();
+	if(vid>0) {
+		VehicleService.ThisIsYourVehicle(vid);
+	}else {
+		VehicleService.addVehicle();
+		VehicleService.getAllVehicles();
+	}
+}
 	
 	
 	
