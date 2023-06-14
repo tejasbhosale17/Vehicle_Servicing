@@ -28,7 +28,7 @@ public class CustomerVehicleService {
 		}		
 	}
 
-	//------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
 	public static void addCustVehicle() {
 		System.out.println("Enter vehicle numer,customerid,vehicle id:");
 		int isAdded=0;
@@ -156,4 +156,6 @@ public class CustomerVehicleService {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

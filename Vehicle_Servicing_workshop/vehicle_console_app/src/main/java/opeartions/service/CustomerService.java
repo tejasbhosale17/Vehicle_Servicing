@@ -43,7 +43,6 @@ public class CustomerService {
 			}else {
 				System.out.println("Customer Does not exists!");
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
