@@ -40,10 +40,27 @@ public class VehicleService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
+	
+//-------------------------------------------------------------------------------------
+	
+	public static void ThisIsYourVehicle(int vehicle_id) {
+		try {
+			vehicleDao = new VehicleDao();
+			Vehicle v=vehicleDao.getThatVehicle(vehicle_id);
+			if(v!=null) {
+				System.out.println(v);
+			}else {
+				System.out.println("Vehicle Does not Exists...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	
 //------------------------------------------------------------------------------------
 
 	public static void removeVehiclebyId() {
