@@ -88,6 +88,37 @@ public class OfferedServicesService {
 	}
 //-------------------------------------------------------------------------------------
 	public static void addTheService() {
+		System.out.println("Enter service_id,type,oil_charges,labour charges,total_amount,remark,service_request_id");
+		int isAdded=0;
+		int service_id=scan.nextInt();
+		System.out.println("choose type: oil/maintainance");
+		String type=scan.next();
+		double oil_cost=scan.nextDouble();
+		double labour_charges=scan.nextDouble();
+		double total_cost=scan.nextDouble();
+		System.out.println("Enter remark");
+		scan.nextLine();
+		String remark=scan.nextLine();
+		System.out.println("Enter vehicle number");
+		String vehicle_number=scan.next();
+		ServiceRequestService.getServiceRequestByVehicleNumber(vehicle_number);
+		System.out.println("If your service exists enter service_request_id or enter 0:");
+		int service_request_id=scan.nextInt();
+		double bill_amount=oil_cost+labour_charges;
+		
+		ServiceRequestService.addServiceRequest(service_request_id, vehicle_number, bill_amount);
+		try {
+			ServiceDao serviceDao  =new ServiceDao();
+			isAdded=serviceDao.addThisService(service_id, type, oil_cost, labour_charges, total_cost, remark, service_request_id);
+			if(isAdded>0) {
+				System.out.println("Service Inserted Succesfully...");
+			}else {
+				System.out.println("Insertion of Service Unsuccesfull...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 //------------------------------------------------------------------------------

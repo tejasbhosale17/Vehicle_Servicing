@@ -37,7 +37,7 @@ public static void ChooseServiceReqMenu() {
 			break;
 
 		case SPECIFIC_SERVICES_REQUEST:
-			ServiceRequestService.getThisServiceRequest();
+//			ServiceRequestService.getThisServiceRequest();
 			break;
 
 		case DELETE_SERVICES_REQUEST:

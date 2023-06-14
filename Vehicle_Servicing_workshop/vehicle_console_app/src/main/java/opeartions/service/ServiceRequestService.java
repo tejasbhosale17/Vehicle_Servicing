@@ -85,54 +85,48 @@ public class ServiceRequestService {
 	}
 //----------------------------------------------------------------------------------
 	
-	public static void deleteThisServiceRequest(String vehicle_number) {
-		getServiceRequestByVehicleNumber(vehicle_number);
-		int isDeleted=0;
-		System.out.println("If your service exists enter service_request_id:");
-		int service_request_id=scan.nextInt();
-		
-		try {
-			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-			isDeleted=serviceRequestDao.deleteThisServiceRequest(service_request_id);
-			if(isDeleted>0) {
-				System.out.println("Service Request Deleted...");
-			}else {
-				System.out.println("Can not delete service request...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+public static void deleteThisServiceRequest(String vehicle_number) {
+	getServiceRequestByVehicleNumber(vehicle_number);
+	int isDeleted=0;
+	System.out.println("If your service exists enter service_request_id:");
+	int service_request_id=scan.nextInt();
+	
+	try {
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		isDeleted=serviceRequestDao.deleteThisServiceRequest(service_request_id);
+		if(isDeleted>0) {
+			System.out.println("Service Request Deleted...");
+		}else {
+			System.out.println("Can not delete service request...");
 		}
-		
-		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+}
 
 //-------------------------------------------------------------------------------------
 	
-	public static void addServiceRequest(String vehicle_number) {
-		getServiceRequestByVehicleNumber(vehicle_number);
-		int isAdded=0;
-		double bill_amount=0;
-		System.out.println("If your service exists enter service_request_id or enter 0:");
-		int service_request_id=scan.nextInt();
-		if(service_request_id>0) {
-			getThisServiceRequest(service_request_id);
-		}else {
-			System.out.println("Enter service_request_id,vehicle_number,bill_amount");
+public static void addServiceRequest(int service_request_id,String vehicle_number,double bill_amount) {
+//	getServiceRequestByVehicleNumber(vehicle_number);
+	int isAdded=0;
+//	System.out.println("If your service exists enter service_request_id or enter 0:");
+//	int service_request_id=scan.nextInt();
+	if(service_request_id>0) {
+		getThisServiceRequest(service_request_id);
+	}else {
+		System.out.println("Enter service_request_id,vehicle_number,bill_amount");
+		
+		try {
+			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
 			
-			try {
-				ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-				
-				isAdded=serviceRequestDao.addThisServiceRequest(service_request_id,vehicle_number,bill_amount);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			isAdded=serviceRequestDao.addThisServiceRequest(service_request_id,vehicle_number,bill_amount);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
-	
 	}
-	
+}
+
 	
 	
 	
