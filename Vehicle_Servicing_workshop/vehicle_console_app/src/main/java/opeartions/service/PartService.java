@@ -11,6 +11,7 @@ import operations.models.Part;
 public class PartService {
 
 	static Scanner scan = new Scanner(System.in);
+	
 	public static void getAllParts() {
 		List<Part> partList = new ArrayList<>();
 		try {
