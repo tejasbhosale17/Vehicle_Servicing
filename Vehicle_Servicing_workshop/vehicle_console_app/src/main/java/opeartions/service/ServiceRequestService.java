@@ -23,12 +23,10 @@ public class ServiceRequestService {
 				System.out.println(sr);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
-
+//---------------------------------------------------------------------------------------------------
 	public static void getThisServiceRequest() {
 		int srid=scan.nextInt();
 		try {
@@ -41,10 +39,84 @@ public class ServiceRequestService {
 				System.out.println("Service Request Does Not Exists!!");
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+//------------------------------------------------------------------------------------------
+	public static void getServiceRequestByVehicleNumber(String vehicle_number) {
+//		System.out.println("Enter vehicle number");
+//		String vehicle_number=scan.next();
+		try {
+			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+			List<Service_requests> srlist = new ArrayList<>();
+			serviceRequestDao.findServiceRequestByVehicleNumber(srlist,vehicle_number);
+			for(Service_requests sr:srlist) {
+				System.out.println(sr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+//------------------------------------------------------------------------------------------
+	
+	public static void updateServiceRequest(String vehicle_number) {
+//		System.out.println("Enter vehicle number");
+//		String vehicle_number=scan.next();
+		getServiceRequestByVehicleNumber(vehicle_number);
+		int isUpdated=0;
+		System.out.println("If your service exists enter service_request_id:");
+		int service_request_id=scan.nextInt();
+		System.out.println("Enter bill_amount to update:");
+		double bill_amount=scan.nextDouble();
+		try {
+			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+			isUpdated=serviceRequestDao.updateThisServiceRequest(service_request_id,bill_amount);
+			if(isUpdated>0) {
+				System.out.println("Bill_amount updated...");
+			}else {
+				System.out.println("unsuccesfully Bill_amount updated...");
+			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
+//----------------------------------------------------------------------------------
+	
+	public static void deleteThisServiceRequest(String vehicle_number) {
+		getServiceRequestByVehicleNumber(vehicle_number);
+		int isDeleted=0;
+		System.out.println("If your service exists enter service_request_id:");
+		int service_request_id=scan.nextInt();
+		
+		try {
+			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+			isDeleted=serviceRequestDao.deleteThisServiceRequest(service_request_id);
+			if(isDeleted>0) {
+				System.out.println("Service Request Deleted...");
+			}else {
+				System.out.println("Can not delete service request...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
