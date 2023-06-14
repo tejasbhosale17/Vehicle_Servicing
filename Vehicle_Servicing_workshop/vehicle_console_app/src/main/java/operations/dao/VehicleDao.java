@@ -69,18 +69,18 @@ public class VehicleDao {
 	}
 	
 //----------------------------------------------------------------------------------------------------
-	public int removeThatVehicleUsingNumber(String vehicle_number) {
-		String q3="delete from vehicle where vehicle_number=?";
-		int nvr=0;
-		try {
-			PreparedStatement pmt =con.prepareStatement(q3);
-			pmt.setString(1, vehicle_number);
-			nvr=pmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return nvr;
-	}
+//	public int removeThatVehicleUsingNumber(String vehicle_number) {
+//		String q3="delete from vehicle where vehicle_number=?";
+//		int nvr=0;
+//		try {
+//			PreparedStatement pmt =con.prepareStatement(q3);
+//			pmt.setString(1, vehicle_number);
+//			nvr=pmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return nvr;
+//	}
 //----------------------------------------------------------------------------------------------------
 	
 
@@ -100,7 +100,8 @@ public class VehicleDao {
 		return nvu;
 	}
 
-
+//--------------------------------------------------------------------------------------------
+	
 	public int addThisVehicle(int id, String company, String model) {
 		String q5="insert into vehicle values(?,?,?)";
 		int nva=0;
