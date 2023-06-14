@@ -114,4 +114,24 @@ public class ServiceRequestDao {
 		}
 		return deleted;
 	}
+
+
+//---------------------------------------------------------------------------------------------------------------
+	public int addThisServiceRequest(int service_request_id, String vehicle_number, double bill_amount) {
+		String q5="insert into service_requests (service_request_id,vehicle_number,bill_amount) values(?,?,?);";
+		int isInserted=0;
+		try {
+			PreparedStatement pmt = con.prepareStatement(q5);
+			pmt.setInt(1, service_request_id);
+			pmt.setString(2, vehicle_number);
+			pmt.setDouble(3, bill_amount);
+			isInserted=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return isInserted;
+	}
 }

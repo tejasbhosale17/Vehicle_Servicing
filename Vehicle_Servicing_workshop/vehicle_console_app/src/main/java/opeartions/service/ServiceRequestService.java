@@ -27,8 +27,8 @@ public class ServiceRequestService {
 		}
 	}
 //---------------------------------------------------------------------------------------------------
-	public static void getThisServiceRequest() {
-		int srid=scan.nextInt();
+	public static void getThisServiceRequest(int srid) {
+		
 		try {
 			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
 			Service_requests sr=serviceRequestDao.findThisServiceRequest(srid);
@@ -106,8 +106,32 @@ public class ServiceRequestService {
 		
 		
 	}
+
+//-------------------------------------------------------------------------------------
+	
+	public static void addServiceRequest(String vehicle_number) {
+		getServiceRequestByVehicleNumber(vehicle_number);
+		int isAdded=0;
+		double bill_amount=0;
+		System.out.println("If your service exists enter service_request_id or enter 0:");
+		int service_request_id=scan.nextInt();
+		if(service_request_id>0) {
+			getThisServiceRequest(service_request_id);
+		}else {
+			System.out.println("Enter service_request_id,vehicle_number,bill_amount");
+			
+			try {
+				ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+				
+				isAdded=serviceRequestDao.addThisServiceRequest(service_request_id,vehicle_number,bill_amount);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 	
+	}
 	
 	
 	
