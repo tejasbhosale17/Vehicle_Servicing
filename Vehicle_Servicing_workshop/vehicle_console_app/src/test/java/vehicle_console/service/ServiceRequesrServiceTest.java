@@ -13,18 +13,18 @@ class ServiceRequesrServiceTest {
 //		ServiceRequestService.getAllServiceRequests();
 //	}
 //	
-//	@Test
-//	void testgetServiceRequestByVehicleNumber() {
-//		ServiceRequestService.getServiceRequestByVehicleNumber("MH01RM4141");
-//	}
+	@Test
+	void testgetServiceRequestByVehicleNumber() {
+		ServiceRequestService.getServiceRequestByVehicleNumber("MH01RM4141");
+	}
 	
 //	@Test
 //	void testupdateServiceRequest() {
 //		ServiceRequestService.updateServiceRequest("MH01RM4141");
 //	}
 //	
-	@Test
-	void testdeleteThisServiceRequest() {
-		ServiceRequestService.deleteThisServiceRequest("MH01RM4141");
-	}
+//	@Test
+//	void testdeleteThisServiceRequest() {
+//		ServiceRequestService.deleteThisServiceRequest("MH01RM4141");
+//	}
 }
