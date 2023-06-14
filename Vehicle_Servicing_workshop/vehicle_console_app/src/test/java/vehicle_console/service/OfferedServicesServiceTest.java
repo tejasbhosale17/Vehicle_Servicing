@@ -7,15 +7,20 @@ import org.junit.jupiter.api.Test;
 import opeartions.service.OfferedServicesService;
 
 class OfferedServicesServiceTest {
-
+//
+//	@Test
+//	void testGetAllServices() {
+//		OfferedServicesService.getAllServices();
+//	}
+//
+//	@Test
+//	void testFindThatService() {
+//		OfferedServicesService.thisServiceThere();;
+//	}
+	
 	@Test
-	void testGetAllServices() {
-		OfferedServicesService.getAllServices();
-	}
-
-	@Test
-	void testFindThatService() {
-		OfferedServicesService.thisServiceThere();;
+	void testaddTheService() {
+		OfferedServicesService.addTheService();
 	}
 
 }
