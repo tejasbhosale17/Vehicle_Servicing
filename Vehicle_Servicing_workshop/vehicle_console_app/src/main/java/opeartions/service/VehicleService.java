@@ -120,7 +120,7 @@ public class VehicleService {
 	public static void addVehicleUsingMobile() {
 		CustomerService.getAllCustomers();
 		int customer_id=CustomerService.customerFromMobile();
-		CustomerVehicleService.AllVehiclesOfPerticularCustomer(customer_id);
+		CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
 		//getAllVehicles();
 		System.out.println("Enter vehicle id from above list if it exitst else enter 0");
 		int vid=scan.nextInt();
