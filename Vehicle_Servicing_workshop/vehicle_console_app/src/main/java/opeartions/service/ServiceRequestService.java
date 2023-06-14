@@ -112,9 +112,9 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 	int isAdded=0;
 //	System.out.println("If your service exists enter service_request_id or enter 0:");
 //	int service_request_id=scan.nextInt();
-	if(service_request_id>0) {
-		getThisServiceRequest(service_request_id);
-	}else {
+//	if(service_request_id>0) {
+//		getThisServiceRequest(service_request_id);
+//	}else {
 		System.out.println("Enter service_request_id,vehicle_number,bill_amount");
 		
 		try {
@@ -124,7 +124,7 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+//}
 }
 
 	

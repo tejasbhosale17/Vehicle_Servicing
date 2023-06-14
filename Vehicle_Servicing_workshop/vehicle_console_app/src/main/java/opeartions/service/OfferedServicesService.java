@@ -102,7 +102,7 @@ public class OfferedServicesService {
 		System.out.println("Enter vehicle number");
 		String vehicle_number=scan.next();
 		ServiceRequestService.getServiceRequestByVehicleNumber(vehicle_number);
-		System.out.println("If your service exists enter service_request_id or enter 0:");
+		System.out.println("Enter Service request id");
 		int service_request_id=scan.nextInt();
 		double bill_amount=oil_cost+labour_charges;
 		
