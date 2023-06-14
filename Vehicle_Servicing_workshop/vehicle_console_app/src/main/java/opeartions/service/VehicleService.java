@@ -65,19 +65,7 @@ public class VehicleService {
 //-----------------------------------------------------------------------------------
 	
 	public static void removeVehiclebyVNumber(String vehicle_number) {
-//
-//		try {
-//			vehicleDao = new VehicleDao();
-//			int isRemoved=vehicleDao.removeThatVehicleUsingNumber(vehicle_number);
-//			if(isRemoved !=0) {
-//				System.out.println("Vehicle Deleted Succesfully!");
-//			}else {
-//				System.out.println("Vehicle Does not Exists...");
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		CustomerVehicleService.removeCustVehicle();
 	}
 	
