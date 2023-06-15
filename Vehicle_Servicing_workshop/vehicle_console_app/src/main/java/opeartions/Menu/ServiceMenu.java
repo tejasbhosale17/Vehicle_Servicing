@@ -2,7 +2,10 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+import opeartions.service.CustomerService;
+import opeartions.service.CustomerVehicleService;
 import opeartions.service.OfferedServicesService;
+import opeartions.service.VehicleService;
 
 enum EServiceMenu{
 	EXIT,ALL_SERVICES,SPECIFIC_SERVICES,
@@ -29,6 +32,10 @@ public static void ChooseServiceMenu() {
 	System.out.println("Choose SERVICE Operations");
 	EServiceMenu choice;
 	Scanner scan = new Scanner(System.in);
+	
+	//int cid=CustomerService.customerFromMobile();
+	VehicleService.addVehicleUsingMobile();
+	
 	while((choice = menu())!=EServiceMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES:
