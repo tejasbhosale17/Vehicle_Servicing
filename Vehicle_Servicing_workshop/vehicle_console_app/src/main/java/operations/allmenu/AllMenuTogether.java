@@ -327,7 +327,7 @@ while((choice = partmenu())!=EPartMenu.EXIT) {
 		break;
 
 	case SEPCIFIC_PART:
-		PartService.getSpecificPart();
+		PartService.getSpecificPartByName("clutch");
 		System.out.println("");
 		break;
 

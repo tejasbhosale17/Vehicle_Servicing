@@ -35,7 +35,7 @@ public static void ChoosePartMain() {
 			break;
 
 		case SEPCIFIC_PART:
-			PartService.getSpecificPart();
+			PartService.getSpecificPartById();
 			System.out.println("");
 			break;
 
