@@ -106,7 +106,7 @@ public class OfferedServicesService {
 		int service_request_id=scan.nextInt();
 		double bill_amount=oil_cost+labour_charges;
 		
-		ServiceRequestService.addServiceRequest(service_request_id, vehicle_number, bill_amount);
+//		ServiceRequestService.addServiceRequest(service_request_id, vehicle_number, bill_amount);
 		try {
 			ServiceDao serviceDao  =new ServiceDao();
 			isAdded=serviceDao.addThisService(service_id, type, oil_cost, labour_charges, total_cost, remark, service_request_id);
@@ -123,6 +123,22 @@ public class OfferedServicesService {
 	}
 //------------------------------------------------------------------------------
 	
+	public static void addingThisService() {
+		System.out.println("Enter service_id,type,oil_charges,labour charges,total_amount,remark,service_request_id");
+		int isAdded=0;
+		try {
+			ServiceDao serviceDao  =new ServiceDao();
+			System.out.println("Enter remark first");
+			String remark=scan.nextLine();
+			serviceDao.addThisService(scan.nextInt(), scan.next(), scan.nextDouble(), scan.nextDouble(), scan.nextDouble(), remark, scan.nextInt());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 }
 
