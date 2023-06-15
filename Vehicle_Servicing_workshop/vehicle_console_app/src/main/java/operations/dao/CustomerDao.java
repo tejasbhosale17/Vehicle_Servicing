@@ -18,7 +18,7 @@ public class CustomerDao {
 	}
 	
 //-------------------------------------------------------------------------------	
-	public void getAllCustomers(List<Customer> customerList) {
+	public static void getAllCustomers(List<Customer> customerList) {
 		String q1="select * from customer";
 		try {
 			PreparedStatement pmt=con.prepareStatement(q1);
@@ -69,13 +69,13 @@ public class CustomerDao {
 	}
 	//-------------------------------------------------------------------------------
 
-	public int updateThisCustomer(int id, int mobileno, String addr) {
+	public int updateThisCustomer(int id, long mobileno, String addr) {
 		String q4="update customer set mobile=?, address=? where customer_id=?";
 		int ncu=0;
 		try {
 			PreparedStatement pmt =con.prepareStatement(q4);
 			pmt.setInt(3, id);
-			pmt.setInt(1, mobileno);
+			pmt.setLong(1, mobileno);
 			pmt.setString(2, addr);
 			ncu=pmt.executeUpdate();
 		} catch (SQLException e) {

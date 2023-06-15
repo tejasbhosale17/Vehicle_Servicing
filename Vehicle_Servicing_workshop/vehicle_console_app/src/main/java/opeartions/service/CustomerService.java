@@ -74,7 +74,7 @@ public class CustomerService {
 		System.out.println("Enter id of the customer u want to update:");
 		int id=scan.nextInt();
 		System.out.println("Enter mobile no & address of the customer");
-		int mobileno=scan.nextInt();
+		long mobileno=scan.nextInt();
 //		String email=scan.next();
 		scan.nextLine();
 		String addr=scan.nextLine();
