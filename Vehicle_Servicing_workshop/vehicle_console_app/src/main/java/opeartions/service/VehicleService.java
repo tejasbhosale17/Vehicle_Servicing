@@ -151,14 +151,14 @@ public class VehicleService {
 	}
 	
 	public static void ifVidExists(int customer_id,int vid) {
-		System.out.println("Is your vehicle there? true/false");
-		boolean isThere=scan.nextBoolean();
-		if(isThere==true) {
+//		System.out.println("Is your vehicle there? true/false");
+//		boolean isThere=scan.nextBoolean();
+//		if(isThere==true) {
 			CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
-		}else {
-			getAllVehicles();
-			CustomerVehicleService.addCustVehicle();
-		}
+//		}else {
+//			getAllVehicles();
+//			CustomerVehicleService.addCustVehicle();
+//		}
 	}
 	
 	public static void ifVidDoesntExists(int customer_id,int vid) {
