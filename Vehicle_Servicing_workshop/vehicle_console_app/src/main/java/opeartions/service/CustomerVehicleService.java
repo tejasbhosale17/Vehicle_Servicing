@@ -23,7 +23,6 @@ public class CustomerVehicleService {
 				System.out.println(cv);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
