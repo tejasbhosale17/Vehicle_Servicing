@@ -34,7 +34,7 @@ public class PartDao {
 	}
 //-----------------------------------------------------------------------------------
 
-	public Part findThisPart(int id) {
+	public Part findThisPartById(int id) {
 		String q2="select * from parts where part_id=?";
 		try {
 			PreparedStatement pmt= con.prepareStatement(q2);
@@ -50,6 +50,23 @@ public class PartDao {
 			e.printStackTrace();
 		}
 		
+		return null;
+	}
+//-------------------------------------------------------------------------------------
+	public Part findThisPartByName(String part_name) {
+		String q2="select * from parts where part_name=?";
+		try {
+			PreparedStatement pmt= con.prepareStatement(q2);
+			pmt.setString(1, part_name);
+			ResultSet rs=pmt.executeQuery();
+			if(rs.next()) {
+				Part p =new Part(rs.getInt("part_id"),part_name,rs.getString("description"),rs.getDouble("price"));
+				return p;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 	//-----------------------------------------------------------------------------------

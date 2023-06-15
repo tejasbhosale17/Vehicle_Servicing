@@ -26,13 +26,13 @@ public class PartService {
 		}
 	}
 //-------------------------------------------------------------------------------
-	public static void getSpecificPart() {
+	public static void getSpecificPartById() {
 		System.out.println("Enter partid to find part:");
 		int id=scan.nextInt();
 		try {
 			PartDao partDao = new PartDao();
 			Part part = new Part();
-			part=partDao.findThisPart(id);
+			part=partDao.findThisPartById(id);
 			if(part!=null) {
 				System.out.println(part);
 			}else {
@@ -42,6 +42,27 @@ public class PartService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	
+//-------------------------------------------------------------------------------
+	public static int getSpecificPartByName(String part_name) {
+		int part_id=0;
+		try {
+			PartDao partDao = new PartDao();
+			Part part = new Part();
+			part=partDao.findThisPartByName(part_name);
+			if(part!=null) {
+				System.out.println(part);
+				part_id=part.getPid();
+				System.out.println(part_id);
+			}else {
+				System.out.println("Part not found.. :(");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return part_id;
 	}
 //-------------------------------------------------------------------------------
 
