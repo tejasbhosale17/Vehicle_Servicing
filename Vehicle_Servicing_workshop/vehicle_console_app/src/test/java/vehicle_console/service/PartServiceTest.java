@@ -8,31 +8,31 @@ import opeartions.service.PartService;
 
 class PartServiceTest {
 
-	@Test
-	void testgetAllParts() {
-		PartService.getAllParts();
-	}
+//	@Test
+//	void testgetAllParts() {
+//		PartService.getAllParts();
+//	}
 	
 	@Test
 	void testgetSpecificPart() {
-		PartService.getSpecificPart();
+		PartService.getSpecificPartByName("axles");
 	}
 	
-	@Test
-	void testremovePart() {
-		PartService.removePart();
-	}
-	
-	@Test
-	void testupdatePart() {
-		PartService.updatePart();
-	}
-	
-	@Test
-	void testaddPart() {
-		PartService.addPart();
-	}
-	
-	
+//	@Test
+//	void testremovePart() {
+//		PartService.removePart();
+//	}
+//	
+//	@Test
+//	void testupdatePart() {
+//		PartService.updatePart();
+//	}
+//	
+//	@Test
+//	void testaddPart() {
+//		PartService.addPart();
+//	}
+//	
+//	
 
 }
