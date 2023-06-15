@@ -116,7 +116,7 @@ public class OfferedServicesService {
 				System.out.println("Insertion of Service Unsuccesfull...");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
