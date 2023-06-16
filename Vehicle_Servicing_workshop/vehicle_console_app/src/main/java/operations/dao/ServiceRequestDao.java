@@ -136,13 +136,12 @@ public class ServiceRequestDao {
 
 
 
-	public int pushingThisServiceRequest(int service_request_id, String vehicle_number) {
-		String q10="insert into service_requests (service_request_id,vehicle_number) values(?,?)";
+	public int pushingThisServiceRequest(String vehicle_number) {
+		String q10="insert into service_requests (vehicle_number) values(?)";
 		int isInserted=0;
 		try {
 			PreparedStatement pmt= con.prepareStatement(q10);
-			pmt.setInt(1, service_request_id);
-			pmt.setString(2, vehicle_number);
+			pmt.setString(1, vehicle_number);
 			isInserted=pmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -135,12 +135,10 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 
 public static int pushServiceRequest(Customer_Vehicle_Details cvd) {
 	String vehicle_number=cvd.getVehicle_number();
-	System.out.println("Enter Service Request Id:");
-	int service_request_id=scan.nextInt();
 	int isInserted=0;
 	try {
 		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-		isInserted=serviceRequestDao.pushingThisServiceRequest(service_request_id,vehicle_number);
+		isInserted=serviceRequestDao.pushingThisServiceRequest(vehicle_number);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
