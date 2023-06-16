@@ -135,14 +135,19 @@ public class CustomerVehicleService {
 	}
 //----------------------------------------------------------------------------------
 	
-	public static void hereIsYourVehicle(int customer_id,int vid) {
+	public static Customer_Vehicle_Details hereIsYourVehicle(int customer_id,int vid) {
+		Customer_Vehicle_Details cvd=null ;
 		try {
 			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			CustVehicleDao.thisMyVehicle(customer_id,vid);
+			cvd=new Customer_Vehicle_Details();
+
+			cvd=CustVehicleDao.allDetailsCustomerVehicle(customer_id,vid);
+			System.out.println(cvd);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+		return cvd;
 	}
 	
 	
