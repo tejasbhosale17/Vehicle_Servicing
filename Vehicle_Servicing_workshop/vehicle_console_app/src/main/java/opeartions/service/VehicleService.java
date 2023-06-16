@@ -154,7 +154,7 @@ public class VehicleService {
 //		System.out.println("Is your vehicle there? true/false");
 //		boolean isThere=scan.nextBoolean();
 //		if(isThere==true) {
-			CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
+			CustomerVehicleService.havingYourVehicle(customer_id,vid);
 //		}else {
 //			getAllVehicles();
 //			CustomerVehicleService.addCustVehicle();
