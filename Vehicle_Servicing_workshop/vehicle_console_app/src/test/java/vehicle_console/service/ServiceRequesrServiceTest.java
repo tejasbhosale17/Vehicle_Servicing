@@ -43,6 +43,6 @@ class ServiceRequesrServiceTest {
 	void testpushServiceRequest() {
 		Customer_Vehicle_Details cvd= new Customer_Vehicle_Details("MH26BB8503",2,11,"bajaj","discover125");
 		int n=ServiceRequestService.pushServiceRequest(cvd);
-		System.out.println(n);
+		System.out.println("Service Request Inserted: "+n);
 	}
 }
