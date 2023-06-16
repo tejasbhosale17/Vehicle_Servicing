@@ -136,18 +136,22 @@ public class CustomerVehicleService {
 //----------------------------------------------------------------------------------
 	
 	public static Customer_Vehicle_Details hereIsYourVehicle(int customer_id,int vid) {
-		Customer_Vehicle_Details cvd=null ;
 		try {
 			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			cvd=new Customer_Vehicle_Details();
-
+			Customer_Vehicle_Details cvd=new Customer_Vehicle_Details();
 			cvd=CustVehicleDao.allDetailsCustomerVehicle(customer_id,vid);
-			System.out.println(cvd);
+//			System.out.println(cvd);
+			if(cvd!=null) {
+				System.out.println("Heres is your Vehicle Details:");
+				return cvd;
+			}else {
+				System.out.println("Error in hereIsYourVehicle...");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		return cvd;
+		return null;
 	}
 	
 	
