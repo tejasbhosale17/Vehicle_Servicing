@@ -62,7 +62,7 @@ class CustomerVehicleServiceTest {
 	@Test
 	void testhereIsYourVehicle() {
 		Customer_Vehicle_Details cvd =new Customer_Vehicle_Details();
-		cvd=CustomerVehicleService.hereIsYourVehicle(2,11);
+		cvd=CustomerVehicleService.hereIsYourVehicle(2,"MH01TY8814");
 		if(cvd!=null) {
 			System.out.println("Succesfull...");
 		}else {
