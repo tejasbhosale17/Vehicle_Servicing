@@ -32,4 +32,9 @@ class ServiceRequesrServiceTest {
 //	void testaddServiceRequest() {
 //		ServiceRequestService.addServiceRequest(6,"MH11PD5161");
 //	}
+	
+	@Test
+	void testgetServiceRequest() {
+		ServiceRequestService.getServiceRequest();
+	}
 }

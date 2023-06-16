@@ -3,6 +3,7 @@ package opeartions.Menu;
 import java.util.Scanner;
 
 import opeartions.service.ServiceRequestService;
+import operations.models.Customer_Vehicle_Details;
 
 enum EServiceRequestMenu{
 	EXIT,ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
@@ -30,6 +31,13 @@ public static void ChooseServiceReqMenu() {
 	System.out.println("Choose ==SERVICE REQUEST== Operations");
 	EServiceRequestMenu choice;
 	Scanner scan = new Scanner(System.in);
+	Customer_Vehicle_Details cvd= new Customer_Vehicle_Details();
+	cvd=ServiceRequestService.getServiceRequest();
+	if(cvd!=null) {
+		System.out.println(cvd);
+	}else {
+		System.out.println("Solve This!!!");
+	}
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES_REQUESTS:

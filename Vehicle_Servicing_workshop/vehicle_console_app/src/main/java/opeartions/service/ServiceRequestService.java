@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import operations.dao.ServiceRequestDao;
+import operations.models.Customer_Vehicle_Details;
 import operations.models.Service_requests;
 
 public class ServiceRequestService {
@@ -132,18 +133,21 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 
 //=========================================================================================================================================
 
-public static void getServiceRequest() {
+public static Customer_Vehicle_Details getServiceRequest() {
 	int customer_id=CustomerService.customerFromMobile();
 	
 	CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
 	System.out.println("Enter vehicle_id if exists:");
 	int vid=scan.nextInt();
+	Customer_Vehicle_Details cvd = new Customer_Vehicle_Details();
 	if(vid>0) {
-		VehicleService.ThisIsYourVehicle(vid);
+		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
 	}else {
 		VehicleService.addVehicle();
 		VehicleService.getAllVehicles();
+		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
 	}
+	return cvd;
 }
 	
 	
