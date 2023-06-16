@@ -110,6 +110,30 @@ static Connection con;
 		}
 
 	}
+	
+//----------------------------------------------------------------------------------------------
+	
+	public static Customer_Vehicle_Details allDetailsCustomerVehicle(int customer_id,int vid)
+	{
+		String q9="select * from customer_vehicles cv inner join vehicle v on cv.vehicle_id=v.vehicle_id where customer_id=? and cv.vehicle_id=?";
+		int isHere=0;
+		Customer_Vehicle_Details cvd=null;
+		try {
+			PreparedStatement pmt= con.prepareStatement(q9);
+			pmt.setInt(1, customer_id);
+			pmt.setInt(2, vid);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()) {
+				cvd =new Customer_Vehicle_Details(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"),rs.getString("company"),rs.getString("model"));
+				System.out.println(cvd);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cvd;
+	}
+	
 
 	//------------------------------------------------------------------------------------
 	public int removeThisVehicle(String vehicle_number) {
