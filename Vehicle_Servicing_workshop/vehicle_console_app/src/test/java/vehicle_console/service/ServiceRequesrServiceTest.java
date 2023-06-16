@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import opeartions.service.ServiceRequestService;
+import operations.models.Customer_Vehicle_Details;
 
 class ServiceRequesrServiceTest {
 
@@ -33,8 +34,15 @@ class ServiceRequesrServiceTest {
 //		ServiceRequestService.addServiceRequest(6,"MH11PD5161");
 //	}
 	
+//	@Test
+//	void testgetServiceRequest() {
+//		ServiceRequestService.getServiceRequest();
+//	}
+	
 	@Test
-	void testgetServiceRequest() {
-		ServiceRequestService.getServiceRequest();
+	void testpushServiceRequest() {
+		Customer_Vehicle_Details cvd= new Customer_Vehicle_Details("MH26BB8503",2,11,"bajaj","discover125");
+		int n=ServiceRequestService.pushServiceRequest(cvd);
+		System.out.println(n);
 	}
 }
