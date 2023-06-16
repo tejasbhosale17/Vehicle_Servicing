@@ -61,9 +61,10 @@ public class ServiceRequestService {
 	}
 //------------------------------------------------------------------------------------------
 	
-	public static void updateServiceRequest(String vehicle_number) {
+	public static void updateServiceRequest(Customer_Vehicle_Details cvd) {
 //		System.out.println("Enter vehicle number");
 //		String vehicle_number=scan.next();
+		String vehicle_number=cvd.getVehicle_number();
 		getServiceRequestByVehicleNumber(vehicle_number);
 		int isUpdated=0;
 		System.out.println("If your service exists enter service_request_id:");
@@ -131,21 +132,39 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 //}
 }
 
+
+public static int pushServiceRequest(Customer_Vehicle_Details cvd) {
+	String vehicle_number=cvd.getVehicle_number();
+	System.out.println("Enter Service Request Id:");
+	int service_request_id=scan.nextInt();
+	int isInserted=0;
+	try {
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		isInserted=serviceRequestDao.pushingThisServiceRequest(service_request_id,vehicle_number);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	return isInserted;
+}
+
 //=========================================================================================================================================
 
 public static Customer_Vehicle_Details getServiceRequest() {
 	int customer_id=CustomerService.customerFromMobile();
-	
 	CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
-	System.out.println("Enter vehicle_id if exists:");
-	int vid=scan.nextInt();
+//	System.out.println("Enter vehicle_id if exists:");
+//	int vid=scan.nextInt();
+	System.out.println("Enter vehicle_number if exists:");
+	String vehicle_number=scan.next();
 	Customer_Vehicle_Details cvd = new Customer_Vehicle_Details();
-	if(vid>0) {
-		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
+	if(vehicle_number!=null) {
+		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vehicle_number);
 	}else {
 		VehicleService.addVehicle();
 		VehicleService.getAllVehicles();
-		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vid);
+		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vehicle_number);
 	}
 	return cvd;
 }

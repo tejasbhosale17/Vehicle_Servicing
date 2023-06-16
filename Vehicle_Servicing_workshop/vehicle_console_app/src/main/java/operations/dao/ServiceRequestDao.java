@@ -133,4 +133,21 @@ public class ServiceRequestDao {
 		
 		return isInserted;
 	}
+
+
+
+	public int pushingThisServiceRequest(int service_request_id, String vehicle_number) {
+		String q10="insert into service_requests (service_request_id,vehicle_number) values(?,?)";
+		int isInserted=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(q10);
+			pmt.setInt(1, service_request_id);
+			pmt.setString(2, vehicle_number);
+			isInserted=pmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isInserted;
+	}
 }
