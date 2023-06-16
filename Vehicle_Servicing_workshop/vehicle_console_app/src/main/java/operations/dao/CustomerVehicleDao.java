@@ -113,14 +113,14 @@ static Connection con;
 	
 //----------------------------------------------------------------------------------------------
 	
-	public static Customer_Vehicle_Details allDetailsCustomerVehicle(int customer_id,int vid)
+	public static Customer_Vehicle_Details allDetailsCustomerVehicle(int customer_id,String vehicle_number)
 	{
-		String q9="select * from customer_vehicles cv inner join vehicle v on cv.vehicle_id=v.vehicle_id where cv.customer_id=? and cv.vehicle_id=?";
+		String q9="select * from customer_vehicles cv inner join vehicle v on cv.vehicle_id=v.vehicle_id where cv.customer_id=? and cv.vehicle_number=?";
 		int isHere=0;
 		try {
 			PreparedStatement pmt= con.prepareStatement(q9);
 			pmt.setInt(1, customer_id);
-			pmt.setInt(2, vid);
+			pmt.setString(2, vehicle_number);
 			ResultSet rs=pmt.executeQuery();
 			while(rs.next()) {
 				Customer_Vehicle_Details cvd =new Customer_Vehicle_Details(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"),rs.getString("company"),rs.getString("model"));
@@ -136,7 +136,7 @@ static Connection con;
 		return null;
 	}
 	
-
+//
 	//------------------------------------------------------------------------------------
 	public int removeThisVehicle(String vehicle_number) {
 		String q9="delete from customer_vehicles where vehicle_number=?";
@@ -170,7 +170,8 @@ static Connection con;
 			e.printStackTrace();
 		}
 	}
-
+//-----------------------------------------------------------------------------------
+	
 	public int updateThisCustomerVehicle(String old_vehicle_number, String new_vehicle_number) {
 		String q7="update customer_vehicles set vehicle_number=? where vehicle_number=?";
 		int updated=0;

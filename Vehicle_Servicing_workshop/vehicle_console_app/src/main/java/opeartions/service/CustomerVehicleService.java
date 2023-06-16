@@ -135,11 +135,11 @@ public class CustomerVehicleService {
 	}
 //----------------------------------------------------------------------------------
 	
-	public static Customer_Vehicle_Details hereIsYourVehicle(int customer_id,int vid) {
+	public static Customer_Vehicle_Details hereIsYourVehicle(int customer_id,String vehicle_number) {
 		try {
 			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
 			Customer_Vehicle_Details cvd=new Customer_Vehicle_Details();
-			cvd=CustVehicleDao.allDetailsCustomerVehicle(customer_id,vid);
+			cvd=CustVehicleDao.allDetailsCustomerVehicle(customer_id,vehicle_number);
 //			System.out.println(cvd);
 			if(cvd!=null) {
 				System.out.println("Heres is your Vehicle Details:");
@@ -153,7 +153,24 @@ public class CustomerVehicleService {
 		}	
 		return null;
 	}
-	
+//-------------------------------------------------------------------------------------------------
+	public static void havingYourVehicle(int customer_id,int vid) {
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			CustVehicleDao.thisMyVehicle(customer_id,vid);
+//			System.out.println();
+//			if(cvd!=null) {
+//				System.out.println("Heres is your Vehicle Details:");
+//				return cvd;
+//			}else {
+//				System.out.println("Error in hereIsYourVehicle...");
+//			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+//		return null;
+	}
 	
 //--------------------------------------------------------------------------------	
 	public static void addCustersVehicle(int customer_id) {
