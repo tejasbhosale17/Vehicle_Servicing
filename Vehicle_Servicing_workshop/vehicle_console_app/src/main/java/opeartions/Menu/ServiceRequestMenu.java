@@ -19,8 +19,8 @@ public class ServiceRequestMenu {
 		System.out.println("1.Fetch All Service Requests");
 		System.out.println("2.Fetch Specific Service Request");
 		System.out.println("3.Delete Service Request");
-		System.out.println("4.Update Service Request");
-		System.out.println("5.Add Service Request");
+		System.out.println("4.Existing Service Request");
+		System.out.println("5.Add New Service Request");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
@@ -38,6 +38,7 @@ public static void ChooseServiceReqMenu() {
 	}else {
 		System.out.println("Solve This!!!");
 	}
+	
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES_REQUESTS:
