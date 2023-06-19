@@ -188,6 +188,27 @@ static Connection con;
 		return updated;
 	}
 
+	public int FoundYourVehicle(String vehicle_number) {
+		String q8="select * from customer_vehicles where vehicle_number=?";
+		int vid=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(q8);
+			pmt.setString(1, vehicle_number);
+			ResultSet rs=pmt.executeQuery();
+			if(rs.next()) {
+				Customer_vehicles cv = new Customer_vehicles(rs.getString("vehicle_number"),rs.getInt("customer_id"),rs.getInt("vehicle_id"));
+				vid=cv.getVehicle_id();
+			}else {
+				vid=0;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vid;
+	}
+
 
 
 

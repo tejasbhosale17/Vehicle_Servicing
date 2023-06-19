@@ -194,4 +194,34 @@ public class CustomerVehicleService {
 	}
 	
 	
+	public static int findVidOfThisVehicle(String vehicle_number) {
+		int vid=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			vid=CustVehicleDao.FoundYourVehicle(vehicle_number);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vid;
+	}
+	
+	public static void AddThisCustomerVehicle(String vehicle_number,int customer_id) {
+		String model=VehicleService.addVehicle();
+		int vid=VehicleService.findVidByModel(model);
+		int isAdded=0;
+		try {
+			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+			isAdded=CustVehicleDao.addCustomerVehicle(vehicle_number,customer_id,vid);
+			if(isAdded>0) {
+				System.out.println("Customer Vehicle added Succesfully!!");
+			}else {
+				System.out.println("Failed to add customer_vehicle...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
