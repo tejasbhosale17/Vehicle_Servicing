@@ -31,6 +31,7 @@ public static void ChooseServiceReqMenu() {
 	System.out.println("Choose ==SERVICE REQUEST== Operations");
 	EServiceRequestMenu choice;
 	Scanner scan = new Scanner(System.in);
+//-------------------------Service Request----------------------------------
 	Customer_Vehicle_Details cvd= new Customer_Vehicle_Details();
 	cvd=ServiceRequestService.getServiceRequest();
 	if(cvd!=null) {
@@ -39,6 +40,7 @@ public static void ChooseServiceReqMenu() {
 		System.out.println("Solve This!!!");
 	}
 	
+//--------------------------------------------------------------------------	
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
 		case ALL_SERVICES_REQUESTS:
