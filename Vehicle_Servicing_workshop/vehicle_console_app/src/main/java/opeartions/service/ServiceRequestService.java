@@ -133,18 +133,25 @@ public static void addServiceRequest(int service_request_id,String vehicle_numbe
 }
 
 
-public static int pushServiceRequest(Customer_Vehicle_Details cvd) {
+public static Service_requests pushServiceRequest(Customer_Vehicle_Details cvd) {
 	String vehicle_number=cvd.getVehicle_number();
 	int isInserted=0;
 	try {
 		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-		isInserted=serviceRequestDao.pushingThisServiceRequest(vehicle_number);
+		Service_requests sr =new Service_requests();
+		sr=serviceRequestDao.pushingThisServiceRequest(vehicle_number);
+		if(sr!=null) {
+			System.out.println(sr);
+			return sr;
+		}else {
+			System.out.println("Some Error in PushServiceRequest");
+		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 
-	return isInserted;
+	return null;
 }
 
 //=========================================================================================================================================

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import java.sql.Statement;
+
 import dbUtil.DBUtil;
 import operations.models.Service_requests;
 
@@ -133,20 +135,26 @@ public class ServiceRequestDao {
 		
 		return isInserted;
 	}
+//-----------------------------------------------------------------------------------------------------
+	
 
 
-
-	public int pushingThisServiceRequest(String vehicle_number) {
+	public Service_requests pushingThisServiceRequest(String vehicle_number) {
 		String q10="insert into service_requests (vehicle_number) values(?)";
 		int isInserted=0;
 		try {
-			PreparedStatement pmt= con.prepareStatement(q10);
+			PreparedStatement pmt= con.prepareStatement(q10,Statement.RETURN_GENERATED_KEYS);
 			pmt.setString(1, vehicle_number);
 			isInserted=pmt.executeUpdate();
+			ResultSet rs= pmt.getGeneratedKeys();
+			if(rs.next()) {
+				Service_requests sr = new Service_requests(rs.getInt(1),vehicle_number,rs.getDate("request_date"),rs.getDouble("bill_amount"));
+				return sr;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return isInserted;
+		return null;
 	}
 }
