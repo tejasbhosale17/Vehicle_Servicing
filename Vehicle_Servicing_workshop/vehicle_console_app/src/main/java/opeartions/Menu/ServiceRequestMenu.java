@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import opeartions.service.ServiceRequestService;
 import operations.models.Customer_Vehicle_Details;
+import operations.models.Service_requests;
 
 enum EServiceRequestMenu{
 	EXIT,
@@ -34,6 +35,7 @@ public static void ChooseServiceReqMenu() {
 	EServiceRequestMenu choice;
 	Scanner scan = new Scanner(System.in);
 //-------------------------------------------------------------------------
+	Service_requests sr =new Service_requests();
 	Customer_Vehicle_Details cvd= new Customer_Vehicle_Details();
 	cvd=ServiceRequestService.getServiceRequest();
 	if(cvd!=null) {
@@ -61,8 +63,10 @@ public static void ChooseServiceReqMenu() {
 
 
 		case ADD_SERVICES_REQUEST:
-
-			ServiceRequestService.pushServiceRequest(cvd);
+			sr=ServiceRequestService.pushServiceRequest(cvd);
+			if(sr!=null) {
+				System.out.println("Service Requested Created Succesfully...");
+			}
 			break;
 
 		case UPDATE_SERVICES_REQUEST:

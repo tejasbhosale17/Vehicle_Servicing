@@ -148,7 +148,7 @@ public class ServiceRequestDao {
 			isInserted=pmt.executeUpdate();
 			ResultSet rs= pmt.getGeneratedKeys();
 			if(rs.next()) {
-				Service_requests sr = new Service_requests(rs.getInt(1),vehicle_number,rs.getDate("request_date"),rs.getDouble("bill_amount"));
+				Service_requests sr = new Service_requests(rs.getInt(1),vehicle_number);
 				return sr;
 			}
 		} catch (SQLException e) {

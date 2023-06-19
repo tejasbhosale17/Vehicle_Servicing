@@ -9,7 +9,11 @@ public class Service_requests {
 	Date request_date;
 	double bill_amount;
 	
-	
+	public Service_requests(int service_request_id, String vehicle_number) {
+		super();
+		this.service_request_id = service_request_id;
+		this.vehicle_number = vehicle_number;
+	}
 	
 	public Service_requests() {
 		super();
