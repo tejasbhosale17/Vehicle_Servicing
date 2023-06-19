@@ -107,11 +107,14 @@ public class VehicleService {
 	}
 //------------------------------------------------------------------------------------
 //
-	public static void addVehicle() {
+	public static String addVehicle() {
+		String model=null;
 		try {
-			System.out.println("Enter Vehicle id, company, model");
+			System.out.println("Enter company, model");
 			vehicleDao = new VehicleDao();
-			int isAdded=vehicleDao.addThisVehicle(scan.nextInt(),scan.next(),scan.next());
+			String company=scan.next();
+			model =scan.next();
+			int isAdded=vehicleDao.addThisVehicle(company,model);
 			if(isAdded !=0) {
 				System.out.println(isAdded+" Vehicle Inserted Succesfully!");
 			}else {
@@ -120,7 +123,7 @@ public class VehicleService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return model;
 	}
 //-------------------------------------------------------------------------------------------------
 	public static void addVehicleUsingMobile() {
@@ -166,6 +169,24 @@ public class VehicleService {
 		getAllVehicles();
 		CustomerVehicleService.addCustersVehicle(customer_id);
 		ifVidExists(customer_id,vid);
+	}
+	
+//==========================================================================
+	public static int findVidByModel(String model) {
+		int vid=0;
+		try {
+			vehicleDao = new VehicleDao();
+			Vehicle v=vehicleDao.findThisVehicleId(model);
+			if(v!=null) {
+				vid=v.getVid();
+			}else {
+				System.out.println("Vehicle Does not Exists...");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vid;
 	}
 	
 	

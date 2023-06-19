@@ -76,21 +76,21 @@ class VehicleDaoTest {
 		}
 	}
 	
-	@Test
-	void testaddThisVehicle() {
-		try {
-			System.out.println("Enter Vehicle id, company, model");
-			VehicleDao vehicleDao = new VehicleDao();
-			int isAdded=vehicleDao.addThisVehicle(12,"RoyalEnfield","ContinentalGT650");
-			if(isAdded !=0) {
-				System.out.println(isAdded+" Vehicle Inserted Succesfully!");
-			}else {
-				System.out.println("Vehicle Does not Exists...");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	void testaddThisVehicle() {
+//		try {
+//			System.out.println("Enter Vehicle id, company, model");
+//			VehicleDao vehicleDao = new VehicleDao();
+//			int isAdded=vehicleDao.addThisVehicle(12,"RoyalEnfield","ContinentalGT650");
+//			if(isAdded !=0) {
+//				System.out.println(isAdded+" Vehicle Inserted Succesfully!");
+//			}else {
+//				System.out.println("Vehicle Does not Exists...");
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 
 }

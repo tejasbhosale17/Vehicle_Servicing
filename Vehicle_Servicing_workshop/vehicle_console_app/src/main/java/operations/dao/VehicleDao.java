@@ -102,14 +102,13 @@ public class VehicleDao {
 
 //--------------------------------------------------------------------------------------------
 	
-	public int addThisVehicle(int id, String company, String model) {
-		String q5="insert into vehicle values(?,?,?)";
+	public int addThisVehicle( String company, String model) {
+		String q5="insert into vehicle (company,model) values(?,?)";
 		int nva=0;
 		try {
 			PreparedStatement pmt=con.prepareStatement(q5);
-			pmt.setInt(1, id);
-			pmt.setString(2, company);
-			pmt.setString(3, model);
+			pmt.setString(1, company);
+			pmt.setString(2, model);
 			nva=pmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -117,6 +116,25 @@ public class VehicleDao {
 		}
 		
 		return nva;
+	}
+
+
+	public Vehicle findThisVehicleId(String model) {
+		String q6="select * from vehicle where model=?";
+		try {
+			PreparedStatement pmt = con.prepareStatement(q6);
+			pmt.setString(1, model);
+			ResultSet rs=pmt.executeQuery();
+			if(rs.next()) {
+				Vehicle v =new Vehicle(rs.getInt("vehicle_id"),rs.getString("company"),model);
+				return v;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
