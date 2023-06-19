@@ -109,17 +109,22 @@ public class VehicleService {
 //
 	public static String addVehicle() {
 		String model=null;
+		int vid=0;
 		try {
 			System.out.println("Enter company, model");
 			vehicleDao = new VehicleDao();
 			String company=scan.next();
 			model =scan.next();
-			int isAdded=vehicleDao.addThisVehicle(company,model);
-			if(isAdded !=0) {
-				System.out.println(isAdded+" Vehicle Inserted Succesfully!");
-			}else {
-				System.out.println("Vehicle Does not Exists...");
+			vid=findVidByModel(model);
+			if(vid==0) {
+				int isAdded=vehicleDao.addThisVehicle(company,model);
+				if(isAdded !=0) {
+					System.out.println(isAdded+" Vehicle Inserted Succesfully!");
+				}else {
+					System.out.println("Vehicle Does not Exists...");
+				}
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
