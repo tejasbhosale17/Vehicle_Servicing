@@ -6,8 +6,10 @@ import opeartions.service.ServiceRequestService;
 import operations.models.Customer_Vehicle_Details;
 
 enum EServiceRequestMenu{
-	EXIT,ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
-	DELETE_SERVICES_REQUEST,UPDATE_SERVICES_REQUEST,ADD_SERVICES_REQUEST,DEFAULT
+	EXIT,
+//	ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
+//	DELETE_SERVICES_REQUEST,
+	ADD_SERVICES_REQUEST,UPDATE_SERVICES_REQUEST,DEFAULT
 }
 
 
@@ -16,11 +18,11 @@ enum EServiceRequestMenu{
 public class ServiceRequestMenu {
 	public static EServiceRequestMenu menu() {
 		System.out.println("0.Exit");
-		System.out.println("1.Fetch All Service Requests");
-		System.out.println("2.Fetch Specific Service Request");
-		System.out.println("3.Delete Service Request");
-		System.out.println("4.Existing Service Request");
-		System.out.println("5.Add New Service Request");
+//		System.out.println("1.Fetch All Service Requests");
+//		System.out.println("2.Fetch Specific Service Request");
+//		System.out.println("3.Delete Service Request");
+		System.out.println("1.Add New Service Request");
+		System.out.println("2.Existing Service Request");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
@@ -43,29 +45,30 @@ public static void ChooseServiceReqMenu() {
 	
 	while((choice = menu())!=EServiceRequestMenu.EXIT) {
 		switch (choice) {
-		case ALL_SERVICES_REQUESTS:
-				ServiceRequestService.getAllServiceRequests();
-			break;
+//		case ALL_SERVICES_REQUESTS:
+//				ServiceRequestService.getAllServiceRequests();
+//			break;
+//
+//		case SPECIFIC_SERVICES_REQUEST:
+////			ServiceRequestService.getThisServiceRequest();
+//			break;
+//
+//		case DELETE_SERVICES_REQUEST:
+//				
+//				System.out.println("Delete This Service Requests");
+//			break;
+//
 
-		case SPECIFIC_SERVICES_REQUEST:
-//			ServiceRequestService.getThisServiceRequest();
-			break;
-
-		case DELETE_SERVICES_REQUEST:
-				
-				System.out.println("Delete This Service Requests");
-			break;
-
-		case UPDATE_SERVICES_REQUEST:
-	
-				System.out.println("Update this service Requests");
-			break;
 
 		case ADD_SERVICES_REQUEST:
 
-				System.out.println("Add Service Requests");
+			ServiceRequestService.pushServiceRequest(cvd);
 			break;
 
+		case UPDATE_SERVICES_REQUEST:
+			
+			ServiceRequestService.updateServiceRequest(cvd);
+		break;
 			
 		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
