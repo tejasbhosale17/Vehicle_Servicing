@@ -156,12 +156,13 @@ public static Customer_Vehicle_Details getServiceRequest() {
 //	int vid=scan.nextInt();
 	System.out.println("Enter vehicle_number if exists:");
 	String vehicle_number=scan.next();
+	int vid=CustomerVehicleService.findVidOfThisVehicle(vehicle_number);
 	Customer_Vehicle_Details cvd = new Customer_Vehicle_Details();
-	if(vehicle_number!=null) {
+	if(vid!=0) {
 		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vehicle_number);
 	}else {
-		VehicleService.addVehicle();
-		VehicleService.getAllVehicles();
+		CustomerVehicleService.AddThisCustomerVehicle(vehicle_number,customer_id);
+//		VehicleService.getAllVehicles();
 		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vehicle_number);
 	}
 	return cvd;
