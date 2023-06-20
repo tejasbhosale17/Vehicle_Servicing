@@ -16,19 +16,19 @@ public class ServicePartsDao {
 		this.con = DBUtil.getConnection();
 	}
 
-	public List<Service_Parts> getAllServiceParts(List<Service_Parts> SPList) {
-		String q1="select * from service_parts";
-		try {
-			PreparedStatement pmt = con.prepareStatement(q1);
-			ResultSet rs =pmt.executeQuery();
-			while(rs.next()) {
-				Service_Parts sp =new Service_Parts(rs.getInt("service_id"),rs.getInt("part_id"),rs.getInt("quantity"));
-				SPList.add(sp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return SPList;
-	}
+//	public List<Service_Parts> getAllServiceParts(List<Service_Parts> SPList) {
+//		String q1="select * from service_parts";
+//		try {
+//			PreparedStatement pmt = con.prepareStatement(q1);
+//			ResultSet rs =pmt.executeQuery();
+//			while(rs.next()) {
+//				Service_Parts sp =new Service_Parts(rs.getInt("service_id"),rs.getInt("part_id"),rs.getInt("quantity"));
+//				SPList.add(sp);
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return SPList;
+//	}
 }
