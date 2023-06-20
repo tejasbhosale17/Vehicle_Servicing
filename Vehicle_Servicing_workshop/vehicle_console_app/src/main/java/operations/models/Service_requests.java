@@ -1,6 +1,7 @@
 package operations.models;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Service_requests {
 
@@ -8,7 +9,20 @@ public class Service_requests {
 	String vehicle_number;
 	Date request_date;
 	double bill_amount;
+	List<Service> serviceList;
 	
+	public Service_requests(int service_request_id, String vehicle_number, Date request_date, double bill_amount,
+			List<Service> serviceList) {
+		super();
+		this.service_request_id = service_request_id;
+		this.vehicle_number = vehicle_number;
+		this.request_date = request_date;
+		this.bill_amount = bill_amount;
+		this.serviceList = serviceList;
+	}
+
+	
+
 	public Service_requests(int service_request_id, String vehicle_number) {
 		super();
 		this.service_request_id = service_request_id;
@@ -60,12 +74,20 @@ public class Service_requests {
 		this.bill_amount = bill_amount;
 	}
 
+	public List<Service> getServiceList() {
+		return serviceList;
+	}
+
+	public void setServiceList(List<Service> serviceList) {
+		this.serviceList = serviceList;
+	}
+	
 	@Override
 	public String toString() {
 		return "Service_requests [service_request_id=" + service_request_id + ", vehicle_number=" + vehicle_number
 				+ ", request_date=" + request_date + ", bill_amount=" + bill_amount + "]";
 	}
-	
-	
+
+
 	
 }
