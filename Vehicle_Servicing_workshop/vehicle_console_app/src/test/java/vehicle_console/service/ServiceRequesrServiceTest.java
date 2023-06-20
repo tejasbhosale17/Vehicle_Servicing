@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import opeartions.service.ServiceRequestService;
 import operations.models.Customer_Vehicle_Details;
+import operations.models.Service;
 
 class ServiceRequesrServiceTest {
 
@@ -45,4 +46,11 @@ class ServiceRequesrServiceTest {
 //		int n=ServiceRequestService.pushServiceRequest(cvd);
 //		System.out.println("Service Request Inserted: "+n);
 //	}
+	
+	@Test
+	void testExistingServicesForToday() {
+		Service s= new Service();
+		s=ServiceRequestService.ExistingServicesForToday();
+		System.out.println(s);
+	}
 }
