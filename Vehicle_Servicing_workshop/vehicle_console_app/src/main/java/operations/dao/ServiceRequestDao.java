@@ -175,4 +175,23 @@ public class ServiceRequestDao {
 			e.printStackTrace();
 		}
 	}
+
+
+
+	public void ListServiceRequestsForDate(List<Service_requests> srList) {
+		String q12=" select * from service_requests where Date(request_date)=CURRENT_DATE();";
+		try {
+			PreparedStatement pmt= con.prepareStatement(q12);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()) {
+				Service_requests sq =new Service_requests(rs.getInt("service_request_id"),rs.getString("vehicle_number"),rs.getDate("request_date"),rs.getDouble("bill_amount"));
+				srList.add(sq);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 }
