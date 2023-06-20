@@ -201,8 +201,34 @@ public static Service ExistingServicesForToday() {
 		e.printStackTrace();
 	}
 	return null;
-}
+}//---------------------LIST of ALL Service Requests for Perticular Dar----------
+
+public static Service_requests ListOfServiceRequestsForDate() {
+	int service_request_id=0;
+	try {
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		List<Service_requests> srList = new ArrayList<>();
+		System.out.println("Here is the list of Services for today:");
+		serviceRequestDao.ListServiceRequestsForDate(srList);
+		for(Service_requests s: srList) {
+			System.out.println(s);
+		}
+		System.out.println("Enter service_request_id:");
+		service_request_id=scan.nextInt();
+		for(Service_requests s: srList) {
+			if(service_request_id ==s.getService_request_id()) {
+				return s;
+			}
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
+	return null;
+	
+}
 	
 	
 	
