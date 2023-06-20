@@ -38,15 +38,15 @@ public static void ChooseServiceMenu() {
 	
 	while((choice = menu())!=EServiceMenu.EXIT) {
 		switch (choice) {
-		case ALL_SERVICES:
-			System.out.println("Show all Services");
-				OfferedServicesService.getAllServices();
-			break;
-
-		case SPECIFIC_SERVICES:
-			System.out.println("This is your Service");
-			OfferedServicesService.thisServiceThere();
-			break;
+//		case ALL_SERVICES:
+//			System.out.println("Show all Services");
+//				OfferedServicesService.getAllServices();
+//			break;
+//
+//		case SPECIFIC_SERVICES:
+//			System.out.println("This is your Service");
+//			OfferedServicesService.thisServiceThere();
+//			break;
 
 		case DELETE_SERVICES:
 			System.out.println("Deleting this Service");
