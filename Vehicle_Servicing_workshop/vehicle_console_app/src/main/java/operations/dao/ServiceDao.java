@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import dbUtil.DBUtil;
+import operations.models.Maintainance;
 import operations.models.Oil;
 import operations.models.Service;
 
@@ -25,23 +26,27 @@ public class ServiceDao {
 	}
 	
 //-------------------------------------------------------------------------	
-//	public void getAllservices(List<Service> serviceList) {
-//		String q1="select * from services";
-//		try {
-//			PreparedStatement pmt =con.prepareStatement(q1);
-//			ResultSet rs =pmt.executeQuery();
-//			while(rs.next()) {
-//				if(rs.getString("type")=="Oil") {
-//					Oil o= new Oil();
-//					
-//				}
-//				Service s= new Service(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
-//				serviceList.add(s);
-//			}			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}	
-//	}
+	public void getAllservices(List<Service> serviceList) {
+		String q1="select * from services";
+		try {
+			PreparedStatement pmt =con.prepareStatement(q1);
+			ResultSet rs =pmt.executeQuery();
+			while(rs.next()) {
+				if(rs.getString("type")=="oil") {
+					Oil o= new Oil(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+					serviceList.add(o);
+				}else if(rs.getString("type")=="maintainance") {
+					Maintainance m =new Maintainance(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+					serviceList.add(m);
+				}else {
+					System.out.println("Worng Entry...!");
+				}
+				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
 
 //------------------------------------------------------------------------------------------------
 	

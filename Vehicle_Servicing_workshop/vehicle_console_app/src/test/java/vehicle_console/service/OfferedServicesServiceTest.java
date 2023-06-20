@@ -8,19 +8,19 @@ import opeartions.service.OfferedServicesService;
 
 class OfferedServicesServiceTest {
 //
-//	@Test
-//	void testGetAllServices() {
-//		OfferedServicesService.getAllServices();
-//	}
+	@Test
+	void testGetAllServices() {
+		OfferedServicesService.getAllServices();
+	}
 //
 //	@Test
 //	void testFindThatService() {
 //		OfferedServicesService.thisServiceThere();;
 //	}
-	
-	@Test
-	void testaddTheService() {
-		OfferedServicesService.addTheService();
-	}
+//	
+//	@Test
+//	void testaddTheService() {
+//		OfferedServicesService.addTheService();
+//	}
 
 }
