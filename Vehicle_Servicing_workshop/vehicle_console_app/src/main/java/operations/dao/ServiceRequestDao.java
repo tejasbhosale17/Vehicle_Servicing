@@ -161,20 +161,20 @@ public class ServiceRequestDao {
 
 
 
-	public void ListofAllServiceForToday(List<Service> srList) {
-		String q11="select * from services s inner join service_requests sr on s.service_request_id=sr.service_request_id where DATE(sr.request_date)=CURRENT_DATE();";
-		try {
-			PreparedStatement pmt = con.prepareStatement(q11);
-			ResultSet rs = pmt.executeQuery();
-			while(rs.next()) {
-				Service s = new Service(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
-				srList.add(s);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void ListofAllServiceForToday(List<Service> srList) {
+//		String q11="select * from services s inner join service_requests sr on s.service_request_id=sr.service_request_id where DATE(sr.request_date)=CURRENT_DATE();";
+//		try {
+//			PreparedStatement pmt = con.prepareStatement(q11);
+//			ResultSet rs = pmt.executeQuery();
+//			while(rs.next()) {
+//				Service s = new Service(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+//				srList.add(s);
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 
 
