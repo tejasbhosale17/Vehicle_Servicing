@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import operations.dao.ServiceRequestDao;
 import operations.models.Customer_Vehicle_Details;
+import operations.models.Service;
 import operations.models.Service_requests;
 
 public class ServiceRequestService {
@@ -175,7 +176,32 @@ public static Customer_Vehicle_Details getServiceRequest() {
 	return cvd;
 }
 	
-	
+//---------------LIST OF EXISTING SERVICES FOR CURRENTDATE-----------------------
+
+public static Service ExistingServicesForToday() {
+	int service_id=0;
+	try {
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		List<Service> srList = new ArrayList<>();
+		System.out.println("Here is the list of Services for today:");
+		serviceRequestDao.ListofAllServiceForToday(srList);
+		for(Service s: srList) {
+			System.out.println(s);
+		}
+		System.out.println("Enter service_id:");
+		service_id=scan.nextInt();
+		for(Service s: srList) {
+			if(service_id ==s.getService_id()) {
+				return s;
+			}
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
+}
 	
 	
 	
