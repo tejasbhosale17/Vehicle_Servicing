@@ -13,20 +13,20 @@ public class OfferedServicesService {
 
 	static Scanner scan = new Scanner(System.in);
 	
-//	public static void getAllServices(){
-//		List<Service> serviceList = new ArrayList<>();
-//		try {
-//			ServiceDao serviceDao = new ServiceDao();
-//			serviceDao.getAllservices(serviceList);
-//			for(Service s: serviceList) 
-//			{
-//				System.out.println("1"+s);
-//			}
-//		} catch (SQLException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//		}
-//	}
+	public static void getAllServices(){
+		List<Service> serviceList = new ArrayList<>();
+		try {
+			ServiceDao serviceDao = new ServiceDao();
+			serviceDao.getAllservices(serviceList);
+			for(Service s: serviceList) 
+			{
+				System.out.println("1"+s);
+			}
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+	}
 ////------------------------------------------------------------------------------------------
 //	public static void thisServiceThere() {
 //		try {
