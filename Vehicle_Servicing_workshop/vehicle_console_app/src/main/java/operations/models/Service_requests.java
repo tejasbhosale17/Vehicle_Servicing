@@ -20,7 +20,8 @@ public class Service_requests {
 		this.vehicle_number = vehicle_number;
 		this.request_date = request_date;
 		this.bill_amount = bill_amount;
-		this.serviceList = OfferedServicesService.thisServiceThere(serviceList,service_request_id);
+//		this.serviceList = OfferedServicesService.thisServiceThere(serviceList,service_request_id);
+		this.serviceList=serviceList;
 	}
 
 	
@@ -93,11 +94,11 @@ public class Service_requests {
 	}
 	
 
-	public void showServices(List<Service> serviceList) {
-		for(Service s:serviceList) {
-			System.out.println(s);
-		}
-	} 
+//	public void showServices(List<Service> serviceList) {
+//		for(Service s:this.serviceList) {
+//			System.out.println(s);
+//		}
+//	} 
 
 
 	
