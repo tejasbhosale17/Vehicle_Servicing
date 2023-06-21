@@ -6,6 +6,13 @@ import java.util.List;
 public class Maintainance extends Service{
 
 	double labour_charges;
+	@Override
+	public String toString() {
+		return  "Maintainance [ service_id=" + service_id + ", type=" + type+", labour_charges=" + labour_charges
+				+ ", total_cost=" + total_cost + ", remark=" + remark + ", service_request_id=" + service_request_id
+				+ "]";
+	}
+
 	double part_cost;
 	List<Service_Parts> partList;
 	
@@ -14,11 +21,6 @@ public class Maintainance extends Service{
 		this.labour_charges = 0;
 		this.partList = new ArrayList<Service_Parts>();
 	}
-	
-	
-	
-	
-	
 
 	public Maintainance(int service_id, String type,double labour_charges, double total_cost, String remark, int service_request_id) {
 		super(service_id, type, total_cost, remark, service_request_id);
