@@ -20,7 +20,7 @@ public class OfferedServicesService {
 			serviceDao.getAllservices(serviceList);
 			for(Service s: serviceList) 
 			{
-				System.out.println("1"+s);
+				System.out.println(s);
 			}
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -28,23 +28,23 @@ public class OfferedServicesService {
 		}
 	}
 ////------------------------------------------------------------------------------------------
-//	public static void thisServiceThere() {
-//		try {
-//			System.out.println("Enter Service_id:");
-//			int sid=scan.nextInt();
-//			ServiceDao serviceDao = new ServiceDao();
-//			Service s=serviceDao.findThisService(sid);
-//			if(s!=null) {
-//				System.out.println("Service Already Exists!!");
-//				System.out.println(s);
-//			}else {
-//				System.out.println("Service Does not Exists!!");
-//			}
-//		} catch (SQLException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//		}	
-//	}
+	public static List<Service> thisServiceThere(List<Service> serviceList,int service_request_id) {
+//		List<Service> serviceList = new ArrayList<>();
+		try {
+//			System.out.println("Enter Service_request_id:");
+//			int service_request_id=scan.nextInt();
+			ServiceDao serviceDao = new ServiceDao();
+			serviceDao.findThisService(serviceList,service_request_id);
+			for(Service s: serviceList) 
+			{
+				System.out.println(s);
+			}
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		return serviceList;	
+	}
 //------------------------------------------------------------------------------------------
 	public static void RemoveThisService() {
 		int sid=scan.nextInt();

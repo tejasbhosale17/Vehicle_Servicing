@@ -26,22 +26,24 @@ public class ServiceDao {
 	}
 	
 //-------------------------------------------------------------------------	
-	public void getAllservices(List<Service> serviceList) {
+	public static void getAllservices(List<Service> serviceList) {
 		String q1="select * from services";
+		String oil="oil";
+		String maintainance="maintainance";
 		try {
 			PreparedStatement pmt =con.prepareStatement(q1);
 			ResultSet rs =pmt.executeQuery();
 			while(rs.next()) {
-				if(rs.getString("type")=="oil") {
+				String type=rs.getString("type");
+				if(type.equals(oil)) {
 					Oil o= new Oil(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
 					serviceList.add(o);
-				}else if(rs.getString("type")=="maintainance") {
+				}else if(type.equals(maintainance)) {
 					Maintainance m =new Maintainance(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
 					serviceList.add(m);
 				}else {
 					System.out.println("Worng Entry...!");
 				}
-				
 			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,23 +52,33 @@ public class ServiceDao {
 
 //------------------------------------------------------------------------------------------------
 	
-//	public static Service findThisService(int sid) {
-//		
-//		String q2="select * from services where service_id=?";
-//		try {
-//			PreparedStatement pmt = con.prepareStatement(q2);
-//			pmt.setInt(1, sid);
-//			ResultSet rs =pmt.executeQuery();
-//			if(rs.next()) {
-//				Service s = new Service(sid,rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
-//				return s;
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	public static void findThisService(List<Service> serviceList,int service_request_id) {
+		
+		String q2="select * from services where service_request_id=?";
+		String oil="oil";
+		String maintainance="maintainance";
+		try {
+			PreparedStatement pmt = con.prepareStatement(q2);
+			pmt.setInt(1, service_request_id);
+			ResultSet rs =pmt.executeQuery();
+			while(rs.next()) {
+				String type=rs.getString("type");
+				if(type.equals(oil)) {
+					Oil o= new Oil(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+					serviceList.add(o);
+				}else if(type.equals(maintainance)) {
+					Maintainance m =new Maintainance(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+					serviceList.add(m);
+				}else {
+					System.out.println("Worng Entry...!");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 //------------------------------------------------------------------------------------------------
 	
 	public int deleteThisService(int sid) {
