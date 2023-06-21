@@ -35,10 +35,10 @@ public class OfferedServicesService {
 //			int service_request_id=scan.nextInt();
 			ServiceDao serviceDao = new ServiceDao();
 			serviceDao.findThisService(serviceList,service_request_id);
-			for(Service s: serviceList) 
-			{
-				System.out.println(s);
-			}
+//			for(Service s: serviceList) 
+//			{
+//				System.out.println(s);
+//			}
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
