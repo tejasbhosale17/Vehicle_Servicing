@@ -2,14 +2,21 @@ package vehicle_console.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import opeartions.service.OfferedServicesService;
 import opeartions.service.ServiceRequestService;
+import operations.dao.ServiceRequestDao;
 import operations.models.Customer_Vehicle_Details;
 import operations.models.Service;
 import operations.models.Service_requests;
 
 class ServiceRequesrServiceTest {
+
 
 //	@Test
 //	void testServiceRequestServce() {
@@ -57,10 +64,48 @@ class ServiceRequesrServiceTest {
 
 	@Test
 	void testListOfServiceRequestsForDate() {
-		Service_requests sq= new Service_requests();
-		sq=ServiceRequestService.ListOfServiceRequestsForDate();
-		System.out.println(sq);
+//		Service_requests sq= new Service_requests();
+//		sq=
+		ServiceRequestService.ListOfServiceRequestsForDate();
+//		System.out.println(sq);
 	}
 
 
+//	@Test
+//	void test() {
+//		int service_request_id=0;
+//		List<Service> serviceList = new ArrayList<>();
+//		try {
+//			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+//			List<Service_requests> srList = new ArrayList<>();
+//			System.out.println("Here is the list of Services for today:");
+//			serviceRequestDao.ListServiceRequestsForDate(srList);
+//			for(Service_requests s: srList) {
+//				System.out.println(s);
+//			}
+//			System.out.println("Enter service_request_id:");
+//			service_request_id=29;
+//			for(Service_requests s: srList) {
+//				if(service_request_id ==s.getService_request_id()) 
+//				{
+//					System.out.println(s);
+//					serviceList=OfferedServicesService.thisServiceThere(serviceList,service_request_id);
+//					s.setServiceList(serviceList);
+//					List<Service> servList= new ArrayList<>();
+//					servList=s.getServiceList();
+//					for(Service serv:servList){
+//						System.out.println(serv);
+//					}
+//					
+////					return s;
+//				}
+//			}
+////			for(Service s: serviceList) {
+////				System.out.println(s);
+////			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
