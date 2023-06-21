@@ -11,10 +11,10 @@ import operations.models.Service_requests;
 
 class ServiceRequesrServiceTest {
 
-	@Test
-	void testServiceRequestServce() {
-		ServiceRequestService.getAllServiceRequests();
-	}
+//	@Test
+//	void testServiceRequestServce() {
+//		ServiceRequestService.getAllServiceRequests();
+//	}
 //	
 //	@Test
 //	void testgetServiceRequestByVehicleNumber() {
@@ -55,12 +55,12 @@ class ServiceRequesrServiceTest {
 //		System.out.println(s);
 //	}
 
-//	@Test
-//	void testListOfServiceRequestsForDate() {
-//		Service_requests sq= new Service_requests();
-//		sq=ServiceRequestService.ListOfServiceRequestsForDate();
-//		System.out.println(sq);
-//	}
+	@Test
+	void testListOfServiceRequestsForDate() {
+		Service_requests sq= new Service_requests();
+		sq=ServiceRequestService.ListOfServiceRequestsForDate();
+		System.out.println(sq);
+	}
 
 
 }
