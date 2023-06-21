@@ -15,6 +15,13 @@ public class Oil extends Service{
 	}
 	
 
+
+	@Override
+	public String toString() {
+		return "Oil [ service_id=" + service_id + ", type=" + type + ", oil_cost=" + oil_cost + ", total_cost="
+				+ total_cost + ", remark=" + remark + ", service_request_id=" + service_request_id + "]";
+	}
+
 	public Oil(int service_id, String type,double oil_cost, double total_cost, String remark, int service_request_id) {
 		super(service_id, type, total_cost, remark, service_request_id);
 		this.service_id = service_id;
