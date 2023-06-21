@@ -3,6 +3,8 @@ package operations.models;
 import java.sql.Date;
 import java.util.List;
 
+import opeartions.service.OfferedServicesService;
+
 public class Service_requests {
 
 	int service_request_id;
@@ -18,7 +20,7 @@ public class Service_requests {
 		this.vehicle_number = vehicle_number;
 		this.request_date = request_date;
 		this.bill_amount = bill_amount;
-		this.serviceList = serviceList;
+		this.serviceList = OfferedServicesService.thisServiceThere(serviceList,service_request_id);
 	}
 
 	
@@ -81,12 +83,21 @@ public class Service_requests {
 	public void setServiceList(List<Service> serviceList) {
 		this.serviceList = serviceList;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "Service_requests [service_request_id=" + service_request_id + ", vehicle_number=" + vehicle_number
 				+ ", request_date=" + request_date + ", bill_amount=" + bill_amount + "]";
 	}
+	
+
+	public void showServices(List<Service> serviceList) {
+		for(Service s:serviceList) {
+			System.out.println(s);
+		}
+	} 
 
 
 	
