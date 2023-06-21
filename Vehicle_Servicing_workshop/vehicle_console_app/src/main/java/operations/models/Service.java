@@ -28,19 +28,6 @@ public abstract class Service {
 		this.remark = remark;
 		this.service_request_id = service_request_id;
 	}
-
-//	public double getOil_cost() {
-//		return oil_cost;
-//	}
-//	public void setOil_cost(double oil_cost) {
-//		this.oil_cost = oil_cost;
-//	}
-//	public double getLabour_charges() {
-//		return labour_charges;
-//	}
-//	public void setLabour_charges(double labour_charges) {
-//		this.labour_charges = labour_charges;
-//	}
 	
 	public int getService_id() {
 		return service_id;
