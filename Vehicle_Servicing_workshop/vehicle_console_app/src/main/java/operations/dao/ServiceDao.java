@@ -10,6 +10,7 @@ import dbUtil.DBUtil;
 import operations.models.Maintainance;
 import operations.models.Oil;
 import operations.models.Service;
+import operations.models.Service_requests;
 
 public class ServiceDao {
 
@@ -25,7 +26,7 @@ public class ServiceDao {
 		}
 	}
 	
-//-------------------------------------------------------------------------	
+//-----------------------------------------------------------------------------------------------------
 	public static void getAllservices(List<Service> serviceList) {
 		String q1="select * from services";
 		String oil="oil";
@@ -101,14 +102,15 @@ public class ServiceDao {
 	
 //-------------------------------------------------------------------------------------------------------
 	
-	public int updateThisService(int sid,double lc,double tc) {
-		String q4="update services set labour_charges=? ,totla_cost=? where service_id=?";
+	public static int updateThisService(int sid,double oil_cost,double labour_charges) {
+		String q4="update services set oil_cost=?, labour_charges=? ,totla_cost=? where service_id=?";
 		int num=0;
 		try {
 			PreparedStatement pmt = con.prepareStatement(q4);
-			pmt.setDouble(1, lc);
-			pmt.setDouble(2, tc);
-			pmt.setInt(3, sid);
+			pmt.setDouble(1, oil_cost);
+			pmt.setDouble(2, labour_charges);
+			pmt.setDouble(3, oil_cost+labour_charges );
+			pmt.setInt(4, sid);
 			num=pmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -122,24 +124,43 @@ public class ServiceDao {
 	
 //---------------------------------------------------------------------------
 	
-	public int addThisService(int sid, String type, double oil_cost, double labour_charges, double total_cost, String remark, int srid) {
+	public static void addThisServiceByMaintainance(Maintainance m) {
 		int num=0;
-		String q5="insert into services values(?,?,?,?,?,?,?)";
+		String q5="insert into services (service_id,type,labour_charges,total_cost,remark, service_request_id) values(?,?,?,?,?,?)";
+		try {
+			PreparedStatement pmt =con.prepareStatement(q5);
+			pmt.setInt(1, m.getService_id());
+			pmt.setString(2,m.getType());
+			pmt.setDouble(3, m.getLabour_charges());
+			pmt.setDouble(4, m.getTotal_cost());
+			pmt.setString(5, m.getRemark());
+			pmt.setInt(6, m.getService_request_id());
+			num=pmt.executeUpdate();
+//			Maintainance m = new Maintainance(sid,type,labour_charges,total_cost,remark,srid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		return num;
+	}
+	
+//----------------------------------------------------------------------------------------------------------------------------------------
+	public int addThisServiceByOil(int sid, String type, double oil_cost, double total_cost, String remark, int srid) {
+		int num=0;
+		String q5="insert into services (service_id,type,oil_cost,total_cost,remark, service_request_id) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement pmt =con.prepareStatement(q5);
 			pmt.setInt(1, sid);
 			pmt.setString(2,type);
 			pmt.setDouble(3, oil_cost);
-			pmt.setDouble(4, labour_charges);
-			pmt.setDouble(5, total_cost);
-			pmt.setString(6, remark);
-			pmt.setInt(7, srid);
+			pmt.setDouble(4, total_cost);
+			pmt.setString(5, remark);
+			pmt.setInt(6, srid);
 			num=pmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 		return num;
 	}
 	
