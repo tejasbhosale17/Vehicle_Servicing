@@ -10,7 +10,7 @@ enum EServiceRequestMenu{
 	EXIT,
 //	ALL_SERVICES_REQUESTS,SPECIFIC_SERVICES_REQUEST,
 //	DELETE_SERVICES_REQUEST,
-	ADD_SERVICES_REQUEST,UPDATE_SERVICES_REQUEST,DEFAULT
+	ADD_SERVICES_REQUEST,EXISTING_SERVICES_REQUEST,ADD_SERVICE,DEFAULT
 }
 
 
@@ -69,10 +69,15 @@ public static void ChooseServiceReqMenu() {
 			}
 			break;
 
-		case UPDATE_SERVICES_REQUEST:
+		case EXISTING_SERVICES_REQUEST:
 			
-			ServiceRequestService.updateServiceRequest(cvd);
-		break;
+			sr=ServiceRequestService.getServiceRequestByVehicleNumber(cvd);
+			ServiceMenu.ChooseServiceMenu(sr);
+			break;
+		
+		case ADD_SERVICE:
+			System.out.println("Add Service Here...");
+			break;
 			
 		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");
