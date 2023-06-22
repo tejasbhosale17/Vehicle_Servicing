@@ -9,7 +9,9 @@ import opeartions.service.VehicleService;
 import operations.models.Service_requests;
 
 enum EServiceMenu{
-	EXIT,ADD_SERVICES,
+	EXIT,
+//	ADD_SERVICES,
+	MAINTAINANCE,REPAIR,OIL,
 //	ALL_SERVICES,SPECIFIC_SERVICES,
 //	DELETE_SERVICES,UPDATE_SERVICES,
 	DEFAULT
@@ -24,7 +26,10 @@ public class ServiceMenu {
 //		System.out.println("2.Fetch Specific Service");
 //		System.out.println("3.Delete Service");
 //		System.out.println("4.Update Service");
-		System.out.println("1.Add Service");
+//		System.out.println("1.Add Service");
+		System.out.println("1.Mainatainance");
+		System.out.println("2.Repair");
+		System.out.println("3.Oil");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
@@ -35,6 +40,8 @@ public static void ChooseServiceMenu(Service_requests sr) {
 	System.out.println("Choose SERVICE Operations");
 	EServiceMenu choice;
 	Scanner scan = new Scanner(System.in);
+	String vehicle_number=sr.getVehicle_number();
+	
 //	Service_requests sr =new Service_requests();
 	//int cid=CustomerService.customerFromMobile();
 //	VehicleService.addVehicleUsingMobile();
@@ -62,11 +69,22 @@ public static void ChooseServiceMenu(Service_requests sr) {
 //			OfferedServicesService.updateThisService();
 //			break;
 
-		case ADD_SERVICES:
+		case MAINTAINANCE:
 			System.out.println("Add This Service");
+//			System.out.println("printing from add service"+sr);
 			OfferedServicesService.addThisServiceByMaintainance(sr);
 			break;
-
+			
+			
+			case REPAIR:
+			System.out.println("Repair");
+			
+			break;
+			
+			case OIL:
+			System.out.println("Oil");
+			
+			break;
 
 			
 		case DEFAULT:
