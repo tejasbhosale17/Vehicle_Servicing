@@ -46,9 +46,9 @@ public class ServiceRequestService {
 	}
 	
 //------------------------------------------------------------------------------------------
-	public static void getServiceRequestByVehicleNumber(String vehicle_number) {
-//		System.out.println("Enter vehicle number");
-//		String vehicle_number=scan.next();
+	public static Service_requests getServiceRequestByVehicleNumber(Customer_Vehicle_Details cvd) {
+		String vehicle_number=cvd.getVehicle_number();
+		Service_requests sqr = new Service_requests();
 		try {
 			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
 			List<Service_requests> srlist = new ArrayList<>();
@@ -56,9 +56,16 @@ public class ServiceRequestService {
 			for(Service_requests sr:srlist) {
 				System.out.println(sr);
 			}
+			System.out.println("Enter Service_reques_id to choose a service:");
+			
+			sqr=serviceRequestDao.findThisServiceRequest(scan.nextInt());
+			System.out.println("Your Service Request is: ");
+			System.out.println(sqr);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return sqr;
 	}
 //------------------------------------------------------------------------------------------
 	
@@ -66,7 +73,7 @@ public class ServiceRequestService {
 //		System.out.println("Enter vehicle number");
 //		String vehicle_number=scan.next();
 		String vehicle_number=cvd.getVehicle_number();
-		getServiceRequestByVehicleNumber(vehicle_number);
+	//	getServiceRequestByVehicleNumber(vehicle_number);
 		int isUpdated=0;
 		System.out.println("If your service exists enter service_request_id:");
 		int service_request_id=scan.nextInt();
@@ -89,7 +96,7 @@ public class ServiceRequestService {
 //----------------------------------------------------------------------------------
 	
 public static void deleteThisServiceRequest(String vehicle_number) {
-	getServiceRequestByVehicleNumber(vehicle_number);
+//	getServiceRequestByVehicleNumber(vehicle_number);
 	int isDeleted=0;
 	System.out.println("If your service exists enter service_request_id:");
 	int service_request_id=scan.nextInt();
@@ -230,6 +237,7 @@ public static void ListOfServiceRequestsForDate() {
 					System.out.println(s);
 					serviceList=OfferedServicesService.thisServiceThere(serviceList,service_request_id);
 					s.setServiceList(serviceList);
+					//below code is for printing only
 					List<Service> servList= new ArrayList<>();
 					servList=s.getServiceList();
 					for(Service serv:servList)
