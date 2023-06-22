@@ -2,10 +2,18 @@ package operations.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import operations.dao.ServiceDao;
 
 public class Maintainance extends Service{
 
+	Scanner scan = new Scanner(System.in);
 	double labour_charges;
+	double part_cost;
+	List<Service_Parts> partList;
+	
+	
 	@Override
 	public String toString() {
 		return  "Maintainance [ service_id=" + service_id + ", type=" + type+", labour_charges=" + labour_charges
@@ -13,8 +21,14 @@ public class Maintainance extends Service{
 				+ "]";
 	}
 
-	double part_cost;
-	List<Service_Parts> partList;
+
+	public Maintainance(String type,double labour_charges, String remark,int service_request_id) {
+		super("maintainance");
+		this.type = type;
+		this.labour_charges=labour_charges;
+		this.remark = remark;
+		this.service_request_id = service_request_id;
+	}
 	
 	public Maintainance() {
 		super("maintainance");
@@ -32,19 +46,10 @@ public class Maintainance extends Service{
 		this.service_request_id = service_request_id;
 	}
 
-
-
-
-
-
 	public Maintainance(String type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
 
 
 	public double getLabour_charges() {
@@ -66,8 +71,14 @@ public class Maintainance extends Service{
 
 	@Override
 	public void acceptService() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Enter labour_charges,remark");
+		String type="maintainance";
+		double labour_charges=scan.nextDouble();
+		scan.nextLine();
+		String remark=scan.nextLine();
+		int service_request_id=0;
+		Maintainance m = new Maintainance(type,labour_charges,remark,service_request_id);
+		ServiceDao.addThisServiceByMaintainance(m);
 	}
 
 	@Override
