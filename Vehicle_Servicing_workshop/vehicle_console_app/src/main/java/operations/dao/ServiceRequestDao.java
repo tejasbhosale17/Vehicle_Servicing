@@ -64,6 +64,28 @@ public class ServiceRequestDao {
 		}
 		return null;
 	}
+//-----------------------------------------------------------------------------------------------------------
+	public static Service_requests findThisServiceRequestbyVehicleNumber(String vehicle_number,int service_request_id) {
+	String q2="select * from service_requests where vehicle_number=? and service_request_id=?";
+	Service_requests sr = null;
+	try {
+		PreparedStatement pmt =con.prepareStatement(q2);
+		pmt.setString(1, vehicle_number);
+		pmt.setInt(2, service_request_id);
+		ResultSet rs= pmt.executeQuery();
+		if(rs.next()) {
+			sr= new Service_requests(rs.getInt("service_request_id"),vehicle_number,rs.getDate("request_date"),rs.getDouble("bill_amount"));
+//			return sr;
+		}
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return sr;
+}
+	
+	
+	
 //---------------------------------------------------------------------------------------------
 	public void findServiceRequestByVehicleNumber(List<Service_requests> srlist,String Vehicle_number) {
 		
@@ -178,7 +200,7 @@ public class ServiceRequestDao {
 
 
 
-	public void ListServiceRequestsForDate(List<Service_requests> srList) {
+	public static void ListServiceRequestsForDate(List<Service_requests> srList) {
 		String q12=" select * from service_requests where Date(request_date)=CURRENT_DATE();";
 		try {
 			PreparedStatement pmt= con.prepareStatement(q12);
@@ -193,5 +215,21 @@ public class ServiceRequestDao {
 		}
 		
 		
+	}
+//--------------------------------------------------------------------------------------------------------------	
+	public static void TodaysListServiceRequestsForThisVehicle(List<Service_requests> srList, String vehicle_number) {
+		String q12=" select * from service_requests where Date(request_date)=CURRENT_DATE() and vehicle_number=?;";
+		try {
+			PreparedStatement pmt= con.prepareStatement(q12);
+			pmt.setString(1, vehicle_number);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()) {
+				Service_requests sq =new Service_requests(rs.getInt("service_request_id"),vehicle_number,rs.getDate("request_date"),rs.getDouble("bill_amount"));
+				srList.add(sq);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
