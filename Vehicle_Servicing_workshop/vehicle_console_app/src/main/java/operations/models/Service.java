@@ -1,13 +1,13 @@
 package operations.models;
 
 public abstract class Service {
-	int service_id;
-	 String type;
+	protected int service_id;
+	protected String type;
 //	 double oil_cost;
 //	 double labour_charges;
-	 double total_cost;
-	 String remark;
-	 int service_request_id;
+	protected double total_cost;
+	protected String remark;
+	protected int service_request_id;
 	 
 	public Service() {
 		super();

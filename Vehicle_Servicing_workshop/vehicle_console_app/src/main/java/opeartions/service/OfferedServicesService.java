@@ -138,7 +138,8 @@ public class OfferedServicesService {
 //			e.printStackTrace();
 //		}
 //	}
-	
+
+	//--------------------------------------------------------------------------------------------------------------
 	public static void addThisServiceByMaintainance(Service_requests sr) {
 		List<Service> srList = new ArrayList<>();
 		ServiceRequestService.ListOfServiceRequestsForDate(sr);
@@ -177,17 +178,8 @@ public class OfferedServicesService {
 		}
 		
 	}
+//----------------------------------------------------------------------------------------
 	
-	
-//-------------To check if The ServiceList is Empty--------------
-//	public static boolean isEmpty(List<Service> srList) {
-////		List<Service> srList = new ArrayList<>();
-////		srList=srList2.getServiceList();
-//		if(srList.isEmpty()) {
-//			return true;
-//		}
-//		return false;
-//	}
 	
 }
 
