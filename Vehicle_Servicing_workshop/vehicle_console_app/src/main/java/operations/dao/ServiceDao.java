@@ -103,7 +103,7 @@ public class ServiceDao {
 //-------------------------------------------------------------------------------------------------------
 	
 	public static int updateThisService(int sid,double oil_cost,double labour_charges) {
-		String q4="update services set oil_cost=?, labour_charges=? ,totla_cost=? where service_id=?";
+		String q4="update services set oil_cost=?, labour_charges=? ,total_cost=? where service_id=?";
 		int num=0;
 		try {
 			PreparedStatement pmt = con.prepareStatement(q4);
