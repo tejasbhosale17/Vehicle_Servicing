@@ -229,12 +229,12 @@ public static void ListOfServiceRequestsForDate(Service_requests sr) {
 //		for(Service_requests s: srList) {
 //			System.out.println(s);
 //		}
-		System.out.println("Enter service_request_id to  choose:");
-			service_request_id=scan.nextInt();
+//		System.out.println("Enter service_request_id to  choose:");
+//			service_request_id=scan.nextInt();
 //			for(Service_requests s: srList) 
 //			{
-				if(service_request_id ==sr.getService_request_id()) 
-				{
+//				if(service_request_id ==sr.getService_request_id()) 
+//				{
 					System.out.println(sr);
 					serviceList=OfferedServicesService.thisServiceThere(serviceList,sr.getService_request_id());
 					sr.setServiceList(serviceList);
@@ -247,7 +247,7 @@ public static void ListOfServiceRequestsForDate(Service_requests sr) {
 						System.out.println(serv);
 					}
 //					return s;
-				}
+//				}
 //			}
 //		} catch (SQLException e) {
 //			e.printStackTrace();
