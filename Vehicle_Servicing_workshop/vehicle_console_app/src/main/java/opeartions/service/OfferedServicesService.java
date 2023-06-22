@@ -141,8 +141,10 @@ public class OfferedServicesService {
 	
 	public static void addThisServiceByMaintainance(Service_requests sr) {
 		List<Service> srList = new ArrayList<>();
+		ServiceRequestService.ListOfServiceRequestsForDate(sr);
 		srList=sr.getServiceList();
-		if(isEmpty(srList)) {
+		System.out.println(srList);
+		if(srList.isEmpty()) {
 			System.out.println("Enter Service_id,type,labour_charges,total_cost,remark,service_request_id");
 			int sid=scan.nextInt();
 			String type=scan.next();
@@ -178,14 +180,14 @@ public class OfferedServicesService {
 	
 	
 //-------------To check if The ServiceList is Empty--------------
-	public static boolean isEmpty(List<Service> srList) {
-//		List<Service> srList = new ArrayList<>();
-//		srList=srList2.getServiceList();
-		if(srList==null) {
-			return true;
-		}
-		return false;
-	}
+//	public static boolean isEmpty(List<Service> srList) {
+////		List<Service> srList = new ArrayList<>();
+////		srList=srList2.getServiceList();
+//		if(srList.isEmpty()) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
 }
 
