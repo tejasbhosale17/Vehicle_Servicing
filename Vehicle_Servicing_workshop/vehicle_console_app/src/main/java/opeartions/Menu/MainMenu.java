@@ -59,8 +59,8 @@ public static void TheMainMenu() {
 		break;
 			
 		case SERVICE:
-			m.serviceMenu.ChooseServiceMenu();
-			System.out.println("");
+//			m.serviceMenu.ChooseServiceMenu();
+			System.out.println("Service");
 		break;
 			
 		case SERVICE_REQUEST:
