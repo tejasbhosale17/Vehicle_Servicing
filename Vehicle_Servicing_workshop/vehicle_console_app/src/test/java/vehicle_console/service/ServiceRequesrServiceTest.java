@@ -64,10 +64,11 @@ class ServiceRequesrServiceTest {
 
 	@Test
 	void testListOfServiceRequestsForDate() {
-//		Service_requests sq= new Service_requests();
-//		sq=
-		ServiceRequestService.ListOfServiceRequestsForDate();
-//		System.out.println(sq);
+		Service_requests sq= new Service_requests();
+		sq=ServiceRequestDao.findThisServiceRequestbyVehicleNumber("MH26BB3568",35);
+		System.out.println("From test case"+ sq);
+		ServiceRequestService.ListOfServiceRequestsForDate(sq);
+		System.out.println(sq);
 	}
 
 

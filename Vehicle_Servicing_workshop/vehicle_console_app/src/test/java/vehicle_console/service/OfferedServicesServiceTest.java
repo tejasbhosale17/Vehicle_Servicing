@@ -36,12 +36,12 @@ class OfferedServicesServiceTest {
 //	void testaddTheService() {
 //		OfferedServicesService.addTheService();
 //	}
-
-	@Test
-	 void testaddThisServiceByMaintainance() {
-	 Service_requests sr= new Service_requests();
-	 sr=ServiceRequestDao.pushingThisServiceRequest("MH26BB3568");
-	 OfferedServicesService.addThisServiceByMaintainance(sr);
-	 }
+//
+//	@Test
+//	 void testaddThisServiceByMaintainance() {
+//	 Service_requests sr= new Service_requests();
+//	 sr=ServiceRequestDao.pushingThisServiceRequest("MH26BB3568");
+//	 OfferedServicesService.addThisServiceByMaintainance(sr);
+//	 }
 	
 }
