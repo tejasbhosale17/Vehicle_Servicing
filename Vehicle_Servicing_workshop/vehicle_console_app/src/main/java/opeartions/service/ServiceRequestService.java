@@ -216,40 +216,43 @@ public static Customer_Vehicle_Details getServiceRequest() {
 //	return null;
 //	
 //}
-//-------------------------------------------------------------------------------	
-public static void ListOfServiceRequestsForDate() {
-	int service_request_id=0;
+//-------------To find services of perticular service Request----------------------------------------------------------	
+public static void ListOfServiceRequestsForDate(Service_requests sr) {
+	int service_request_id;
+	String vehicle_number=sr.getVehicle_number();
 	List<Service> serviceList = new ArrayList<>();
-	try {
-		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-		List<Service_requests> srList = new ArrayList<>();
-		System.out.println("Here is the list of Services for today:");
-		serviceRequestDao.ListServiceRequestsForDate(srList);
-		for(Service_requests s: srList) {
-			System.out.println(s);
-		}
-		System.out.println("Enter service_request_id:");
+//	try {
+//		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+//		List<Service_requests> srList = new ArrayList<>();
+//		System.out.println("Here is the list of Services for today:");
+//		serviceRequestDao.ListServiceRequestsForDate(srList);
+//		for(Service_requests s: srList) {
+//			System.out.println(s);
+//		}
+		System.out.println("Enter service_request_id to  choose:");
 			service_request_id=scan.nextInt();
-			for(Service_requests s: srList) 
-			{
-				if(service_request_id ==s.getService_request_id()) 
+//			for(Service_requests s: srList) 
+//			{
+				if(service_request_id ==sr.getService_request_id()) 
 				{
-					System.out.println(s);
-					serviceList=OfferedServicesService.thisServiceThere(serviceList,service_request_id);
-					s.setServiceList(serviceList);
+					System.out.println(sr);
+					serviceList=OfferedServicesService.thisServiceThere(serviceList,sr.getService_request_id());
+					sr.setServiceList(serviceList);
 					//below code is for printing only
 					List<Service> servList= new ArrayList<>();
-					servList=s.getServiceList();
+					servList=sr.getServiceList();
+//					System.out.println("printing from SRservice ListofSRD:");
 					for(Service serv:servList)
 					{
 						System.out.println(serv);
 					}
+//					return s;
 				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	return null;
 }
 
 }
