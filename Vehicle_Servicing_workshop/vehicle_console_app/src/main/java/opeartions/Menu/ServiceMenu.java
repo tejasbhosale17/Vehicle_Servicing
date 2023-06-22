@@ -6,10 +6,13 @@ import opeartions.service.CustomerService;
 import opeartions.service.CustomerVehicleService;
 import opeartions.service.OfferedServicesService;
 import opeartions.service.VehicleService;
+import operations.models.Service_requests;
 
 enum EServiceMenu{
-	EXIT,ALL_SERVICES,SPECIFIC_SERVICES,
-	DELETE_SERVICES,UPDATE_SERVICES,ADD_SERVICES,DEFAULT
+	EXIT,ADD_SERVICES,
+//	ALL_SERVICES,SPECIFIC_SERVICES,
+//	DELETE_SERVICES,UPDATE_SERVICES,
+	DEFAULT
 }
 
 
@@ -17,24 +20,24 @@ public class ServiceMenu {
 	
 	public static EServiceMenu menu() {
 		System.out.println("0.Exit");
-		System.out.println("1.Fetch All Services");
-		System.out.println("2.Fetch Specific Service");
-		System.out.println("3.Delete Service");
-		System.out.println("4.Update Service");
-		System.out.println("5.Add Service");
+//		System.out.println("1.Fetch All Services");
+//		System.out.println("2.Fetch Specific Service");
+//		System.out.println("3.Delete Service");
+//		System.out.println("4.Update Service");
+		System.out.println("1.Add Service");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
 		return (choice<0 ||choice>5 ? EServiceMenu.values()[6] :EServiceMenu.values()[choice]);
 	}
 	
-public static void ChooseServiceMenu() {
+public static void ChooseServiceMenu(Service_requests sr) {
 	System.out.println("Choose SERVICE Operations");
 	EServiceMenu choice;
 	Scanner scan = new Scanner(System.in);
-	
+//	Service_requests sr =new Service_requests();
 	//int cid=CustomerService.customerFromMobile();
-	VehicleService.addVehicleUsingMobile();
+//	VehicleService.addVehicleUsingMobile();
 	
 	while((choice = menu())!=EServiceMenu.EXIT) {
 		switch (choice) {
@@ -47,21 +50,23 @@ public static void ChooseServiceMenu() {
 //			System.out.println("This is your Service");
 //			OfferedServicesService.thisServiceThere();
 //			break;
+		
 
-		case DELETE_SERVICES:
-			System.out.println("Deleting this Service");
-			OfferedServicesService.RemoveThisService();
-			break;
-
-		case UPDATE_SERVICES:
-			System.out.println("Updating This Service");
-			OfferedServicesService.updateThisService();
-			break;
+//		case DELETE_SERVICES:
+//			System.out.println("Deleting this Service");
+//			OfferedServicesService.RemoveThisService();
+//			break;
+//
+//		case UPDATE_SERVICES:
+//			System.out.println("Updating This Service");
+//			OfferedServicesService.updateThisService();
+//			break;
 
 		case ADD_SERVICES:
 			System.out.println("Add This Service");
-			OfferedServicesService.addTheService();
+			OfferedServicesService.addThisServiceByMaintainance(sr);
 			break;
+
 
 			
 		case DEFAULT:
