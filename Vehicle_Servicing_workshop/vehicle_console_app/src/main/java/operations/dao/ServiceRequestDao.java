@@ -140,7 +140,7 @@ public class ServiceRequestDao {
 	
 
 
-	public Service_requests pushingThisServiceRequest(String vehicle_number) {
+	public static Service_requests pushingThisServiceRequest(String vehicle_number) {
 		String q10="insert into service_requests (vehicle_number) values(?)";
 		int isInserted=0;
 		try {
