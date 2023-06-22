@@ -126,15 +126,13 @@ public class ServiceDao {
 	
 	public static void addThisServiceByMaintainance(Maintainance m) {
 		int num=0;
-		String q5="insert into services (service_id,type,labour_charges,total_cost,remark, service_request_id) values(?,?,?,?,?,?)";
+		String q5="insert into services (type,labour_charges,remark, service_request_id) values(?,?,?,?)";
 		try {
 			PreparedStatement pmt =con.prepareStatement(q5);
-			pmt.setInt(1, m.getService_id());
-			pmt.setString(2,m.getType());
-			pmt.setDouble(3, m.getLabour_charges());
-			pmt.setDouble(4, m.getTotal_cost());
-			pmt.setString(5, m.getRemark());
-			pmt.setInt(6, m.getService_request_id());
+			pmt.setString(1, m.getType());
+			pmt.setDouble(2, m.getLabour_charges());
+			pmt.setString(3, m.getRemark());
+			pmt.setInt(4, m.getService_request_id());
 			num=pmt.executeUpdate();
 //			Maintainance m = new Maintainance(sid,type,labour_charges,total_cost,remark,srid);
 		} catch (SQLException e) {
