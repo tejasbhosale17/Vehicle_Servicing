@@ -84,7 +84,8 @@ public class Maintainance extends Service{
 
 	@Override
 	public void calculateTotalCost() {
-		// TODO Auto-generated method stub
+		double total_cost=getLabour_charges();
+		setTotal_cost(total_cost);
 		
 	}
 	
