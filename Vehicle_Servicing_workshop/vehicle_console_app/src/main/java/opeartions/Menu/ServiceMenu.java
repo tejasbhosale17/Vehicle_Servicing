@@ -11,7 +11,7 @@ import operations.models.Service_requests;
 enum EServiceMenu{
 	EXIT,
 //	ADD_SERVICES,
-	MAINTAINANCE,REPAIR,OIL,
+	MAINTAINANCE,OIL,REPAIR,
 //	ALL_SERVICES,SPECIFIC_SERVICES,
 //	DELETE_SERVICES,UPDATE_SERVICES,
 	DEFAULT
@@ -28,8 +28,8 @@ public class ServiceMenu {
 //		System.out.println("4.Update Service");
 //		System.out.println("1.Add Service");
 		System.out.println("1.Mainatainance");
-		System.out.println("2.Repair");
-		System.out.println("3.Oil");
+		System.out.println("2.Oil");
+		System.out.println("3.Repair");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
@@ -71,20 +71,20 @@ public static void ChooseServiceMenu(Service_requests sr) {
 
 		case MAINTAINANCE:
 			System.out.println("Add This Service");
+			System.out.println("Mainatainance...");
 //			System.out.println("printing from add service"+sr);
 			OfferedServicesService.addThisServiceByMaintainance(sr);
 			break;
-			
+
+			case OIL:
+			System.out.println("Oil");
+			OfferedServicesService.addThisServiceByOil(sr);
+			break;
 			
 			case REPAIR:
 			System.out.println("Repair");
-			
 			break;
 			
-			case OIL:
-			System.out.println("Oil");
-			
-			break;
 
 			
 		case DEFAULT:
