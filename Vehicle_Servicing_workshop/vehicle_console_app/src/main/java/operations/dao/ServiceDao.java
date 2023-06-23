@@ -102,15 +102,14 @@ public class ServiceDao {
 	
 //-------------------------------------------------------------------------------------------------------
 	
-	public static int updateThisService(int sid,double oil_cost,double labour_charges) {
-		String q4="update services set oil_cost=?, labour_charges=? ,total_cost=? where service_id=?";
+	public static int updateThisMainatainance(Maintainance m) {
+		String q4="update services set labour_charges=? ,total_cost=? where service_id=?";
 		int num=0;
 		try {
 			PreparedStatement pmt = con.prepareStatement(q4);
-			pmt.setDouble(1, oil_cost);
-			pmt.setDouble(2, labour_charges);
-			pmt.setDouble(3, oil_cost+labour_charges );
-			pmt.setInt(4, sid);
+			pmt.setDouble(1, m.getLabour_charges());
+			pmt.setDouble(2, m.getTotal_cost());
+			pmt.setInt(3, m.getService_id());
 			num=pmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -119,12 +118,30 @@ public class ServiceDao {
 		}
 		return num;
 	}
-
+//-------------------------------------------------------------------------------------------------------------------------
+	public static int updateThisOil(Oil o) {
+		String q4="update services set oil_cost=? ,total_cost=? where service_id=?";
+		int num=0;
+		try {
+			PreparedStatement pmt = con.prepareStatement(q4);
+			pmt.setDouble(1, o.getOil_cost());
+			pmt.setDouble(2, o.getOil_cost() );
+			pmt.setInt(4, o.getService_id());
+			num=pmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return num;
+	}
+	
+	
 
 	
 //---------------------------------------------------------------------------
 	
-	public static void addThisServiceByMaintainance(Maintainance m) {
+	public static void addThisServiceByMaintainance(Maintainance m,int service_request_id) {
 		int num=0;
 		String q5="insert into services (type,labour_charges,remark, service_request_id) values(?,?,?,?)";
 		try {
@@ -132,7 +149,7 @@ public class ServiceDao {
 			pmt.setString(1, m.getType());
 			pmt.setDouble(2, m.getLabour_charges());
 			pmt.setString(3, m.getRemark());
-			pmt.setInt(4, m.getService_request_id());
+			pmt.setInt(4, service_request_id);
 			num=pmt.executeUpdate();
 //			Maintainance m = new Maintainance(sid,type,labour_charges,total_cost,remark,srid);
 		} catch (SQLException e) {
@@ -143,17 +160,18 @@ public class ServiceDao {
 	}
 	
 //----------------------------------------------------------------------------------------------------------------------------------------
-	public int addThisServiceByOil(int sid, String type, double oil_cost, double total_cost, String remark, int srid) {
+	public static int addThisServiceByOil(Oil o,int service_request_id) {
 		int num=0;
-		String q5="insert into services (service_id,type,oil_cost,total_cost,remark, service_request_id) values(?,?,?,?,?,?)";
+		String q5="insert into services (type,oil_cost,labour_charges,total_cost,remark, service_request_id) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement pmt =con.prepareStatement(q5);
-			pmt.setInt(1, sid);
-			pmt.setString(2,type);
-			pmt.setDouble(3, oil_cost);
-			pmt.setDouble(4, total_cost);
-			pmt.setString(5, remark);
-			pmt.setInt(6, srid);
+			pmt.setString(1,o.getType());
+			pmt.setDouble(2, o.getOil_cost());
+			double labour_cost=0;
+			pmt.setDouble(3, labour_cost);
+			pmt.setDouble(4, o.getTotal_cost());
+			pmt.setString(5, o.getRemark());
+			pmt.setInt(6, service_request_id);
 			num=pmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
