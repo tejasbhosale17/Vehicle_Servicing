@@ -68,9 +68,11 @@ public class Oil extends Service{
 
 	@Override
 	public void calculateTotalCost() {
-		// TODO Auto-generated method stub
+		double total_cost=getOil_cost();
+		setTotal_cost(total_cost);
 		
 	}
+
 
 //	@Override
 //	public void acceptService() {
