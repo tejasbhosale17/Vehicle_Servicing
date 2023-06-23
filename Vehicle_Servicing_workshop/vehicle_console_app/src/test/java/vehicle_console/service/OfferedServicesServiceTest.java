@@ -19,19 +19,19 @@ class OfferedServicesServiceTest {
 //		OfferedServicesService.getAllServices();
 //	}
 //
-	@Test
-	void testFindThatService() {
-		List<Service> serviceList = new ArrayList<>();
-//		Service_requests serviceRequest = new Service_requests();
-		int service_request_id=23;
-		serviceList=OfferedServicesService.thisServiceThere(serviceList,service_request_id);;
-//		serviceList=serviceRequest.getServiceList();
-		for(Service s: serviceList) 
-		{
-			System.out.println(s);
-		}
-	}
-//	
+//	@Test
+//	void testFindThatService() {
+//		List<Service> serviceList = new ArrayList<>();
+////		Service_requests serviceRequest = new Service_requests();
+//		int service_request_id=23;
+//		serviceList=OfferedServicesService.thisServiceThere(serviceList,service_request_id);;
+////		serviceList=serviceRequest.getServiceList();
+//		for(Service s: serviceList) 
+//		{
+//			System.out.println(s);
+//		}
+//	}
+////	
 //	@Test
 //	void testaddTheService() {
 //		OfferedServicesService.addTheService();
@@ -44,4 +44,12 @@ class OfferedServicesServiceTest {
 //	 OfferedServicesService.addThisServiceByMaintainance(sr);
 //	 }
 	
+	
+	
+	@Test
+	 void addThisServiceByOil() {
+	 Service_requests sr= new Service_requests();
+	 sr=ServiceRequestDao.pushingThisServiceRequest("MH31DS7890");
+	 OfferedServicesService.addThisServiceByOil(sr);
+	 }
 }
