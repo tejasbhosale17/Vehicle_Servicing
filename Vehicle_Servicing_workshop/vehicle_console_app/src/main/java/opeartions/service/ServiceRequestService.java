@@ -239,13 +239,13 @@ public static void ListOfServiceRequestsForDate(Service_requests sr) {
 					serviceList=OfferedServicesService.thisServiceThere(serviceList,sr.getService_request_id());
 					sr.setServiceList(serviceList);
 					//below code is for printing only
-					List<Service> servList= new ArrayList<>();
-					servList=sr.getServiceList();
-//					System.out.println("printing from SRservice ListofSRD:");
-					for(Service serv:servList)
-					{
-						System.out.println(serv);
-					}
+//					List<Service> servList= new ArrayList<>();
+//					servList=sr.getServiceList();
+////					System.out.println("printing from SRservice ListofSRD:");
+//					for(Service serv:servList)
+//					{
+//						System.out.println(serv);
+//					}
 //					return s;
 //				}
 //			}
