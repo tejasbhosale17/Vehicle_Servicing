@@ -1,9 +1,30 @@
 package operations.models;
 
 public class Service_Parts {
- int part_id;
- int quantity;
+	int service_id;
+	int part_id;
+	int quantity;
  
+ public Service_Parts(int service_id, int part_id, int quantity) {
+		super();
+		this.service_id = service_id;
+		this.part_id = part_id;
+		this.quantity = quantity;
+	}
+
+
+
+public int getService_id() {
+		return service_id;
+	}
+
+
+
+	public void setService_id(int service_id) {
+		this.service_id = service_id;
+	}
+
+
  
  
 public Service_Parts() {
