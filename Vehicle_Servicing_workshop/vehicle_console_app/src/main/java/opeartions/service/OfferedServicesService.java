@@ -146,32 +146,27 @@ public class OfferedServicesService {
 		srList=sr.getServiceList();
 		System.out.println(srList);
 		if(srList.isEmpty()) {
-			System.out.println("Enter Service_id,type,labour_charges,total_cost,remark,service_request_id");
-			int sid=scan.nextInt();
-			String type=scan.next();
-			double labour_charges=scan.nextDouble();
-			double total_cost=scan.nextDouble();
-			scan.nextLine();
-			String remark=scan.nextLine();
 			int srid=sr.getService_request_id();
-			Maintainance m = new Maintainance(sid,type,labour_charges,total_cost,remark,srid);
-			ServiceDao.addThisServiceByMaintainance(m);
+			Maintainance m = new Maintainance();
+			m.acceptService();
+			ServiceDao.addThisServiceByMaintainance(m,srid);
 			
 		}else {
 			for(Service s:srList) {
 				if(s instanceof  Maintainance) {
-					System.out.println("Enter Labour_charges:");
-					double labour_charges=scan.nextDouble();
-					double oil_cost=0;
-					int sid=s.getService_id();
+					Maintainance m =(Maintainance) s;
+					m.acceptService();
+					ServiceDao.updateThisMainatainance(m);
 					
-					ServiceDao.updateThisService(sid,oil_cost,labour_charges);
 				}else if(s instanceof Oil) {
-					System.out.println("Enter Oil_cost:");
-					double oil_cost=scan.nextDouble();
-					double labour_charges=0;
-					int sid=s.getService_id();
-					ServiceDao.updateThisService(sid,oil_cost,labour_charges);
+//					System.out.println("Enter Oil_cost:");
+//					double oil_cost=scan.nextDouble();
+//					double labour_charges=0;
+//					int sid=s.getService_id();
+					Oil  o =(Oil)s;
+					o.acceptService();
+					ServiceDao.updateThisOil(o);
+					
 				}
 			}
 			
@@ -179,6 +174,54 @@ public class OfferedServicesService {
 		
 	}
 //----------------------------------------------------------------------------------------
+	public static void addThisServiceByOil(Service_requests sr) {
+		List<Service> srList = new ArrayList<>();
+		ServiceRequestService.ListOfServiceRequestsForDate(sr);
+		srList=sr.getServiceList();
+		System.out.println(srList);
+		
+			if(srList.isEmpty()) {
+				System.out.println("Adding oil if serviceList empty");
+				int srid=sr.getService_request_id();
+				Oil o =new Oil();
+				o.acceptService();
+				ServiceDao.addThisServiceByOil(o,srid);
+				
+			}else {
+				for(Service s:srList)
+				{
+					if(s instanceof  Maintainance) 
+					{
+						System.out.println(s);
+						System.out.println("You want to Update this Service Y/N:");
+						String str=scan.next();
+						if(str=="Y"|| str=="y") {
+							Maintainance m =(Maintainance) s;
+							m.acceptService();
+							ServiceDao.updateThisMainatainance(m);
+						}else {
+							continue;
+						}
+					}else if(s instanceof Oil)
+					{
+	//					System.out.println("Enter Oil_cost:");
+	//					double oil_cost=scan.nextDouble();
+	//					double labour_charges=0;
+	//					int sid=s.getService_id();
+						System.out.println("You want to Update this Service Y/N:");
+						String str=scan.next();
+						if(str=="Y"|| str=="y") {
+						System.out.println(s);
+						Oil  o =(Oil)s;
+						o.acceptService();
+						ServiceDao.updateThisOil(o);
+						}else {
+							continue;
+						}
+					}
+				}	
+			}
+	}
 	
 	
 }
