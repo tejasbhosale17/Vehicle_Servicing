@@ -8,9 +8,10 @@ import opeartions.service.ServicePartsService;
 
 class ServicePartsServiceTest {
 
-//	@Test
-//	void testgetServiceParts() {
-//		ServicePartsService.getServiceParts();
-//	}
+	@Test
+	void testgetServiceParts() {
+		ServicePartsService.getServiceParts();
+	}
+
 
 }
