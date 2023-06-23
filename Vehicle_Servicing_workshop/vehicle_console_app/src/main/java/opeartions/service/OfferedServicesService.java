@@ -142,84 +142,170 @@ public class OfferedServicesService {
 	//--------------------------------------------------------------------------------------------------------------
 	public static void addThisServiceByMaintainance(Service_requests sr) {
 		List<Service> srList = new ArrayList<>();
+		boolean serviceFound=false;
 		ServiceRequestService.ListOfServiceRequestsForDate(sr);
 		srList=sr.getServiceList();
 		System.out.println(srList);
-		if(srList.isEmpty()) {
-			int srid=sr.getService_request_id();
-			Maintainance m = new Maintainance();
+		int srid=sr.getService_request_id();
+		Maintainance m = null;
+		if(srList.isEmpty()) {			
 			m.acceptService();
 			ServiceDao.addThisServiceByMaintainance(m,srid);
-			
 		}else {
 			for(Service s:srList) {
-				if(s instanceof  Maintainance) {
-					Maintainance m =(Maintainance) s;
+				if(s instanceof  Maintainance) 
+					{
+						m=(Maintainance) s;
+						serviceFound=true;
+						break;
+					}
+			}
+				if(serviceFound) {
+					System.out.println(m);
 					m.acceptService();
+					m.calculateTotalCost();
 					ServiceDao.updateThisMainatainance(m);
 					
-				}else if(s instanceof Oil) {
-//					System.out.println("Enter Oil_cost:");
-//					double oil_cost=scan.nextDouble();
-//					double labour_charges=0;
-//					int sid=s.getService_id();
-					Oil  o =(Oil)s;
-					o.acceptService();
-					ServiceDao.updateThisOil(o);
+				}else {
+					m =new Maintainance();
+					srList.add(m);
+					m.acceptService();
+					m.calculateTotalCost();
+					ServiceDao.addThisServiceByMaintainance(m,srid);
 					
 				}
 			}
 			
-		}
+		
 		
 	}
 //----------------------------------------------------------------------------------------
+//	public static void addThisServiceByMaintainance(Service_requests sr) {
+//		List<Service> srList = sr.getServiceList();
+//		Maintainance m =null;
+//		boolean serviceFound=false;
+//		ServiceRequestService.ListOfServiceRequestsForDate(sr);
+//		System.out.println(srList);
+//		int srid=sr.getService_request_id();
+//			if(srList.isEmpty()) {
+//				System.out.println("Adding oil if serviceList empty");		
+//				m =new Maintainance();
+//				m.acceptService();
+//				m.calculateTotalCost();
+//				ServiceDao.addThisServiceByMaintainance(m, srid);
+//				
+//			}else {
+//				for(Service s:srList)
+//				{
+//					if(s instanceof  Maintainance) 
+//					{
+//						m=(Maintainance) s;
+//						serviceFound=true;
+//						break;
+//					}
+//				}if(serviceFound) {
+//						System.out.println(m);
+//							m.acceptService();
+//							m.calculateTotalCost();
+//							ServiceDao.updateThisMainatainance(m);
+//						
+//					}else {
+//	//					System.out.println("Enter Oil_cost:");
+//	//					double oil_cost=scan.nextDouble();
+//	//					double labour_charges=0;
+//	//					int sid=s.getService_id();
+////						System.out.println(s);
+//						m =new Maintainance();
+//						srList.add(m);
+//						m.acceptService();
+//						m.calculateTotalCost();
+//						ServiceDao.addThisServiceByMaintainance(m,srid);
+//						}
+//					
+//			}
+//	}
+//----------------------------------------------------------------------------------------
+//	public static void addThisServiceByOil(Service_requests sr) {
+//		List<Service> srList = sr.getServiceList();
+//		Oil o =null;
+//		boolean serviceFound=false;
+//		ServiceRequestService.ListOfServiceRequestsForDate(sr);
+//		System.out.println(srList);
+//		int srid=sr.getService_request_id();
+//			if(srList.isEmpty()) {
+//				System.out.println("Adding oil if serviceList empty");
+//				
+//				o =new Oil();
+//				o.acceptService();
+//				o.calculateTotalCost();
+//				ServiceDao.addThisServiceByOil(o,srid);
+//				
+//			}else {
+//				for(Service s:srList)
+//				{
+//					if(s instanceof  Maintainance) 
+//					{
+//						o=(Oil) s;
+//						serviceFound=true;
+//						break;
+//					}
+//				}if(serviceFound) {
+//						System.out.println(o);
+//							o.acceptService();
+//							o.calculateTotalCost();
+//							ServiceDao.updateThisOil(o);
+//						
+//					}else {
+//	//					System.out.println("Enter Oil_cost:");
+//	//					double oil_cost=scan.nextDouble();
+//	//					double labour_charges=0;
+//	//					int sid=s.getService_id();
+////						System.out.println(s);
+//						o =new Oil();
+//						srList.add(o);
+//						o.acceptService();
+//						o.calculateTotalCost();
+//						ServiceDao.addThisServiceByOil(o,srid);
+//						}
+//					
+//			}
+//	}
+//--------------------------------------------------------------------------------------------------------
 	public static void addThisServiceByOil(Service_requests sr) {
 		List<Service> srList = new ArrayList<>();
+		boolean serviceFound=false;
 		ServiceRequestService.ListOfServiceRequestsForDate(sr);
 		srList=sr.getServiceList();
 		System.out.println(srList);
+		int srid=sr.getService_request_id();
+		Oil o= null;
 		
-			if(srList.isEmpty()) {
-				System.out.println("Adding oil if serviceList empty");
-				int srid=sr.getService_request_id();
-				Oil o =new Oil();
-				o.acceptService();
-				ServiceDao.addThisServiceByOil(o,srid);
-				
-			}else {
-				for(Service s:srList)
-				{
-					if(s instanceof  Maintainance) 
+		if(srList.isEmpty()) {			
+			o.acceptService();
+			ServiceDao.addThisServiceByOil(o, srid);
+		}else {
+			for(Service s:srList) {
+				if(s instanceof  Oil) 
 					{
-						System.out.println(s);
-						System.out.println("You want to Update this Service Y/N:");
-						String str=scan.next();
-						if(str=="Y"|| str=="y") {
-							Maintainance m =(Maintainance) s;
-							m.acceptService();
-							ServiceDao.updateThisMainatainance(m);
-						}else {
-							continue;
-						}
-					}else if(s instanceof Oil)
-					{
-	//					System.out.println("Enter Oil_cost:");
-	//					double oil_cost=scan.nextDouble();
-	//					double labour_charges=0;
-	//					int sid=s.getService_id();
-						System.out.println("You want to Update this Service Y/N:");
-						String str=scan.next();
-						if(str=="Y"|| str=="y") {
-						System.out.println(s);
-						Oil  o =(Oil)s;
-						o.acceptService();
-						ServiceDao.updateThisOil(o);
-						}else {
-							continue;
-						}
+						o=(Oil) s;
+						serviceFound=true;
+						break;
 					}
-				}	
+			}
+				if(serviceFound) {
+					System.out.println(o);
+					o.acceptService();
+					o.calculateTotalCost();
+					ServiceDao.updateThisOil(o);
+					
+				}else {
+					o =new Oil();
+					srList.add(o);
+					o.acceptService();
+					o.calculateTotalCost();
+					ServiceDao.addThisServiceByOil(o, srid);
+					
+				}
 			}
 	}
 	
