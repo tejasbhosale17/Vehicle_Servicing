@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import operations.dao.PartDao;
 import operations.models.Part;
+import operations.models.Service;
 
 public class PartService {
 
@@ -29,6 +30,23 @@ public class PartService {
 	public static void getSpecificPartById() {
 		System.out.println("Enter partid to find part:");
 		int id=scan.nextInt();
+		try {
+			PartDao partDao = new PartDao();
+			Part part = new Part();
+			part=partDao.findThisPartById(id);
+			if(part!=null) {
+				System.out.println(part);
+			}else {
+				System.out.println("Part not found.. :(");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+//-------------------------------------------------------------------------------------
+	public static void getSpecificPartByServiceId(Service service) {
+		int id=service.getService_id();
 		try {
 			PartDao partDao = new PartDao();
 			Part part = new Part();
