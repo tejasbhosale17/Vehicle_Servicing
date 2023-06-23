@@ -82,7 +82,7 @@ public static void ChooseServiceMenu(Service_requests sr) {
 			break;
 			
 			case REPAIR:
-			System.out.println("Repair");
+			OfferedServicesService.addThisServiceByRepair(sr);
 			break;
 			
 
