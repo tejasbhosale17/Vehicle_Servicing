@@ -102,16 +102,22 @@ public class ServiceDao {
 	
 //-------------------------------------------------------------------------------------------------------
 	
-	public static int updateThisMainatainance(Maintainance m) {
-		String q4="update services set labour_charges=? ,total_cost=? where service_id=?";
+	public static int updateThisMainatainance(Service  service) {
+		String q4="update services set remark=CONCAT(?,',',remark), labour_charges=labour_charges+? ,total_cost=total_cost+? where service_id=?";
 		int num=0;
 		try {
 			PreparedStatement pmt = con.prepareStatement(q4);
-			pmt.setDouble(1, m.getLabour_charges());
-			pmt.setDouble(2, m.getTotal_cost());
-			pmt.setInt(3, m.getService_id());
+			pmt.setString(1, service.getRemark());
+			pmt.setDouble(2, ((Maintainance) service).getLabour_charges());
+			pmt.setDouble(3, service.getTotal_cost());
+			pmt.setInt(4, service.getService_id());
 			num=pmt.executeUpdate();
 			
+			if(num>0) {
+				System.out.println("Maintainance Updated Succesfully...");
+			}else {
+				System.out.println("Maintainance Update Unsuccesfull...");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,14 +125,15 @@ public class ServiceDao {
 		return num;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	public static int updateThisOil(Oil o) {
-		String q4="update services set oil_cost=? ,total_cost=? where service_id=?";
+	public static int updateThisOil(Service service) {
+		String q4="update services set remark=CONCAT(?,',',remark), oil_cost=oil_cost+? ,total_cost=total_cost+? where service_id=?";
 		int num=0;
 		try {
 			PreparedStatement pmt = con.prepareStatement(q4);
-			pmt.setDouble(1, o.getOil_cost());
-			pmt.setDouble(2, o.getOil_cost() );
-			pmt.setInt(4, o.getService_id());
+			pmt.setString(1, service.getRemark());
+			pmt.setDouble(2, ((Oil) service).getOil_cost());
+			pmt.setDouble(3, service.getTotal_cost() );
+			pmt.setInt(4, service.getService_id());
 			num=pmt.executeUpdate();
 			
 		} catch (SQLException e) {
