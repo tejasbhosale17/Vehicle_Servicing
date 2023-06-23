@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import operations.dao.PartDao;
 import operations.dao.ServiceDao;
 import operations.models.Maintainance;
 import operations.models.Oil;
+import operations.models.Part;
 import operations.models.Service;
+import operations.models.Service_Parts;
 import operations.models.Service_requests;
 
 public class OfferedServicesService {
@@ -148,7 +151,8 @@ public class OfferedServicesService {
 		System.out.println(srList);
 		int srid=sr.getService_request_id();
 		Maintainance m = null;
-		if(srList.isEmpty()) {			
+		if(srList.isEmpty()) {	
+			m=new Maintainance();
 			m.acceptService();
 			ServiceDao.addThisServiceByMaintainance(m,srid);
 		}else {
@@ -280,7 +284,8 @@ public class OfferedServicesService {
 		int srid=sr.getService_request_id();
 		Oil o= null;
 		
-		if(srList.isEmpty()) {			
+		if(srList.isEmpty()) {	
+			o=new Oil();
 			o.acceptService();
 			ServiceDao.addThisServiceByOil(o, srid);
 		}else {
@@ -308,6 +313,68 @@ public class OfferedServicesService {
 				}
 			}
 	}
+	
+//---------------------- REPAIR -------------------------------------------------------------------------------
+	public static void addThisServiceByRepair(Service_requests sr) {
+		List<Service> srList = new ArrayList<>();
+		System.out.println("Repairing Your Vehicle:");
+		boolean serviceFound=false;
+		ServiceRequestService.ListOfServiceRequestsForDate(sr);
+		srList=sr.getServiceList();
+		System.out.println(srList);
+		int srid=sr.getService_request_id();
+		Maintainance m = null;
+		Service_Parts sp =new Service_Parts();
+		if(srList.isEmpty()) {	
+			m=new Maintainance();
+			m.acceptService();
+			m.calculateTotalCost();
+			ServiceDao.addThisServiceByMaintainance(m,srid);
+		}else {
+			for(Service s:srList) {
+				if(s instanceof  Maintainance) 
+					{
+						m=(Maintainance) s;
+						serviceFound=true;
+						break;
+					}
+			}
+				if(serviceFound) {
+					System.out.println(m);
+					m.acceptService();
+					PartService.getAllParts();
+					System.out.println("You want to add any part enter 1 for yes 0 for no:");
+					
+					while(scan.nextInt()==1){
+						System.out.println("Enter part_id and quantity:");
+						int part_id=scan.nextInt();
+						int quantity=scan.nextInt();
+						Part p=PartDao.findThisPartById(part_id);
+						sp.setService_id(m.getService_id());
+						sp.setPart_id(p.getPid());
+						sp.setQuantity(quantity);
+						sp=ServicePartsService.addServiceParts(sp);
+						m.setTotal_cost(sp.getQuantity()*p.getPrice());
+						
+					}
+//					m.calculateTotalCost();
+					ServiceDao.updateThisMainatainance(m);
+					
+				}else {
+					m =new Maintainance();
+					srList.add(m);
+					m.acceptService();
+					m.calculateTotalCost();
+					ServiceDao.addThisServiceByMaintainance(m,srid);
+					
+				}
+			}
+			
+		
+		
+	}
+	
+	
 	
 	
 }
