@@ -72,13 +72,14 @@ public class Maintainance extends Service{
 	@Override
 	public void acceptService() {
 		System.out.println("Enter labour_charges,remark");
-		String type="maintainance";
-		double labour_charges=scan.nextDouble();
+		this.type="maintainance";
+		this.labour_charges=scan.nextDouble();
 		scan.nextLine();
-		String remark=scan.nextLine();
-		int service_request_id=0;
-		Maintainance m = new Maintainance(type,labour_charges,remark,service_request_id);
-		ServiceDao.addThisServiceByMaintainance(m);
+		this.remark=scan.nextLine();
+		this.total_cost=this.labour_charges;
+		this.service_request_id=0;
+//		/Maintainance m = new Maintainance(type,labour_charges,remark,service_request_id);
+		//ServiceDao.addThisServiceByMaintainance(m);
 	}
 
 	@Override
