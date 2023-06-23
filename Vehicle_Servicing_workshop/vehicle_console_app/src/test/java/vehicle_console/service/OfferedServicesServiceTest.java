@@ -46,10 +46,17 @@ class OfferedServicesServiceTest {
 	
 	
 	
+//	@Test
+//	 void addThisServiceByOil() {
+//	 Service_requests sr= new Service_requests();
+//	 sr=ServiceRequestDao.pushingThisServiceRequest("MH31DS7890");
+//	 OfferedServicesService.addThisServiceByOil(sr);
+//	 }
+	
 	@Test
-	 void addThisServiceByOil() {
-	 Service_requests sr= new Service_requests();
-	 sr=ServiceRequestDao.pushingThisServiceRequest("MH31DS7890");
-	 OfferedServicesService.addThisServiceByOil(sr);
-	 }
+	void testaddThisServiceByRepair() {
+		 Service_requests sr= new Service_requests();
+		 sr=ServiceRequestDao.pushingThisServiceRequest("MH31DS7890");
+		 OfferedServicesService.addThisServiceByRepair(sr);
+	}
 }
