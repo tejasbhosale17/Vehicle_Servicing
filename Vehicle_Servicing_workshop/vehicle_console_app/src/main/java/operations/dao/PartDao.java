@@ -34,7 +34,7 @@ public class PartDao {
 	}
 //-----------------------------------------------------------------------------------
 
-	public Part findThisPartById(int id) {
+	public static Part findThisPartById(int id) {
 		String q2="select * from parts where part_id=?";
 		try {
 			PreparedStatement pmt= con.prepareStatement(q2);
