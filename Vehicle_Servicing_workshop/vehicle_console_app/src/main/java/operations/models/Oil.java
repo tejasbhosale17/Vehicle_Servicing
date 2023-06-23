@@ -1,8 +1,12 @@
 package operations.models;
 
-public class Oil extends Service{
-	double oil_cost;
+import java.util.Scanner;
 
+import operations.dao.ServiceDao;
+
+public class Oil extends Service{
+	protected double oil_cost;
+	Scanner scan  = new Scanner(System.in);
 
 	public Oil() {
 		super("oil");
@@ -33,9 +37,13 @@ public class Oil extends Service{
 		
 	}
 
-	public Oil(String type) {
+	public Oil(String type,double oil_cost,double total_cost,String remark,int service_request_id) {
 		super(type);
 		// TODO Auto-generated constructor stub
+		this.oil_cost = oil_cost;
+		this.total_cost = total_cost;
+		this.remark = remark;
+		this.service_request_id = service_request_id;
 	}
 
 	public double getOil_cost() {
@@ -48,8 +56,14 @@ public class Oil extends Service{
 
 	@Override
 	public void acceptService() {
-		// TODO Auto-generated method stub
-		
+
+		this.type="oil";
+		System.out.println("Enter Oil_cost");
+		this.oil_cost=scan.nextDouble();
+		System.out.println("Enter Remark..");
+		scan.nextLine();
+		this.remark=scan.nextLine();
+		this.total_cost=this.oil_cost;
 	}
 
 	@Override
@@ -57,5 +71,11 @@ public class Oil extends Service{
 		// TODO Auto-generated method stub
 		
 	}
+
+//	@Override
+//	public void acceptService() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 }
