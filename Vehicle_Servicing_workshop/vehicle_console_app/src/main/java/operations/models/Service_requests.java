@@ -3,7 +3,6 @@ package operations.models;
 import java.sql.Date;
 import java.util.List;
 
-import opeartions.service.OfferedServicesService;
 
 public class Service_requests {
 

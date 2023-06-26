@@ -2,7 +2,6 @@ package operations.models;
 
 import java.util.Scanner;
 
-import operations.dao.ServiceDao;
 
 public class Oil extends Service{
 	protected double oil_cost;
