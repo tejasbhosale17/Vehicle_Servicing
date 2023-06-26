@@ -154,6 +154,7 @@ public class OfferedServicesService {
 		if(srList.isEmpty()) {	
 			m=new Maintainance();
 			m.acceptService();
+			m.calculateTotalCost();
 			ServiceDao.addThisServiceByMaintainance(m,srid);
 		}else {
 			for(Service s:srList) {
@@ -287,6 +288,7 @@ public class OfferedServicesService {
 		if(srList.isEmpty()) {	
 			o=new Oil();
 			o.acceptService();
+			o.calculateTotalCost();
 			ServiceDao.addThisServiceByOil(o, srid);
 		}else {
 			for(Service s:srList) {
@@ -315,64 +317,71 @@ public class OfferedServicesService {
 	}
 	
 //---------------------- REPAIR -------------------------------------------------------------------------------
-	public static void addThisServiceByRepair(Service_requests sr) {
-		List<Service> srList = new ArrayList<>();
-		System.out.println("Repairing Your Vehicle:");
-		boolean serviceFound=false;
-		ServiceRequestService.ListOfServiceRequestsForDate(sr);
-		srList=sr.getServiceList();
-		System.out.println(srList);
-		int srid=sr.getService_request_id();
-		Maintainance m = null;
-		Service_Parts sp =new Service_Parts();
-		if(srList.isEmpty()) {	
-			m=new Maintainance();
+public static void addThisServiceByRepair(Service_requests sr) {
+	List<Service> srList = new ArrayList<>();
+	List<Service_Parts>spList = new ArrayList<>();
+	System.out.println("Repairing Your Vehicle:");
+	boolean serviceFound=false;
+	ServiceRequestService.ListOfServiceRequestsForDate(sr);
+	srList=sr.getServiceList();
+	System.out.println(srList);
+	int srid=sr.getService_request_id();
+	Maintainance m = null;
+	Service_Parts sp =new Service_Parts();
+	if(srList.isEmpty()) {	
+		m=new Maintainance();
+		m.acceptService();
+		m.calculateTotalCost();
+		ServiceDao.addThisServiceByMaintainance(m,srid);
+		srList.add(m);
+	}else {
+		for(Service s:srList) {
+			if(s instanceof  Maintainance) 
+				{
+					m=(Maintainance) s;
+					serviceFound=true;
+					break;
+				}
+		}
+		if(serviceFound) {
+			System.out.println(m);
+			m.acceptService();
+			PartService.getAllParts();
+			System.out.println("You want to add any part enter 1 for yes 0 for no:");
+			
+			while(scan.nextInt()==1){
+				System.out.println("Enter part_id and quantity:");
+				int part_id=scan.nextInt();
+				int quantity=scan.nextInt();
+				Part p=PartDao.findThisPartById(part_id);
+				m.calculateTotalRepairingCost(p,quantity);
+				sp.setService_id(m.getService_id());
+				sp.setPart_id(p.getPid());
+				sp.setQuantity(quantity);
+				sp=ServicePartsService.addServiceParts(sp);
+			//============ setting servicePartsList===============
+//				m.setTotal_cost(sp.getQuantity()*p.getPrice());	
+				spList.add(sp);
+				
+			}
+			m.setPartList(spList);
+			List<Service_Parts> servPart = m.getPartList();
+			for(Service_Parts x:servPart) {
+				System.out.println(x);
+			}
+//				m.calculateTotalCost();
+			ServiceDao.updateThisMainatainance(m);
+			
+		}else {
+			m =new Maintainance();
+			srList.add(m);
 			m.acceptService();
 			m.calculateTotalCost();
 			ServiceDao.addThisServiceByMaintainance(m,srid);
-		}else {
-			for(Service s:srList) {
-				if(s instanceof  Maintainance) 
-					{
-						m=(Maintainance) s;
-						serviceFound=true;
-						break;
-					}
-			}
-				if(serviceFound) {
-					System.out.println(m);
-					m.acceptService();
-					PartService.getAllParts();
-					System.out.println("You want to add any part enter 1 for yes 0 for no:");
-					
-					while(scan.nextInt()==1){
-						System.out.println("Enter part_id and quantity:");
-						int part_id=scan.nextInt();
-						int quantity=scan.nextInt();
-						Part p=PartDao.findThisPartById(part_id);
-						sp.setService_id(m.getService_id());
-						sp.setPart_id(p.getPid());
-						sp.setQuantity(quantity);
-						sp=ServicePartsService.addServiceParts(sp);
-						m.setTotal_cost(sp.getQuantity()*p.getPrice());
-						
-					}
-//					m.calculateTotalCost();
-					ServiceDao.updateThisMainatainance(m);
-					
-				}else {
-					m =new Maintainance();
-					srList.add(m);
-					m.acceptService();
-					m.calculateTotalCost();
-					ServiceDao.addThisServiceByMaintainance(m,srid);
-					
-				}
-			}
-			
-		
-		
+		}
 	}
+	
+}
 	
 	
 	
