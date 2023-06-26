@@ -89,6 +89,9 @@ public class Maintainance extends Service{
 		
 	}
 	
-	
+	public void calculateTotalRepairingCost(Part p, int quantity) {
+		double total_cost=getLabour_charges()+(p.getPrice()*quantity);
+		setTotal_cost(total_cost);
+	}
 	
 }
