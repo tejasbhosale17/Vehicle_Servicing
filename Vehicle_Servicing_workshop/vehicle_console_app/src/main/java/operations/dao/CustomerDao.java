@@ -34,7 +34,7 @@ public class CustomerDao {
 	}
 //----------------------------------------------------------------------------------------------------------
 	
-	public Customer getThatCustomer(Long mobile) {
+	public static Customer getThatCustomer(Long mobile) {
 		String q2="select * from customer where mobile=?";
 		try {
 			PreparedStatement pmt =con.prepareStatement(q2);

@@ -17,7 +17,7 @@ public class ServiceDao {
 
 	static Connection con;
 	
-	public ServiceDao() throws SQLException{
+	static{
 		try {
 			con=DBUtil.getConnection();
 		} catch (SQLException e) {
@@ -189,6 +189,58 @@ public class ServiceDao {
 		}
 		return num;
 	}
+
+//--------------------TOTAL LABOUR CHARGES-----------------------------
 	
+	public static double getLabourCharges(Service_requests sr) {
+		String sql="select sum(labour_charges)as 'total_labour_charges' from services where service_request_id=?";
+		double totalLabour_charges=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(sql);
+			pmt.setInt(1, sr.getService_request_id());
+			ResultSet rs=pmt.executeQuery(); 
+			if(rs.next()) {
+				totalLabour_charges=rs.getDouble("total_labour_charges");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return totalLabour_charges;
+	}
+
+	public static double getAllOilCost(Service_requests sr) {
+		String sql="select sum(oil_cost)as 'total_oil_cost' from services where service_request_id=?";
+		double totalOilCost=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(sql);
+			pmt.setInt(1, sr.getService_request_id());
+			ResultSet rs=pmt.executeQuery(); 
+			if(rs.next()) {
+				totalOilCost=rs.getDouble("total_oil_cost");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return totalOilCost;
+	}
+
+	public static double getTotalBillAmount(Service_requests sr) {
+		String sql="select sum(total_cost)as 'total_bill_amount' from services where service_request_id=?";
+		double totalBillAmount=0;
+		try {
+			PreparedStatement pmt= con.prepareStatement(sql);
+			pmt.setInt(1, sr.getService_request_id());
+			ResultSet rs=pmt.executeQuery(); 
+			if(rs.next()) {
+				totalBillAmount=rs.getDouble("total_bill_amount");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return totalBillAmount;
+	}
 	
 }

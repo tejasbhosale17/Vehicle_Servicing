@@ -15,6 +15,16 @@ public class Part {
 		this.price = price;
 	}
 	
+	
+	
+	public Part(String part_name, double price) {
+		super();
+		this.part_name = part_name;
+		this.price = price;
+	}
+
+
+
 	public Part() {
 		super();
 		// TODO Auto-generated constructor stub

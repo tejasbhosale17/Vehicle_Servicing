@@ -18,55 +18,49 @@ public class OfferedServicesService {
 
 	static Scanner scan = new Scanner(System.in);
 	
-	public static void getAllServices(){
-		List<Service> serviceList = new ArrayList<>();
-		try {
-			ServiceDao serviceDao = new ServiceDao();
-			serviceDao.getAllservices(serviceList);
-			for(Service s: serviceList) 
-			{
-				System.out.println(s);
-			}
-		} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
-	}
-////---------------------------------------------------------------------------------------------------
-	public static List<Service> thisServiceThere(List<Service> serviceList,int service_request_id) {
+//	public static void getAllServices(){
 //		List<Service> serviceList = new ArrayList<>();
-		try {
-//			System.out.println("Enter Service_request_id:");
-//			int service_request_id=scan.nextInt();
-			ServiceDao serviceDao = new ServiceDao();
-			serviceDao.findThisService(serviceList,service_request_id);
+//		try {
+//			ServiceDao serviceDao = new ServiceDao();
+//			serviceDao.getAllservices(serviceList);
 //			for(Service s: serviceList) 
 //			{
 //				System.out.println(s);
 //			}
-		} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
+//		} catch (SQLException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//		}
+//	}
+////---------------------------------------------------------------------------------------------------
+	public static List<Service> thisServiceThere(List<Service> serviceList,int service_request_id) throws SQLException {
+//			System.out.println("Enter Service_request_id:");
+		//			int service_request_id=scan.nextInt();
+					ServiceDao serviceDao = new ServiceDao();
+					serviceDao.findThisService(serviceList,service_request_id);
+		//			for(Service s: serviceList) 
+		//			{
+		//				System.out.println(s);
+		//			}
 		return serviceList;	
 	}
 //-----------------------------------------------------------------------------------------------------
-	public static void RemoveThisService() {
-		int sid=scan.nextInt();
-		int isRemoved=0;
-		try {
-			ServiceDao serviceDao  =new ServiceDao();
-			isRemoved=serviceDao.deleteThisService(sid);
-			if(isRemoved > 0) {
-				System.out.println("Service Removed!!");
-			}else {
-				System.out.println("Service Does not exists!!");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void RemoveThisService() {
+//		int sid=scan.nextInt();
+//		int isRemoved=0;
+//		try {
+//			ServiceDao serviceDao  =new ServiceDao();
+//			isRemoved=serviceDao.deleteThisService(sid);
+//			if(isRemoved > 0) {
+//				System.out.println("Service Removed!!");
+//			}else {
+//				System.out.println("Service Does not exists!!");
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 //-------------------------------------------------------------------------------------
 	

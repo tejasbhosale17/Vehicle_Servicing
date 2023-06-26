@@ -1,9 +1,18 @@
 package operations.models;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import opeartions.service.CustomerVehicleService;
+import opeartions.service.ServiceRequestService;
+import operations.dao.CustomerDao;
+import operations.dao.PartDao;
+import operations.dao.ServiceDao;
 
 public class Bill_templet {
-	
+
 	String Service_Station_name="Vehicle Service Station";
 	Date Service_date;
 	Customer c;
@@ -81,5 +90,41 @@ public class Bill_templet {
 				+ c + ", cvd=" + cvd + ", p=" + p + ", sr=" + sr + "]";
 	}
 
+	
+	public void showBill() {
+		Scanner scan= new Scanner(System.in);
+		System.out.println("Enter mobile no:");
+		Long mobile=scan.nextLong();
+		Customer customer=CustomerDao.getThatCustomer(mobile);
+		int customer_id= customer.getId();
+		CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
+		System.out.println("Enter vehicle_number if exists:");
+		String vehicle_number=scan.next();
+		cvd=CustomerVehicleService.hereIsYourVehicle(customer_id,vehicle_number);
+		sr=ServiceRequestService.getServiceRequestByVehicleNumber(cvd);
+		List<Part> plist = new ArrayList<>();
+		PartDao.showListOFPartsForService(plist);
+//------------------------ Printing Everything ------------------------------------------
+		System.out.println("        "+Service_Station_name+"        ");
+		System.out.println("Customer Name:"+customer.getName()+"     "+"Mobile:"+customer.getMobile());
+		System.out.println("Vehicle Number:"+cvd.getVehicle_number());
+		System.out.println("Companey"+cvd.getCompany()+"   "+"Model:"+cvd.getModel());
+		System.out.println("------------------Parts Details-----------------------");
+		for(Part p:plist) {
+			System.out.println("Part Name"+p.getPname()+"       "+"Price"+p.getPrice());
+		}
+		
+		double allLabour_charges=ServiceDao.getLabourCharges(sr);
+		
+		double allOil_cost= ServiceDao.getAllOilCost(sr);
+		
+		double ServicesBill_amount=ServiceDao.getTotalBillAmount(sr);
+		System.out.println("---------------------BILL AMOUNT-------------------------");
+		System.out.println("Total Labour Charges:"+allLabour_charges);
+		System.out.println("Total Oil Cost:"+allOil_cost);
+		System.out.println("Total Bill Amount:"+ServicesBill_amount);
+	
+	
+	}
 	
 }

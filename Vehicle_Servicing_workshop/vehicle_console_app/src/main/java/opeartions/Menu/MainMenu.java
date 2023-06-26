@@ -2,9 +2,11 @@ package opeartions.Menu;
 
 import java.util.Scanner;
 
+import operations.models.Bill_templet;
+
 enum EMainMenu{
 	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,
-	SERVICE,SERVICE_REQUEST,DEFAULT
+	SERVICE,SERVICE_REQUEST,GENERATE_BILL,DEFAULT
 }
 
 
@@ -24,10 +26,11 @@ public class MainMenu {
 		System.out.println("4.Customer Vehicle");
 		System.out.println("5.Service");
 		System.out.println("6.Service Request");
+		System.out.println("7.Generate Bill");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
-		return (choice<0 ||choice>6 ? EMainMenu.values()[7] :EMainMenu.values()[choice]);
+		return (choice<0 ||choice>7 ? EMainMenu.values()[7] :EMainMenu.values()[choice]);
 //		return EMainMenu.values()[choice];
 	}
 	
@@ -67,6 +70,13 @@ public static void TheMainMenu() {
 			m.serviceRequestMenu.ChooseServiceReqMenu();
 			System.out.println("");
 		break;
+		
+		case GENERATE_BILL:
+			System.out.println("Here is your Bill");
+			Bill_templet bt= new Bill_templet();
+			bt.showBill();
+
+			break;
 			
 		case DEFAULT:
 			System.out.println("Wrong choice entered..:(");

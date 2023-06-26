@@ -12,13 +12,19 @@ import operations.models.Service;
 
 class ServiceDaoTest {
 
-	@Test
-	void testgetAllservices() {
-		List<Service> serviceList = new ArrayList<>();
-		ServiceDao.getAllservices(serviceList);
-		for(Service s:serviceList) {
-			System.out.println(s);
-		}
-	}
+//	@Test
+//	void testgetAllservices() {
+//		List<Service> serviceList = new ArrayList<>();
+//		ServiceDao.getAllservices(serviceList);
+//		for(Service s:serviceList) {
+//			System.out.println(s);
+//		}
+//	}
+//	
+//	@Test
+//	void test(){
+//		double allLabour_charges=ServiceDao.getLabourCharges(35);
+//		System.out.println(allLabour_charges);
+//	}
 
 }

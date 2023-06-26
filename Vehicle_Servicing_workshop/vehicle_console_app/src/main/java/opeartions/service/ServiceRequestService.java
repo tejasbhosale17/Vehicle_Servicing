@@ -236,7 +236,12 @@ public static void ListOfServiceRequestsForDate(Service_requests sr) {
 //				if(service_request_id ==sr.getService_request_id()) 
 //				{
 					System.out.println(sr);
-					serviceList=OfferedServicesService.thisServiceThere(serviceList,sr.getService_request_id());
+					try {
+						serviceList=OfferedServicesService.thisServiceThere(serviceList,sr.getService_request_id());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					sr.setServiceList(serviceList);
 					//below code is for printing only
 //					List<Service> servList= new ArrayList<>();

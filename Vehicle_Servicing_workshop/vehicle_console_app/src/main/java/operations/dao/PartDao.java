@@ -145,7 +145,23 @@ public class PartDao {
 	}
 
 	
-	
+	public static void showListOFPartsForService(List<Part> partList) {
+		String sql="select p.part_name,p.price from parts p inner join service_parts sp on p.part_id=sp.part_id inner join services s on s.service_id=sp.service_id where s.service_id=?";
+		
+		try {
+			PreparedStatement pmt = con.prepareStatement(sql);
+			pmt.setInt(1, 38);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()){
+				Part p =new Part(rs.getString("part_name"),rs.getDouble("price"));
+				partList.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 
 }
