@@ -8,6 +8,7 @@ import java.util.List;
 
 import dbUtil.DBUtil;
 import operations.models.Part;
+import operations.models.Service_Parts;
 
 public class PartDao {
 	private static Connection con;
@@ -123,6 +124,24 @@ public class PartDao {
 			e.printStackTrace();
 		} 
 		return npa;
+	}
+
+	public List<Service_Parts> getListofServiceParts(List<Service_Parts> spList, int service_id) {
+		String sql="select * from service_parts where service_id=?";
+		try {
+			PreparedStatement pmt =con.prepareStatement(sql);
+			pmt.setInt(1, service_id);
+			ResultSet rs =pmt.executeQuery();
+			while(rs.next()) {
+				Service_Parts sp =new Service_Parts(rs.getInt("service_id"),rs.getInt("part_id"),rs.getInt("quantity"));
+				spList.add(sp);
+				return spList;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	
