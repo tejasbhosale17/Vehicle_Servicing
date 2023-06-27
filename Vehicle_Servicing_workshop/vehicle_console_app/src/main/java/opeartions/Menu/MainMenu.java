@@ -3,6 +3,7 @@ package opeartions.Menu;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import opeartions.service.BillGenerateService;
 import operations.models.Bill_templet;
 
 enum EMainMenu{
@@ -74,9 +75,13 @@ public static void TheMainMenu() throws SQLException {
 		
 		case GENERATE_BILL:
 			System.out.println("Here is your Bill");
-			Bill_templet bt= new Bill_templet();
-			bt.showBill();
-
+			BillGenerateService billGenerateService = new BillGenerateService();
+			try {
+				billGenerateService.showBill();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 			
 		case DEFAULT:
