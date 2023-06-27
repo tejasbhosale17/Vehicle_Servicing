@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBUtil {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/sunbeam_db";
+	private static final String URL = "jdbc:mysql://localhost:3306/vehicles_db";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "tejas170299";
 
