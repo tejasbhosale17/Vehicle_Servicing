@@ -348,7 +348,7 @@ public static void addThisServiceByRepair(Service_requests sr) throws SQLExcepti
 				int part_id=scan.nextInt();
 				int quantity=scan.nextInt();
 				Part p=PartDao.findThisPartById(part_id);
-				m.calculateTotalRepairingCost(p,quantity);
+				
 				sp.setService_id(m.getService_id());
 				sp.setPart_id(p.getPid());
 				sp.setQuantity(quantity);
@@ -357,8 +357,11 @@ public static void addThisServiceByRepair(Service_requests sr) throws SQLExcepti
 //				m.setTotal_cost(sp.getQuantity()*p.getPrice());	
 				spList.add(sp);
 				
+		
+				
 			}
 			m.setPartList(spList);
+			m.calculateTotalCost();
 			List<Service_Parts> servPart = m.getPartList();
 			for(Service_Parts x:servPart) {
 				System.out.println(x);
