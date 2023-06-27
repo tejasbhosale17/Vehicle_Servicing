@@ -14,65 +14,45 @@ import operations.models.Vehicle;
 class VehicleDaoTest {
 
 	@Test
-	void testgetAllVehicles() {
+	void testgetAllVehicles() throws SQLException {
 		List<Vehicle> vehicleList = new ArrayList<>();
-		try {
-			VehicleDao vehicleDao = new VehicleDao();
-			vehicleDao.getAllVehicles(vehicleList);
-			for(Vehicle v: vehicleList) {
-				System.out.println(v);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		VehicleDao vehicleDao = new VehicleDao();
+		vehicleDao.getAllVehicles(vehicleList);
+		for(Vehicle v: vehicleList) {
+			System.out.println(v);
 		}		
 	}
 	
 	@Test
-	void testgetThatVehicle() {
-		try {
-			VehicleDao vehicleDao = new VehicleDao();
-			Vehicle v=vehicleDao.getThatVehicle(12);
-			if(v!=null) {
-				System.out.println(v);
-			}else {
-				System.out.println("Vehicle Does not Exists...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	void testgetThatVehicle() throws SQLException {
+		VehicleDao vehicleDao = new VehicleDao();
+		Vehicle v=vehicleDao.getThatVehicle(12);
+		if(v!=null) {
+			System.out.println(v);
+		}else {
+			System.out.println("Vehicle Does not Exists...");
 		}	
 	}
 	
 	@Test
-	void testremoveThatVehicleUsingId() {
-		try {
-			VehicleDao vehicleDao = new VehicleDao();
-			int isRemoved=vehicleDao.removeThatVehicleUsingId(12);
-			if(isRemoved !=0) {
-				System.out.println("Vehicle Deleted Succesfully!");
-			}else {
-				System.out.println("Vehicle Does not Exists...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	void testremoveThatVehicleUsingId() throws SQLException {
+		VehicleDao vehicleDao = new VehicleDao();
+		int isRemoved=vehicleDao.removeThatVehicleUsingId(12);
+		if(isRemoved !=0) {
+			System.out.println("Vehicle Deleted Succesfully!");
+		}else {
+			System.out.println("Vehicle Does not Exists...");
 		}
 	}
 	
 	@Test
-	void testchangeThatVehicle() {
-		try {
-			VehicleDao vehicleDao = new VehicleDao();
-			int isUpdated=vehicleDao.changeThatVehicle(11,"discover125");
-			if(isUpdated !=0) {
-				System.out.println(isUpdated+" Vehicle Updated Succesfully!");
-			}else {
-				System.out.println("Vehicle Does not Exists...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	void testchangeThatVehicle() throws SQLException {
+		VehicleDao vehicleDao = new VehicleDao();
+		int isUpdated=vehicleDao.changeThatVehicle(11,"discover125");
+		if(isUpdated !=0) {
+			System.out.println(isUpdated+" Vehicle Updated Succesfully!");
+		}else {
+			System.out.println("Vehicle Does not Exists...");
 		}
 	}
 	

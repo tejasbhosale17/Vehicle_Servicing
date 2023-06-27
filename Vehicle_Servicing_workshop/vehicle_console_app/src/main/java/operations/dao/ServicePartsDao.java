@@ -14,8 +14,13 @@ import operations.models.Service_Parts;
 public class ServicePartsDao {
 	private static Connection con;
 
-	public ServicePartsDao() throws SQLException {
-		this.con = DBUtil.getConnection();
+	static{
+		try {
+			con = DBUtil.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 //	public List<Service_Parts> getAllServiceParts(List<Service_Parts> sPList) {

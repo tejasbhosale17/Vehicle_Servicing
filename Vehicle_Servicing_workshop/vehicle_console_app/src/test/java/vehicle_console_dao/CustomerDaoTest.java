@@ -19,78 +19,53 @@ class CustomerDaoTest {
 	
 	
 	@Test
-	void testgetAllCustomers() {
+	void testgetAllCustomers() throws SQLException {
 		List<Customer> customerList = new ArrayList<>();
-		try {
-			CustomerDao customerDao = new CustomerDao();
-			customerDao.getAllCustomers(customerList);
-			for (Customer customer : customerList)
-			{
-				System.out.println(customer);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		CustomerDao customerDao = new CustomerDao();
+		customerDao.getAllCustomers(customerList);
+		for (Customer customer : customerList)
+		{
+			System.out.println(customer);
 		}
 		
 	}
 	
 	@Test
-	void testgetThatCustomer() {
+	void testgetThatCustomer() throws SQLException {
 		long mobile=scan.nextLong();
 		
-		try {
-			CustomerDao customerDao = new CustomerDao();
-			Customer customer =new Customer();
-			customer=customerDao.getThatCustomer(mobile);
-			if(customer!=null) {
-				System.out.println(customer);
-			}else {
-				System.out.println("Customer Does not exists!");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		CustomerDao customerDao = new CustomerDao();
+		Customer customer =new Customer();
+		customer=customerDao.getThatCustomer(mobile);
+		if(customer!=null) {
+			System.out.println(customer);
+		}else {
+			System.out.println("Customer Does not exists!");
 		}
 		
 	}  
 	
 	@Test
-	void testremoveThatCustomer() {
+	void testremoveThatCustomer() throws SQLException {
 		
-		try {
-			CustomerDao customerDao = new CustomerDao();
-			customerDao.removeThatCustomer(11);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CustomerDao customerDao = new CustomerDao();
+		customerDao.removeThatCustomer(11);
 	}
 	
 	@Test
-	void testaddThisCustomer() {
+	void testaddThisCustomer() throws SQLException {
 		int cpu=0;
-		try {
-			CustomerDao customerDao = new CustomerDao();
-			cpu=customerDao.addThisCustomer(11, "Tejas", scan.nextLong(), "tejas@gmail.com", "vcab gibcgquci");
-			System.out.println(cpu);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CustomerDao customerDao = new CustomerDao();
+		cpu=customerDao.addThisCustomer(11, "Tejas", scan.nextLong(), "tejas@gmail.com", "vcab gibcgquci");
+		System.out.println(cpu);
 	}
 	
 	@Test
-	void testupdateThisCustomer() {
+	void testupdateThisCustomer() throws SQLException {
 		int ncu=0;
-		try {
-			CustomerDao customerDao = new CustomerDao();
-			ncu=customerDao.updateThisCustomer(11, scan.nextLong(),"caibi ahucin");
-			System.out.println(ncu);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CustomerDao customerDao = new CustomerDao();
+		ncu=customerDao.updateThisCustomer(11, scan.nextLong(),"caibi ahucin");
+		System.out.println(ncu);
 	}
 	
 

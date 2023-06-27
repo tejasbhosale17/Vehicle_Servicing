@@ -18,7 +18,7 @@ public class ServiceRequestDao {
 	private static Connection con;
 	Scanner scan  =new Scanner(System.in);
 	
-	public ServiceRequestDao() throws SQLException{
+	static{
 		try {
 			con=DBUtil.getConnection();
 		} catch (SQLException e) {

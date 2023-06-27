@@ -15,61 +15,48 @@ public class ServiceRequestService {
 
 	static Scanner scan = new Scanner(System.in);
 	
-	public static void getAllServiceRequests() {
+	public static void getAllServiceRequests() throws SQLException {
 		List<Service_requests> srlist =new ArrayList<>();
 		ServiceRequestDao serviceRequestDao;
-		try {
-			serviceRequestDao = new ServiceRequestDao();
-			serviceRequestDao.listAllServiceRequests(srlist);
-			for(Service_requests sr:srlist) {
-				System.out.println(sr);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		serviceRequestDao = new ServiceRequestDao();
+		serviceRequestDao.listAllServiceRequests(srlist);
+		for(Service_requests sr:srlist) {
+			System.out.println(sr);
 		}
 	}
 //---------------------------------------------------------------------------------------------------
-	public static void getThisServiceRequest(int srid) {
+	public static void getThisServiceRequest(int srid) throws SQLException {
 		
-		try {
-			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-			Service_requests sr=serviceRequestDao.findThisServiceRequest(srid);
-			if(sr!=null) {
-				System.out.println("Service Request Exists!!");
-				System.out.println(sr);
-			}else {
-				System.out.println("Service Request Does Not Exists!!");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		Service_requests sr=serviceRequestDao.findThisServiceRequest(srid);
+		if(sr!=null) {
+			System.out.println("Service Request Exists!!");
+			System.out.println(sr);
+		}else {
+			System.out.println("Service Request Does Not Exists!!");
 		}
 	}
 	
 //------------------------------------------------------------------------------------------
-	public static Service_requests getServiceRequestByVehicleNumber(Customer_Vehicle_Details cvd) {
+	public static Service_requests getServiceRequestByVehicleNumber(Customer_Vehicle_Details cvd) throws SQLException {
 		String vehicle_number=cvd.getVehicle_number();
 		Service_requests sqr = new Service_requests();
-		try {
-			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-			List<Service_requests> srlist = new ArrayList<>();
-			serviceRequestDao.findServiceRequestByVehicleNumber(srlist,vehicle_number);
-			for(Service_requests sr:srlist) {
-				System.out.println(sr);
-			}
-			System.out.println("Enter Service_reques_id to choose a service:");
-			
-			sqr=serviceRequestDao.findThisServiceRequest(scan.nextInt());
-			System.out.println("Your Service Request is: ");
-			System.out.println(sqr);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		List<Service_requests> srlist = new ArrayList<>();
+		serviceRequestDao.findServiceRequestByVehicleNumber(srlist,vehicle_number);
+		for(Service_requests sr:srlist) {
+			System.out.println(sr);
 		}
+		System.out.println("Enter Service_reques_id to choose a service:");
+		
+		sqr=serviceRequestDao.findThisServiceRequest(scan.nextInt());
+		System.out.println("Your Service Request is: ");
+		System.out.println(sqr);
 		return sqr;
 	}
 //------------------------------------------------------------------------------------------
 	
-	public static void updateServiceRequest(Customer_Vehicle_Details cvd) {
+	public static void updateServiceRequest(Customer_Vehicle_Details cvd) throws SQLException {
 //		System.out.println("Enter vehicle number");
 //		String vehicle_number=scan.next();
 		String vehicle_number=cvd.getVehicle_number();
@@ -79,84 +66,59 @@ public class ServiceRequestService {
 		int service_request_id=scan.nextInt();
 		System.out.println("Enter bill_amount to update:");
 		double bill_amount=scan.nextDouble();
-		try {
-			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-			isUpdated=serviceRequestDao.updateThisServiceRequest(service_request_id,bill_amount);
-			if(isUpdated>0) {
-				System.out.println("Bill_amount updated...");
-			}else {
-				System.out.println("unsuccesfully Bill_amount updated...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		isUpdated=serviceRequestDao.updateThisServiceRequest(service_request_id,bill_amount);
+		if(isUpdated>0) {
+			System.out.println("Bill_amount updated...");
+		}else {
+			System.out.println("unsuccesfully Bill_amount updated...");
 		}
 		
 	}
 //----------------------------------------------------------------------------------
 	
-public static void deleteThisServiceRequest(String vehicle_number) {
+public static void deleteThisServiceRequest(String vehicle_number) throws SQLException {
 //	getServiceRequestByVehicleNumber(vehicle_number);
 	int isDeleted=0;
 	System.out.println("If your service exists enter service_request_id:");
 	int service_request_id=scan.nextInt();
 	
-	try {
-		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-		isDeleted=serviceRequestDao.deleteThisServiceRequest(service_request_id);
-		if(isDeleted>0) {
-			System.out.println("Service Request Deleted...");
-		}else {
-			System.out.println("Can not delete service request...");
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+	isDeleted=serviceRequestDao.deleteThisServiceRequest(service_request_id);
+	if(isDeleted>0) {
+		System.out.println("Service Request Deleted...");
+	}else {
+		System.out.println("Can not delete service request...");
 	}
 }
 
 //-------------------------------------------------------------------------------------
 	
-public static void addServiceRequest(int service_request_id,String vehicle_number) {
+public static void addServiceRequest(int service_request_id,String vehicle_number) throws SQLException {
 //	getServiceRequestByVehicleNumber(vehicle_number);
 	int isAdded=0;
-//	System.out.println("If your service exists enter service_request_id or enter 0:");
-//	int service_request_id=scan.nextInt();
-//	if(service_request_id>0) {
-//		getThisServiceRequest(service_request_id);
-//	}else {		
-		try {
-			ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-			
-			isAdded=serviceRequestDao.addThisServiceRequest(service_request_id,vehicle_number);
-			if(isAdded>0) {
-				System.out.println("Service Added Succesfully...");
-			}else {
-				System.out.println("Unsuccesfully Service Add....");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+		
+		isAdded=serviceRequestDao.addThisServiceRequest(service_request_id,vehicle_number);
+		if(isAdded>0) {
+			System.out.println("Service Added Succesfully...");
+		}else {
+			System.out.println("Unsuccesfully Service Add....");
 		}
-//}
 }
 
 
-public static Service_requests pushServiceRequest(Customer_Vehicle_Details cvd) {
+public static Service_requests pushServiceRequest(Customer_Vehicle_Details cvd) throws SQLException {
 	String vehicle_number=cvd.getVehicle_number();
 	int isInserted=0;
-	try {
-		ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
-		Service_requests sr =new Service_requests();
-		sr=serviceRequestDao.pushingThisServiceRequest(vehicle_number);
-		if(sr!=null) {
-			System.out.println(sr);
-			return sr;
-		}else {
-			System.out.println("Some Error in PushServiceRequest");
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+	Service_requests sr =new Service_requests();
+	sr=serviceRequestDao.pushingThisServiceRequest(vehicle_number);
+	if(sr!=null) {
+		System.out.println(sr);
+		return sr;
+	}else {
+		System.out.println("Some Error in PushServiceRequest");
 	}
 
 	return null;
@@ -164,7 +126,7 @@ public static Service_requests pushServiceRequest(Customer_Vehicle_Details cvd) 
 
 //=========================================================================================================================================
 
-public static Customer_Vehicle_Details getServiceRequest() {
+public static Customer_Vehicle_Details getServiceRequest() throws SQLException {
 	int customer_id=CustomerService.customerFromMobile();
 	CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
 //	System.out.println("Enter vehicle_id if exists:");

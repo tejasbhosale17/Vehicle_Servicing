@@ -11,10 +11,15 @@ import operations.models.Customer;
 
 public class CustomerDao {
 
-	private static Connection con;
+	 static Connection con;
 
-	public CustomerDao() throws SQLException {
-		this.con = DBUtil.getConnection();
+	static{
+		try {
+			con = DBUtil.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 //-------------------------------------------------------------------------------	

@@ -1,5 +1,6 @@
 package opeartions.Menu;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import opeartions.service.CustomerService;
@@ -23,7 +24,7 @@ public class CustomerMenu {
 		return (choice<0 ||choice>5 ? ECustomerMenu.values()[6] :ECustomerMenu.values()[choice]);
 	}
 	
-public static void ChooseCustomerMain() {
+public static void ChooseCustomerMain() throws SQLException {
 	System.out.println("Choose Customer Operations");
 	ECustomerMenu choice;
 	Scanner scan = new Scanner(System.in);

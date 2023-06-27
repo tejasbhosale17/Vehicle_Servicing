@@ -14,68 +14,48 @@ import operations.models.Customer_vehicles;
 class CustomerVehicleDaoTest {
 
 	@Test
-	void testgetAllCustomerVehicles() {
+	void testgetAllCustomerVehicles() throws SQLException {
 		List<Customer_vehicles> CVList = new ArrayList<>();
-		try {
-			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			CustVehicleDao.getAllVehicles(CVList);
-			for(Customer_vehicles cv: CVList) {
-				System.out.println(cv);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+		CustVehicleDao.getAllVehicles(CVList);
+		for(Customer_vehicles cv: CVList) {
+			System.out.println(cv);
 		}	
 	}
 	
 	@Test
-	void testsearchThisVehicle() {
-		try {
-			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			Customer_vehicles CV= new Customer_vehicles();
-			CV=CustVehicleDao.searchThisVehicle("MH01TY8814");
-			if(CV!=null) {
-				System.out.println("Vehicle Details are here...");
-				System.out.println(CV);
-			}else {
-				System.out.println("Vehicle Does not Exists!");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	void testsearchThisVehicle() throws SQLException {
+		CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+		Customer_vehicles CV= new Customer_vehicles();
+		CV=CustVehicleDao.searchThisVehicle("MH01TY8814");
+		if(CV!=null) {
+			System.out.println("Vehicle Details are here...");
+			System.out.println(CV);
+		}else {
+			System.out.println("Vehicle Does not Exists!");
 		}
 	}
 	@Test
-	void testaddCustomerVehicle() {
+	void testaddCustomerVehicle() throws SQLException {
 		int isAdded=0;
-		try {
-			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			isAdded=CustVehicleDao.addCustomerVehicle("MH26BB3568",8,3);
-			if(isAdded>0) {
-				System.out.println("Customer Vehicle added Succesfully!!");
-			}else {
-				System.out.println("Failed to add customer_vehicle...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+		isAdded=CustVehicleDao.addCustomerVehicle("MH26BB3568",8,3);
+		if(isAdded>0) {
+			System.out.println("Customer Vehicle added Succesfully!!");
+		}else {
+			System.out.println("Failed to add customer_vehicle...");
 		}
 	}
 	
 	@Test
-	void testremoveThisVehicle() {
+	void testremoveThisVehicle() throws SQLException {
 		int isDeleted=0;
-		try {
-			CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
-			isDeleted=CustVehicleDao.removeThisVehicle("MH26BB3568");
-			if(isDeleted>0) {
-				System.out.println("Vehicle Deleted Succesfully...");
-			}else {
-				System.out.println("Vehicle Deleted Unsuccesfully...");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		CustomerVehicleDao CustVehicleDao = new CustomerVehicleDao();
+		isDeleted=CustVehicleDao.removeThisVehicle("MH26BB3568");
+		if(isDeleted>0) {
+			System.out.println("Vehicle Deleted Succesfully...");
+		}else {
+			System.out.println("Vehicle Deleted Unsuccesfully...");
 		}
 	}	
 	

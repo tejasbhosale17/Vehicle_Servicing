@@ -2,6 +2,7 @@ package vehicle_console.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ class OfferedServicesServiceTest {
 //	 }
 	
 	@Test
-	void testaddThisServiceByRepair() {
+	void testaddThisServiceByRepair() throws SQLException {
 		 Service_requests sr= new Service_requests();
 		 sr=ServiceRequestDao.pushingThisServiceRequest("MH31DS7890");
 		 OfferedServicesService.addThisServiceByRepair(sr);

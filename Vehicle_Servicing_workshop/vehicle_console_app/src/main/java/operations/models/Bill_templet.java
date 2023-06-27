@@ -1,6 +1,7 @@
 package operations.models;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -91,11 +92,12 @@ public class Bill_templet {
 	}
 
 	
-	public void showBill() {
+	public void showBill() throws SQLException {
 		Scanner scan= new Scanner(System.in);
 		System.out.println("Enter mobile no:");
 		Long mobile=scan.nextLong();
-		Customer customer=CustomerDao.getThatCustomer(mobile);
+		Customer customer= new Customer();
+		customer=CustomerDao.getThatCustomer(mobile);
 		int customer_id= customer.getId();
 		CustomerVehicleService.DetailsofAllCustomerVehicles(customer_id);
 		System.out.println("Enter vehicle_number if exists:");

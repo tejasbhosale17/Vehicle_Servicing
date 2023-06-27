@@ -2,6 +2,7 @@ package vehicle_console.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ class CustomerVehicleServiceTest {
 //	}
 	
 	@Test
-	void testhereIsYourVehicle() {
+	void testhereIsYourVehicle() throws SQLException {
 		Customer_Vehicle_Details cvd =new Customer_Vehicle_Details();
 		cvd=CustomerVehicleService.hereIsYourVehicle(2,"MH01TY8814");
 		if(cvd!=null) {

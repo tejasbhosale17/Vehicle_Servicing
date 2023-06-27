@@ -1,5 +1,6 @@
 package opeartions.Menu;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import opeartions.service.VehicleService;
@@ -26,7 +27,7 @@ public class VehicleMenu {
 		return (choice<0 ||choice>5 ? EVehicleMenu.values()[6] :EVehicleMenu.values()[choice]);
 	}
 		
-	public static void ChooseVehicleMain() {
+	public static void ChooseVehicleMain() throws SQLException {
 		System.out.println("Choose Vehicle Operations");
 		EVehicleMenu choice;
 		Scanner scan = new Scanner(System.in);

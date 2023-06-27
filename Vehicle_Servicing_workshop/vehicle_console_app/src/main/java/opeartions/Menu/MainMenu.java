@@ -1,5 +1,6 @@
 package opeartions.Menu;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import operations.models.Bill_templet;
@@ -34,7 +35,7 @@ public class MainMenu {
 //		return EMainMenu.values()[choice];
 	}
 	
-public static void TheMainMenu() {
+public static void TheMainMenu() throws SQLException {
 	System.out.println("Choose The Department");
 	MainMenu m =new MainMenu();
 	EMainMenu choice;

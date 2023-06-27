@@ -2,6 +2,8 @@ package vehicle_console.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 import opeartions.service.VehicleService;
@@ -40,7 +42,7 @@ class VehicleServiceTest {
 //	}
 	
 	@Test
-	void testaddVehicleUsingMobile() {
+	void testaddVehicleUsingMobile() throws SQLException {
 		VehicleService.addVehicleUsingMobile();
 	}
 }

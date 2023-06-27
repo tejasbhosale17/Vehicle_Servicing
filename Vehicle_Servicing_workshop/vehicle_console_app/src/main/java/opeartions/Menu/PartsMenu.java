@@ -1,5 +1,6 @@
 package opeartions.Menu;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import opeartions.service.PartService;
@@ -23,7 +24,7 @@ public class PartsMenu {
 		return (choice<0 ||choice>5 ? EPartMenu.values()[6] :EPartMenu.values()[choice]);
 	}
 	
-public static void ChoosePartMain() {
+public static void ChoosePartMain() throws SQLException {
 	System.out.println("Choose Part Operations");
 	EPartMenu choice;
 	Scanner scan = new Scanner(System.in);

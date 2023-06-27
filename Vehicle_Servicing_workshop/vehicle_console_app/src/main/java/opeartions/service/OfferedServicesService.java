@@ -311,7 +311,7 @@ public class OfferedServicesService {
 	}
 	
 //---------------------- REPAIR -------------------------------------------------------------------------------
-public static void addThisServiceByRepair(Service_requests sr) {
+public static void addThisServiceByRepair(Service_requests sr) throws SQLException {
 	List<Service> srList = new ArrayList<>();
 	List<Service_Parts>spList = new ArrayList<>();
 	System.out.println("Repairing Your Vehicle:");

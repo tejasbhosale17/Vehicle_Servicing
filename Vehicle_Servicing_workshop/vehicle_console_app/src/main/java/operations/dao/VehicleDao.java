@@ -11,10 +11,15 @@ import operations.models.Vehicle;
 
 public class VehicleDao {
 
-	static Connection con;
+	private static Connection con;
 	
-	public VehicleDao() throws SQLException{
-		this.con=DBUtil.getConnection();
+	static{
+		try {
+			con=DBUtil.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

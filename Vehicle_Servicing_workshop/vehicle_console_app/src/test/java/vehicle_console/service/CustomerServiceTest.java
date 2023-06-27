@@ -2,6 +2,8 @@ package vehicle_console.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 import opeartions.service.CustomerService;
@@ -9,32 +11,32 @@ import opeartions.service.CustomerService;
 class CustomerServiceTest {
 
 	@Test
-	void testgetAllCustomers() {
+	void testgetAllCustomers() throws SQLException {
 		CustomerService.getAllCustomers();
 	}
 
 	@Test
-	void testgetSpecificCustomer() {
+	void testgetSpecificCustomer() throws SQLException {
 		CustomerService.getSpecificCustomer();
 	}
 	@Test
-	void testremoveCustomer() {
+	void testremoveCustomer()throws SQLException {
 		CustomerService.removeCustomer();
 	}
 	@Test
-	void testupdateCustomer() {
+	void testupdateCustomer() throws SQLException{
 		CustomerService.updateCustomer();
 	}
 	@Test
-	void testaddCustomer() {
+	void testaddCustomer() throws SQLException{
 		CustomerService.addCustomer();
 	}
 	@Test
-	void testaddThisCustomer() {
+	void testaddThisCustomer()throws SQLException {
 		CustomerService.addThisCustomer();
 	}
 	@Test
-	void testcustomerFromMobile() {
+	void testcustomerFromMobile() throws SQLException{
 		CustomerService.customerFromMobile();
 	}
 

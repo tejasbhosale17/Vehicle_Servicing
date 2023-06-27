@@ -11,10 +11,15 @@ import operations.models.Part;
 import operations.models.Service_Parts;
 
 public class PartDao {
-	private static Connection con;
+	static Connection con;
 
-	public PartDao() throws SQLException {
-		this.con = DBUtil.getConnection();
+	static{
+		try {
+			con = DBUtil.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 //-----------------------------------------------------------------------------------
 	

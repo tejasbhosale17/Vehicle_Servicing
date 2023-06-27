@@ -13,8 +13,13 @@ import operations.models.Customer_vehicles;
 public class CustomerVehicleDao {
 static Connection con;
 	
-	public CustomerVehicleDao() throws SQLException{
-		this.con=DBUtil.getConnection();
+	static{
+		try {
+			con=DBUtil.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	//---------------------------------------------------------------------
