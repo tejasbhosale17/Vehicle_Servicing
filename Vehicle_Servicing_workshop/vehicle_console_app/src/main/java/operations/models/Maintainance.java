@@ -1,8 +1,12 @@
 package operations.models;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import opeartions.service.PartService;
+import operations.dao.PartDao;
 
 
 public class Maintainance extends Service{
@@ -77,20 +81,50 @@ public class Maintainance extends Service{
 		this.remark=scan.nextLine();
 		this.total_cost=this.labour_charges;
 		this.service_request_id=0;
+//		calculateTotalCost();
 //		/Maintainance m = new Maintainance(type,labour_charges,remark,service_request_id);
 		//ServiceDao.addThisServiceByMaintainance(m);
 	}
 
 	@Override
 	public void calculateTotalCost() {
-		double total_cost=getLabour_charges();
-		setTotal_cost(total_cost);
-		
+		if(partList==null) {
+			System.out.println("This is partlist null");
+			double total_cost=getLabour_charges();
+			setTotal_cost(total_cost);
+//			System.out.println("Have you Repaired any parts: Y?N::1:0");
+//			int num=scan.nextInt();
+//			if(num==1) {
+//				for(Service_Parts p:partList) {
+//					Part part= PartDao.findThisPartById(p.getPart_id());
+////					p.getQuantity();
+//					total_cost=total_cost+(part.getPrice()*p.getQuantity());
+//					setTotal_cost(total_cost);
+//				}
+//			}
+		}else {
+			System.out.println("This is partlist not null");
+
+			for(Service_Parts p:partList) {
+				Part part= PartDao.findThisPartById(p.getPart_id());
+//				p.getQuantity();
+				double total_cost=(getLabour_charges()+(part.getPrice()*p.getQuantity()));
+				setTotal_cost(total_cost);
+			}
+		}
+	
 	}
 	
-	public void calculateTotalRepairingCost(Part p, int quantity) {
-		double total_cost=getLabour_charges()+(p.getPrice()*quantity);
-		setTotal_cost(total_cost);
-	}
+//	@Override
+//	public void calculateTotalCost() {
+//		double total_cost=getLabour_charges();
+//		setTotal_cost(total_cost);
+//		
+//	}
+//	
+//	public void calculateTotalRepairingCost(Part p, int quantity) {
+//		double total_cost=getLabour_charges()+(p.getPrice()*quantity);
+//		setTotal_cost(total_cost);
+//	}
 	
 }
