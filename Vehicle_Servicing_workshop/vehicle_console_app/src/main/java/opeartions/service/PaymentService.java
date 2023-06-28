@@ -42,12 +42,14 @@ public class PaymentService {
 	
 	public void GivenDateBusiness() throws ParseException {
 		double givendate_business=0;
-		SimpleDateFormat dateF = new SimpleDateFormat("YYYY-MM-DD");
+//		SimpleDateFormat dateF = new SimpleDateFormat("YYYY-MM-DD");
 		PaymentDao paymentDao = new PaymentDao();
 		System.out.println("Enter Date in YYYY-MM-DD formate for total business:");
-		String dt=scan.nextLine();
-		Date givenDate = (Date) dateF.parse(dt);
-		
+		String dt=scan.next();
+//		Date givenDate = (Date) dateF.parse(dt);
+		Date givenDate = null;
+		givenDate=Date.valueOf(dt);
+		System.out.println(givenDate);
 		givendate_business=paymentDao.GivenDateBusiness(givenDate);
 		System.out.println(givendate_business);
 	}
