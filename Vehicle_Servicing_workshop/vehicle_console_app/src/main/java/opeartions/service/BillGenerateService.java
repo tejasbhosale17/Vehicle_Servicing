@@ -55,7 +55,8 @@ public class BillGenerateService {
 			List<Part> plist = new ArrayList<>();
 			PartDao.showListOFPartsForService(plist,s.getService_id());
 			for(Part p:plist) {
-				System.out.println("Part Name: "+p.getPname()+"       "+"Price: "+p.getPrice());
+				int quantity=ServicePartsService.findQuantity(s.getService_id(),p.getPid());
+				System.out.println("Part Name: "+p.getPname()+"   "+"Price: "+p.getPrice()+" "+"Quantity:"+quantity);
 			}
 			System.out.println("----------------------Remark-----------------------------------------");
 			System.out.println("Remark: "+s.getRemark());
@@ -69,14 +70,18 @@ public class BillGenerateService {
 		double allOil_cost= ServiceDao.getAllOilCost(bt.getSr());
 		
 		double ServicesBill_amount=ServiceDao.getTotalBillAmount(bt.getSr());
+		double finalBill_amount=(ServicesBill_amount+(ServicesBill_amount*0.125));
 		bt.setBill_amount(ServicesBill_amount);
 		System.out.println("---------------------BILL AMOUNT---------------------------------------");
 		System.out.println(" ");
 		System.out.println("Total Labour Charges: "+allLabour_charges);
 		System.out.println("Total Oil Cost: "+allOil_cost);
 		System.out.println("Total Bill Amount: "+ServicesBill_amount);
+		System.out.println("GST 12.5%: "+(ServicesBill_amount*0.125));
 		System.out.println(" ");
 		System.out.println("-----------------------------------------------------------------------");
+		System.out.println("Amount to be Paid: "+finalBill_amount);
+		System.out.println("------------------------------------------------------------------------");
 		System.out.println("");
 		System.out.println("");
 	//--------------------------------------------------------------------------------------------------------

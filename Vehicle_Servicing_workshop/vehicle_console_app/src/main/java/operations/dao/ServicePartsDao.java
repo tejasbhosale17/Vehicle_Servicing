@@ -60,6 +60,25 @@ public class ServicePartsDao {
 		return nspa;
 		
 	}
+
+	public int findQuantity(int service_id,int part_id) {
+		String q3="select quantity from service_parts where service_id=? and part_id=?";
+		int quantity=0;
+		try {
+			PreparedStatement pmt =con.prepareStatement(q3);
+			pmt.setInt(1, service_id);
+			pmt.setInt(2, part_id);
+			ResultSet rs=pmt.executeQuery();
+			while(rs.next()) {
+				quantity=rs.getInt("quantity");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return quantity;
+	}
 	
 
 	

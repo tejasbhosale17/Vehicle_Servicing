@@ -38,5 +38,12 @@ public class ServicePartsService {
 		return sp;
 	}
 	
+	public static int findQuantity(int service_id,int part_id) {
+		int quantity=0;
+		ServicePartsDao servicePartsDao = new ServicePartsDao();
+		quantity=servicePartsDao.findQuantity(service_id,part_id);
+		
+		return quantity;
+	}
 	
 }
