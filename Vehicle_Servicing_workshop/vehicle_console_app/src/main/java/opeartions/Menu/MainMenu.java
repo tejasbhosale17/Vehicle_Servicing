@@ -1,14 +1,17 @@
 package opeartions.Menu;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 import opeartions.service.BillGenerateService;
+import opeartions.service.PaymentService;
 import operations.models.Bill_templet;
 
 enum EMainMenu{
 	EXIT,CUSTOMER,PART,VEHICLE,CUSTOMER_VEHICLE,
-	SERVICE,SERVICE_REQUEST,GENERATE_BILL,DEFAULT
+//	SERVICE,
+	SERVICE_REQUEST,GENERATE_BILL,TODAYS_BUSINESS, GIVENDATE_BUSINESS , DEFAULT
 }
 
 
@@ -26,13 +29,15 @@ public class MainMenu {
 		System.out.println("2.Part");
 		System.out.println("3.Vehicle");
 		System.out.println("4.Customer Vehicle");
-		System.out.println("5.Service");
-		System.out.println("6.Service Request");
-		System.out.println("7.Generate Bill");
+//		System.out.println("5.Service");
+		System.out.println("5.Service Request");
+		System.out.println("6.Generate Bill");
+		System.out.println("7.Today's Business");
+		System.out.println("8.Given Date's Business");
 		System.out.print("Enter your choice = ");
 		System.out.println("");
 		int choice = new Scanner(System.in).nextInt();
-		return (choice<0 ||choice>7 ? EMainMenu.values()[7] :EMainMenu.values()[choice]);
+		return (choice<0 ||choice>9 ? EMainMenu.values()[9] :EMainMenu.values()[choice]);
 //		return EMainMenu.values()[choice];
 	}
 	
@@ -62,11 +67,11 @@ public static void TheMainMenu() throws SQLException {
 			m.cvmenu.ChooseCustomerVehicleMain();
 			System.out.println("");
 		break;
-			
-		case SERVICE:
-//			m.serviceMenu.ChooseServiceMenu();
-			System.out.println("Service");
-		break;
+//			
+//		case SERVICE:
+////			m.serviceMenu.ChooseServiceMenu();
+//			System.out.println("Service");
+//		break;
 			
 		case SERVICE_REQUEST:
 			m.serviceRequestMenu.ChooseServiceReqMenu();
@@ -79,6 +84,22 @@ public static void TheMainMenu() throws SQLException {
 			try {
 				billGenerateService.showBill();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		
+			
+		case TODAYS_BUSINESS:
+			PaymentService paymentService =  new PaymentService();
+			paymentService.TodaysBusiness();
+			break;
+		
+		case GIVENDATE_BUSINESS:
+			PaymentService payService =  new PaymentService();
+			try {
+				payService.GivenDateBusiness();
+			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
