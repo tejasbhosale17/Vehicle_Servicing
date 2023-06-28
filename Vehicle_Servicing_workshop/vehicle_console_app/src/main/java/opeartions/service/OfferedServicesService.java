@@ -379,6 +379,13 @@ public static void addThisServiceByRepair(Service_requests sr) throws SQLExcepti
 	}
 	
 }
+//---------------------------------------------------------------------------------------
+//public static void getRemarks(List<Service> serviceList,Service_requests sr) {
+//	ServiceDao serviceDao = new ServiceDao();
+//	int service_request_is=sr.getService_request_id();
+//	serviceDao.findThisService(serviceList,service_request_is);
+//	
+//}
 	
 	
 	

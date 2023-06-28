@@ -242,5 +242,31 @@ public class ServiceDao {
 		}
 		return totalBillAmount;
 	}
+
+//	public void getRemarks(List<Service> serviceList,Service_requests sr) {
+//		String sql="select * from service where service_request_id=?";
+//		try {
+//			PreparedStatement pmt=con.prepareStatement(sql);
+//			pmt.setInt(1, sr.getService_request_id());
+//			ResultSet rs=pmt.executeQuery();
+//			while(rs.next()) {
+//				String type=rs.getString("type");
+//				if(type.equals(oil)) {
+//					Oil o= new Oil(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("oil_cost"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+//					serviceList.add(o);
+//				}else if(type.equals(maintainance)) {
+//					Maintainance m =new Maintainance(rs.getInt("service_id"),rs.getString("type"),rs.getDouble("labour_charges"),rs.getDouble("total_cost"),rs.getString("remark"),rs.getInt("service_request_id"));
+//					serviceList.add(m);
+//				}else {
+//					System.out.println("Worng Entry...!");
+//				}
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//	}
 	
 }
