@@ -235,11 +235,12 @@ public class ServiceRequestDao {
 
 
 	public void updateThisBillAmount(Service_requests sr) {
-		String sql="update service_requests set bill_amount=((select sum(total_cost)as 'total_bill_amount' from services where service_request_id=?)+((select sum(total_cost)as 'total_bill_amount' from services where service_request_id=?)*0.125))where service_request_id=?";
+		String sql="update service_requests set bill_amount=((select sum(total_cost)as 'total_bill_amount' from services where service_request_id=? )+((select sum(total_cost)as 'total_bill_amount' from services where service_request_id=?)*0.125))where service_request_id=?;";
 		try {
 			PreparedStatement pmt =con.prepareStatement(sql);
 			pmt.setInt(1, sr.getService_request_id());
 			pmt.setInt(2, sr.getService_request_id());
+			pmt.setInt(3, sr.getService_request_id());
 			int nbau=pmt.executeUpdate();
 			if(nbau>0) {
 				System.out.println("Bill amount Updated");
