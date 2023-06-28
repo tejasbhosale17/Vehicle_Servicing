@@ -20,7 +20,21 @@ public class Bill_templet {
 	protected Customer_Vehicle_Details cvd;
 	protected Part p;
 	protected Service_requests sr;
+	protected double bill_amount;
 	
+	public Bill_templet(String service_Station_name, Date service_date, Customer c, Customer_Vehicle_Details cvd,
+			Part p, Service_requests sr, double bill_amount) {
+		super();
+		Service_Station_name = service_Station_name;
+		Service_date = service_date;
+		this.c = c;
+		this.cvd = cvd;
+		this.p = p;
+		this.sr = sr;
+		this.bill_amount = bill_amount;
+	}
+
+
 	public Bill_templet() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -84,6 +98,17 @@ public class Bill_templet {
 	public void setSr(Service_requests sr) {
 		this.sr = sr;
 	}
+	
+
+	public double getBill_amount() {
+		return bill_amount;
+	}
+
+	public void setBill_amount(double bill_amount) {
+		this.bill_amount = bill_amount;
+	}
+	
+	
 
 	@Override
 	public String toString() {
