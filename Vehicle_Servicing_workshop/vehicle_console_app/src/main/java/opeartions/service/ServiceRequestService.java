@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import operations.dao.ServiceDao;
 import operations.dao.ServiceRequestDao;
 import operations.models.Customer_Vehicle_Details;
 import operations.models.Service;
@@ -220,6 +221,12 @@ public static void ListOfServiceRequestsForDate(Service_requests sr) {
 //			e.printStackTrace();
 //		}
 //	return null;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+public static void updateBillAmount(Service_requests sr) {
+	ServiceRequestDao serviceRequestDao = new ServiceRequestDao();
+	serviceRequestDao.updateThisBillAmount(sr);
 }
 
 }
