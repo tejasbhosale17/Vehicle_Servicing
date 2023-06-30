@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Scanner;
 
+import emp.service.EmployeeService;
+
 
 
 
@@ -37,10 +39,12 @@ public static void main(String[] args) {
 			break;
 
 		case UPDATEEMPLOYEE:
+			EmployeeService.updateAllEmployes();
 				System.out.println("");
 			break;
 
 		case LISTEMPLOYEE:
+			EmployeeService.getAllEmployeesOnDate();
 				System.out.println("");
 			break;
 			
@@ -51,7 +55,10 @@ public static void main(String[] args) {
 
 		
 		case DEFAULT:
+			EmployeeService.DeptWithAVGSal();
 			System.out.println("Wrong choice entered..:(");
 			break;
 }
-
+	}
+}
+}
