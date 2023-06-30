@@ -36,7 +36,7 @@ public class PaymentService {
 		double todays_business=0;
 		PaymentDao paymentDao = new PaymentDao();
 		todays_business=paymentDao.TodaysBusiness();
-		System.out.println(todays_business);
+		System.out.println("Today's Business: "+todays_business);
 	}
 	
 	
@@ -49,9 +49,9 @@ public class PaymentService {
 //		Date givenDate = (Date) dateF.parse(dt);
 		Date givenDate = null;
 		givenDate=Date.valueOf(dt);
-		System.out.println(givenDate);
+//		System.out.println(givenDate);
 		givendate_business=paymentDao.GivenDateBusiness(givenDate);
-		System.out.println(givendate_business);
+		System.out.println("Your total Collection that day: "+givendate_business);
 	}
 	
 	
