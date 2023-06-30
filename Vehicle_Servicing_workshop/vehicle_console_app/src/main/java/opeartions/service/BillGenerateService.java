@@ -56,7 +56,7 @@ public class BillGenerateService {
 			PartDao.showListOFPartsForService(plist,s.getService_id());
 			for(Part p:plist) {
 				int quantity=ServicePartsService.findQuantity(s.getService_id(),p.getPid());
-				System.out.println("Part Name: "+p.getPname()+"   "+"Price: "+p.getPrice()+" "+"Quantity:"+quantity);
+				System.out.println("Part Name: "+p.getPname()+"   "+"Price: "+p.getPrice());
 			}
 			System.out.println("----------------------Remark-----------------------------------------");
 			System.out.println("Remark: "+s.getRemark());
