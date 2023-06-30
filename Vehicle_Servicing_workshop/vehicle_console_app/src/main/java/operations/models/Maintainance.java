@@ -89,7 +89,7 @@ public class Maintainance extends Service{
 	@Override
 	public void calculateTotalCost() {
 		if(partList==null) {
-			System.out.println("This is partlist null");
+//			System.out.println("This is partlist null");
 			double total_cost=getLabour_charges();
 			setTotal_cost(total_cost);
 //			System.out.println("Have you Repaired any parts: Y?N::1:0");
@@ -103,7 +103,7 @@ public class Maintainance extends Service{
 //				}
 //			}
 		}else {
-			System.out.println("This is partlist not null");
+//			System.out.println("This is partlist not null");
 
 			for(Service_Parts p:partList) {
 				Part part= PartDao.findThisPartById(p.getPart_id());
